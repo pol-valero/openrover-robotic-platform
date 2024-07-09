@@ -439,6 +439,24 @@ void correctRcValuesReceived() {
 
 }
 
+void stopMotors() {
+
+  setMotorSpeed(MOTOR_1, 0, FWD);
+  setMotorSpeed(MOTOR_2, 0, FWD);
+  setMotorSpeed(MOTOR_3, 0, FWD);
+  setMotorSpeed(MOTOR_4, 0, FWD);
+  setMotorSpeed(MOTOR_5, 0, FWD);
+  setMotorSpeed(MOTOR_6, 0, FWD);
+
+  setMotorSpeed(MOTOR_1, 0, BCK);
+  setMotorSpeed(MOTOR_2, 0, BCK);
+  setMotorSpeed(MOTOR_3, 0, BCK);
+  setMotorSpeed(MOTOR_4, 0, BCK);
+  setMotorSpeed(MOTOR_5, 0, BCK);
+  setMotorSpeed(MOTOR_6, 0, BCK);
+
+}
+
 void readRcValues() {
 
   static long initial_time;
@@ -496,6 +514,50 @@ void readRcValues() {
 
 }
 
+
+void servoWrite(int servo_identifier,  int degrees) {
+
+  const int w_servo_max_angle = 150;
+  const int w_servo_min_angle = 45;
+
+  
+  switch (servo_identifier) {
+    case W_SERVO_1:
+      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
+        w_servo1.write(degrees);
+      } else {
+        Serial.println("Servo1 angle out of bounds");
+      }
+      break;
+
+      case W_SERVO_2:
+      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
+        w_servo2.write(degrees);
+      } else {
+        Serial.println("Servo2 angle out of bounds");
+      }
+      break;
+
+      case W_SERVO_3:
+      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
+        w_servo3.write(degrees);
+      } else {
+        Serial.println("Servo3 angle out of bounds");
+      }
+      break;
+
+      case W_SERVO_4:
+      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
+        w_servo4.write(degrees);
+      } else {
+        Serial.println("Servo4 angle out of bounds");
+      }
+      break;
+  }
+
+}
+
+
 void doWheelServoTest() {
 
   int pos; 
@@ -519,6 +581,76 @@ void doWheelServoTest() {
   }
 
 }
+
+
+bool joystickIsRight(int joystickSelection) {
+
+  if (joystickSelection == JOY_LEFT) {
+
+    return rc_data.joystick1_x > 0;
+
+  } else {
+
+    return rc_data.joystick2_x > 0;
+
+  }
+
+}
+
+bool joystickIsLeft(int joystickSelection) {
+
+  if (joystickSelection == JOY_LEFT) {
+
+    return rc_data.joystick1_x < 0;
+
+  } else {
+
+    return rc_data.joystick2_x < 0;
+    
+  }
+  
+}
+
+bool joystickIsUp(int joystickSelection) {
+
+  if (joystickSelection == JOY_LEFT) {
+
+    return rc_data.joystick1_y > 0;
+
+  } else {
+
+    return rc_data.joystick2_y > 0;
+    
+  }
+
+}
+
+bool joystickIsDown(int joystickSelection) {
+
+   if (joystickSelection == JOY_LEFT) {
+
+    return rc_data.joystick1_y < 0;
+
+  } else {
+
+    return rc_data.joystick2_y < 0;
+    
+  }
+
+}
+
+bool joystickX_isCentered(int joystickSelection) {
+  return !joystickIsRight(joystickSelection) && !joystickIsLeft(joystickSelection);
+}
+
+bool joystickY_isCentered(int joystickSelection) {
+  return !joystickIsUp(joystickSelection) && !joystickIsDown(joystickSelection);
+}
+
+bool joystickXY_isCentered(int joystickSelection) {
+  return !joystickX_isCentered(joystickSelection) && !joystickY_isCentered(joystickSelection);
+}
+
 
 void turnControl360Degree() {
 
@@ -626,36 +758,6 @@ void setOperationMode() {
   }
 }
 
-//TODO: change name to rcOperationModeExecution
-void operationModeExecution() {
-
-  switch (op_mode) {
-
-    case OP_CONVENTIONAL_DRIVING:
-      calculateMotorsSpeed();
-      calculateWheelServosAngle();
-      setMotors();
-      setWheelServos();
-      break;
-    case OP_360_DEGREE_TURN_CONTROL:
-      turnControl360Degree();
-      break;
-    case OP_ROBOTIC_ARM_CONTROL:
-      //roboticArmControl();
-      break;
-    case OP_HEAD_CONTROL:
-      //headControl();
-      break;
-    case OP_WEB_CONTROL:
-      //webOperationModeExecution(); //This function will be in the webControl.c
-      break;
-
-    default:
-      break;
-
-  }
-
-}
 
 void setWheelServosStraight() {
 
@@ -666,23 +768,6 @@ void setWheelServosStraight() {
 
 }
 
-void stopMotors() {
-
-  setMotorSpeed(MOTOR_1, 0, FWD);
-  setMotorSpeed(MOTOR_2, 0, FWD);
-  setMotorSpeed(MOTOR_3, 0, FWD);
-  setMotorSpeed(MOTOR_4, 0, FWD);
-  setMotorSpeed(MOTOR_5, 0, FWD);
-  setMotorSpeed(MOTOR_6, 0, FWD);
-
-  setMotorSpeed(MOTOR_1, 0, BCK);
-  setMotorSpeed(MOTOR_2, 0, BCK);
-  setMotorSpeed(MOTOR_3, 0, BCK);
-  setMotorSpeed(MOTOR_4, 0, BCK);
-  setMotorSpeed(MOTOR_5, 0, BCK);
-  setMotorSpeed(MOTOR_6, 0, BCK);
-
-}
 
 void calculateMotorsSpeed() {
   //Ackerman steering geometry calculations
@@ -841,49 +926,6 @@ void setMotors() {
 
 }
 
-void servoWrite(int servo_identifier,  int degrees) {
-
-  const int w_servo_max_angle = 150;
-  const int w_servo_min_angle = 45;
-
-  
-  switch (servo_identifier) {
-    case W_SERVO_1:
-      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
-        w_servo1.write(degrees);
-      } else {
-        Serial.println("Servo1 angle out of bounds");
-      }
-      break;
-
-      case W_SERVO_2:
-      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
-        w_servo2.write(degrees);
-      } else {
-        Serial.println("Servo2 angle out of bounds");
-      }
-      break;
-
-      case W_SERVO_3:
-      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
-        w_servo3.write(degrees);
-      } else {
-        Serial.println("Servo3 angle out of bounds");
-      }
-      break;
-
-      case W_SERVO_4:
-      if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
-        w_servo4.write(degrees);
-      } else {
-        Serial.println("Servo4 angle out of bounds");
-      }
-      break;
-  }
-
-}
-
-
 
 void setWheelServos() {
   //Depending on the channels values (steering LEFT/RIGHT) we will add or subtract each servos'
@@ -920,72 +962,35 @@ void setArmServos() {
 }
 
 
-bool joystickIsRight(int joystickSelection) {
+//TODO: change name to rcOperationModeExecution
+void operationModeExecution() {
 
-  if (joystickSelection == JOY_LEFT) {
+  switch (op_mode) {
 
-    return rc_data.joystick1_x > 0;
+    case OP_CONVENTIONAL_DRIVING:
+      calculateMotorsSpeed();
+      calculateWheelServosAngle();
+      setMotors();
+      setWheelServos();
+      break;
+    case OP_360_DEGREE_TURN_CONTROL:
+      turnControl360Degree();
+      break;
+    case OP_ROBOTIC_ARM_CONTROL:
+      //roboticArmControl();
+      break;
+    case OP_HEAD_CONTROL:
+      //headControl();
+      break;
+    case OP_WEB_CONTROL:
+      //webOperationModeExecution(); //This function will be in the webControl.c
+      break;
 
-  } else {
-
-    return rc_data.joystick2_x > 0;
+    default:
+      break;
 
   }
 
-}
-
-bool joystickIsLeft(int joystickSelection) {
-
-  if (joystickSelection == JOY_LEFT) {
-
-    return rc_data.joystick1_x < 0;
-
-  } else {
-
-    return rc_data.joystick2_x < 0;
-    
-  }
-  
-}
-
-bool joystickIsUp(int joystickSelection) {
-
-  if (joystickSelection == JOY_LEFT) {
-
-    return rc_data.joystick1_y > 0;
-
-  } else {
-
-    return rc_data.joystick2_y > 0;
-    
-  }
-
-}
-
-bool joystickIsDown(int joystickSelection) {
-
-   if (joystickSelection == JOY_LEFT) {
-
-    return rc_data.joystick1_y < 0;
-
-  } else {
-
-    return rc_data.joystick2_y < 0;
-    
-  }
-
-}
-
-bool joystickX_isCentered(int joystickSelection) {
-  return !joystickIsRight(joystickSelection) && !joystickIsLeft(joystickSelection);
-}
-
-bool joystickY_isCentered(int joystickSelection) {
-  return !joystickIsUp(joystickSelection) && !joystickIsDown(joystickSelection);
-}
-
-bool joystickXY_isCentered(int joystickSelection) {
-  return !joystickX_isCentered(joystickSelection) && !joystickY_isCentered(joystickSelection);
 }
 
 
