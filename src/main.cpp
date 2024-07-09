@@ -1,5 +1,4 @@
 #include <Arduino.h>
-//#include "lv_demo_widgets.h"
 #include <lvgl.h>
 #include <demos/lv_demos.h>
 #include <Arduino_GFX_Library.h>
