@@ -19,7 +19,7 @@ typedef struct {
 } RcValues;
 
 void setup() {
-    Serial.begin(115200);	
+    Serial.begin(19200);	
 }
 
 void loop() {
