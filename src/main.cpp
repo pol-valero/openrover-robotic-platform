@@ -19,7 +19,6 @@ RcTrainer tx;
 RF24 radio(6, 5); // CE, CSN
 const byte readAddress[6] = "ADDR2";
 const byte writeAddress[6] = "ADDR1";
-int datos[6];
 
 typedef struct {
   int y1;
@@ -32,11 +31,17 @@ typedef struct {
   int aux4;
 } RcValues;
 
-struct __attribute__((packed)) STRUCT {
+struct __attribute__((packed)) STRUCT { //TODO: Use typedef
   uint8_t type; //Hex value identifying the type of frame
   char data[48]; //Data of the frame
   uint8_t checksum; //TODO: Delete. Only for testing purposes
-} frame;
+} frame; //TODO: Change to SerialFrame
+
+struct __attribute__((packed)) STRUCT2 { //TODO: Use typedef
+  uint8_t type; //Hex value identifying the type of frame
+  uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
+  uint8_t data1B[5]; //Small data to be sent (1 byte each)
+} tinyFrame; //TODO: Change to RadioFrame
 
 AltSoftSerial mySerial; //RX = 8, TX = 9
 //auto &mySerial = Serial;
@@ -112,9 +117,9 @@ void radioReceiveResponse() {
 
       char buffer[200]; //TODO: Lower to minimum size
 
-      radio.read(&datos, sizeof(datos));
+      radio.read(&tinyFrame, sizeof(tinyFrame));
 
-      sprintf(buffer, "Palanca 1: %d Palanca 2: %d Joystick_X_1: %d Joystick_Y_1: %d Joystick_Y_2: %d Joystick_X_2: %d", datos[2], datos[1], datos[4], datos[5], datos[3], datos[0]);
+      sprintf(buffer, "Type:%d Data2B[0]:%d Data2B[1]:%d Data1B[0]:%d Data1B[2]: %d", tinyFrame.type, tinyFrame.data2B[0], tinyFrame.data2B[1], tinyFrame.data1B[0], tinyFrame.data1B[2]);
 
       Serial.println(buffer);
 
@@ -133,18 +138,18 @@ void radioSendData() {
   if (millis() - previousMillis >= 50) {
     previousMillis = millis();
 
-    datos[0] = i;
-    datos[1] = i + 1;
-    datos[2] = i + 2;
-    datos[3] = i + 3;
-    datos[4] = i + 4;
-    datos[5] = i + 5;
+    tinyFrame.type = 0x04;
+    tinyFrame.data2B[0] = i;
+    tinyFrame.data2B[1] = i + 1;
+    tinyFrame.data1B[0] = i + 2;
+    tinyFrame.data1B[1] = i + 3;
+    tinyFrame.data1B[2] = i + 4;
 
     i++;
 
     radio.stopListening();
 
-    radio.write(&datos, sizeof(datos));
+    radio.write(&tinyFrame, sizeof(tinyFrame));
 
     if (i > 250) {
       i = 0;
