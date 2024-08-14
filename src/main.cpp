@@ -79,13 +79,13 @@ void serialSendRcValues(RcValues rcvalues) {
 }
 
 void serialReceiveResponse() {
-  //Receives the response from the other side, checks every 5ms
-  //TODO: We check every 5ms because we are testing with high volume of information; when we are done, we can increase this value
+  //Receives the response from the other side, checks every 20ms
+  //TODO: We check every 20ms because we are testing with high volume of information; when we are done, we can increase this value
   //TODO: Change function name? This function will receive several types of frames in the future
 
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 5) {
+  if (millis() - previousMillis >= 20) {
     previousMillis = millis();
     if (myTransfer.available()) {
       myTransfer.rxObj(frame);
@@ -98,12 +98,12 @@ void serialReceiveResponse() {
 }
 
 void radioReceiveResponse() {
-  //Receives the response from the other side, checks every 100ms
+  //Receives the response from the other side, checks every 50ms
   //TODO: Change function name? This function will receive several types of radio responses in the future
 
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 100) {
+  if (millis() - previousMillis >= 50) {
     previousMillis = millis();
 
     radio.startListening();
@@ -168,8 +168,8 @@ void loop() {
     rcvalues.aux3 = tx.getChannel(6);
     rcvalues.aux4 = tx.getChannel(7);
 
-    //serialSendRcValues(rcvalues);
-    //serialReceiveResponse();
+    serialSendRcValues(rcvalues);
+    serialReceiveResponse();
     radioReceiveResponse();
     radioSendData();
   
