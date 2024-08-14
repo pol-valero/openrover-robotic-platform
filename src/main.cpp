@@ -17,7 +17,8 @@
 RcTrainer tx;
 
 RF24 radio(6, 5); // CE, CSN
-const byte address[6] = "00001";
+const byte readAddress[6] = "ADDR2";
+const byte writeAddress[6] = "ADDR1";
 int datos[6];
 
 typedef struct {
@@ -48,9 +49,9 @@ void setup() {
     myTransfer.begin(mySerial);
 
     radio.begin();
-    radio.openReadingPipe(0, address);
+    radio.openReadingPipe(0, readAddress);
+    radio.openWritingPipe(writeAddress);
     radio.setPALevel(RF24_PA_MAX);
-    radio.startListening();
 
 }
 
@@ -97,13 +98,16 @@ void serialReceiveResponse() {
 }
 
 void radioReceiveResponse() {
-  //Receives the response from the other side, checks every 5ms
+  //Receives the response from the other side, checks every 100ms
   //TODO: Change function name? This function will receive several types of radio responses in the future
 
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 5) {
+  if (millis() - previousMillis >= 100) {
     previousMillis = millis();
+
+    radio.startListening();
+
     if(radio.available()){
 
       char buffer[200]; //TODO: Lower to minimum size
@@ -115,6 +119,37 @@ void radioReceiveResponse() {
       Serial.println(buffer);
 
     }
+  }
+
+}
+
+void radioSendData() {
+  //Sends data to the other side, every 50ms
+  //TODO: Change function name? This function will send several types of radio responses in the future
+
+  static unsigned long previousMillis = 0;
+  static int i = 0;
+
+  if (millis() - previousMillis >= 50) {
+    previousMillis = millis();
+
+    datos[0] = i;
+    datos[1] = i + 1;
+    datos[2] = i + 2;
+    datos[3] = i + 3;
+    datos[4] = i + 4;
+    datos[5] = i + 5;
+
+    i++;
+
+    radio.stopListening();
+
+    radio.write(&datos, sizeof(datos));
+
+    if (i > 250) {
+      i = 0;
+    }
+  
   }
 
 }
@@ -133,8 +168,9 @@ void loop() {
     rcvalues.aux3 = tx.getChannel(6);
     rcvalues.aux4 = tx.getChannel(7);
 
-    serialSendRcValues(rcvalues);
-    serialReceiveResponse();
+    //serialSendRcValues(rcvalues);
+    //serialReceiveResponse();
     radioReceiveResponse();
+    radioSendData();
   
 }
