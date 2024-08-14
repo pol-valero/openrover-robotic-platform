@@ -5,11 +5,20 @@
 #include "SerialTransfer.h"
 #include <Wire.h> //TODO: Remove wire.h if not needed (it is used for I2C communication)
 
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+
+
 // We listen on interrupt 0 which is digital input pin D2 (on Arduino uno)
 // We can take a look at http://arduino.cc/en/Reference/attachInterrupt for mapping
 // an interrupt number to pin number
 
 RcTrainer tx;
+
+RF24 radio(6, 5); // CE, CSN
+const byte address[6] = "00001";
+int datos[6];
 
 typedef struct {
   int y1;
@@ -38,7 +47,11 @@ void setup() {
     mySerial.begin(38400);
     myTransfer.begin(mySerial);
 
-    pinMode(13, OUTPUT);
+    radio.begin();
+    radio.openReadingPipe(0, address);
+    radio.setPALevel(RF24_PA_MAX);
+    radio.startListening();
+
 }
 
 void sendFrame(uint8_t type, char data[48], uint8_t checksum) {
@@ -79,9 +92,31 @@ void serialReceiveResponse() {
       char buffer[50];
       sprintf(buffer, "Type: %d Data: %s Checksum: %d", frame.type, frame.data, frame.checksum);
       Serial.println(buffer);
-      digitalWrite(13, !digitalRead(13));
     }
   }
+}
+
+void radioReceiveResponse() {
+  //Receives the response from the other side, checks every 5ms
+  //TODO: Change function name? This function will receive several types of radio responses in the future
+
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 5) {
+    previousMillis = millis();
+    if(radio.available()){
+
+      char buffer[200]; //TODO: Lower to minimum size
+
+      radio.read(&datos, sizeof(datos));
+
+      sprintf(buffer, "Palanca 1: %d Palanca 2: %d Joystick_X_1: %d Joystick_Y_1: %d Joystick_Y_2: %d Joystick_X_2: %d", datos[2], datos[1], datos[4], datos[5], datos[3], datos[0]);
+
+      Serial.println(buffer);
+
+    }
+  }
+
 }
 
 
@@ -100,5 +135,6 @@ void loop() {
 
     serialSendRcValues(rcvalues);
     serialReceiveResponse();
-
+    radioReceiveResponse();
+  
 }
