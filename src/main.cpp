@@ -145,12 +145,12 @@ void sendFrame(uint8_t type, char data[48], uint8_t checksum) {
 }
 
 void serialSendTestValues() {
-  //Sends test values to the other side every 5ms
+  //Sends test values to the other side every 200ms
 
   static unsigned long previousMillis = 0;
   static int i = 0;
 
-  if (millis() - previousMillis >= 5) {
+  if (millis() - previousMillis >= 200) {
     previousMillis = millis();
 
     char buffer[10];
