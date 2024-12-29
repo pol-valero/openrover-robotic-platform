@@ -36,20 +36,24 @@ struct __attribute__((packed)) STRUCT { //TODO: Use typedef
   uint8_t type; //Hex value identifying the type of frame
   char data[48]; //Data of the frame
   uint8_t checksum; //TODO: Delete. Only for testing purposes
-} frame; //TODO: Change to SerialFrame
+} frame; //TODO: Delete. We will be using the next struct for radio and serial
 
 struct __attribute__((packed)) STRUCT2 { //TODO: Use typedef
   uint8_t type; //Hex value identifying the type of frame
   uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
   uint8_t data1B[5]; //Small data to be sent (1 byte each)
-} tinyFrame; //TODO: Change to RadioFrame
+} tinyFrame; //TODO: Change to "frame" (we will use same struct for radio and serial)
 
 AltSoftSerial mySerial; //RX = 8, TX = 9
 //auto &mySerial = Serial;
 SerialTransfer myTransfer;
 
+const int batt_input_pin = A0; //Analog pin where the battery voltage is read
+const int buzzer_pin = A3; //Analog pin where the buzzer is connected
+
 
 void setup() {
+
     Serial.begin(38400);  
     mySerial.begin(38400);
     myTransfer.begin(mySerial);
@@ -59,8 +63,15 @@ void setup() {
     radio.openWritingPipe(writeAddress);
     radio.setPALevel(RF24_PA_MAX);
 
+    pinMode(batt_input_pin, INPUT);
+    pinMode(buzzer_pin, OUTPUT);
+
+    noTone(buzzer_pin);
+
 }
 
+//TODO: Change function name to "sendSerialFrame" and as parameters, have type, data2B and data1B (we will use same struct for radio and serial)
+//TODO: Create function "sendRadioFrame" with same parameters
 void sendFrame(uint8_t type, char data[48], uint8_t checksum) {
 
   frame.type = type;
@@ -85,13 +96,13 @@ void serialSendRcValues(RcValues rcvalues) {
 }
 
 void serialReceiveResponse() {
-  //Receives the response from the other side, checks every 20ms
+  //Receives the response from the other side, checks every 5ms
   //TODO: We check every 20ms because we are testing with high volume of information; when we are done, we can increase this value
   //TODO: Change function name? This function will receive several types of frames in the future
 
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 20) {
+  if (millis() - previousMillis >= 5) {
     previousMillis = millis();
     if (myTransfer.available()) {
       myTransfer.rxObj(frame);
@@ -104,12 +115,12 @@ void serialReceiveResponse() {
 }
 
 void radioReceiveResponse() {
-  //Receives the response from the other side, checks every 50ms
+  //Receives the response from the other side, checks every 20ms
   //TODO: Change function name? This function will receive several types of radio responses in the future
 
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 50) {
+  if (millis() - previousMillis >= 20) {
     previousMillis = millis();
 
     radio.startListening();
@@ -160,6 +171,50 @@ void radioSendData() {
 
 }
 
+void calculateBatteryPercentage() {
+
+  char buffer[50]; //TODO: Lower to minimum size
+
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 100) { //TODO: Increase delay between readings 
+
+    previousMillis = millis();
+
+    int batt_divider_voltage_analog_value;  //Analog value read from the voltage divider output, which is approximately 4V when the battery is fully charged
+    float batt_divider_voltage; //Volts of the voltage divider output. The voltage divider in the radio controller halves the voltage of the battery.
+    int batt_percentage; //Percentage of the battery, from 0% (3.6V per cell) to 100% (4.2V per cell)
+
+    batt_divider_voltage_analog_value = analogRead(batt_input_pin);
+
+    batt_divider_voltage = (5.00 / 1023) * batt_divider_voltage_analog_value;
+
+    //Notice: The max charge of the battery will be 4.2V per cell, 8.4V in total (2S battery).
+
+    batt_percentage = map(batt_divider_voltage * 100, 4.2 * 100, 3.6 * 100, 100, 0); //We multiply by 100 because the map() function does not accept floats.
+
+    Serial.print("Battery cell voltage: ");
+    Serial.print(batt_divider_voltage);
+
+    sprintf(buffer, "\tBattery percentage: %d", batt_percentage);
+    Serial.println(buffer);
+
+  }
+
+}
+
+//TODO: This is a test function. Delete on final or near-final version. 
+void makeBuzzerSound() {
+
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >=10000) {
+    previousMillis = millis();
+    tone(buzzer_pin, 1000, 100);
+  }
+
+}
+
 
 void loop() {
 
@@ -178,5 +233,7 @@ void loop() {
     serialReceiveResponse();
     radioReceiveResponse();
     radioSendData();
+    calculateBatteryPercentage();
+    makeBuzzerSound();
   
 }
