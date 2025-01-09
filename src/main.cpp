@@ -1,11 +1,23 @@
 #include <Arduino.h>
 #include <lvgl.h>
-#include <demos/lv_demos.h>
+//#include <demos/lv_demos.h>
 #include <Arduino_GFX_Library.h>
-//#include <ui.h> //UI file header that SquareLineStudio generates
+#include <squareLineFiles/ui.h> //UI file header that SquareLineStudio generates
+
+#include "SerialTransfer.h"
+#include <Wire.h> //TODO: Remove wire.h if not needed (it is used for I2C communication)
 
 #define TFT_BL 2
 #define GFX_BL DF_GFX_BL // default backlight pin
+
+SerialTransfer myTransfer;
+
+struct __attribute__((packed)) STRUCT {
+  uint8_t type; //Hex value identifying the type of frame
+  char data[48]; //Data of the frame
+  uint8_t checksum; //TODO: Delete. Only for testing purposes
+} frame;
+
 
 Arduino_ESP32RGBPanel *bus = new Arduino_ESP32RGBPanel(
     GFX_NOT_DEFINED /* CS */, GFX_NOT_DEFINED /* SCK */, GFX_NOT_DEFINED /* SDA */,
@@ -66,12 +78,9 @@ void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
 void setup()
 {
   Serial.begin(115200);
-  // while (!Serial);
-  Serial.println("LVGL Widgets Demo");
+  Serial1.begin(38400, SERIAL_8N1, 18, 17); // RX, TX
+  myTransfer.begin(Serial1);
   
-
-  // Init touch device
-
   // Init Display
   gfx->begin();
 
@@ -93,7 +102,7 @@ void setup()
 
   if (!disp_draw_buf)
   {
-    Serial.println("LVGL disp_draw_buf allocate failed!");
+   //Serial.println("LVGL disp_draw_buf allocate failed!");
   }
   else
   {
@@ -117,20 +126,93 @@ void setup()
 
     //UI FUNCTIONS TO CALL AND SHOW THE LVGL UI
 
-    lv_demo_widgets();
-    //ui_init();
+    //lv_demo_widgets();
+    ui_init();
 
     //////////////////////////////
 
-    Serial.println("Setup done");
   }
 
 }
 
-void loop()
-{
-  //Serial.println("Test");
+void sendFrame(uint8_t type, char data[48], uint8_t checksum) {
 
-  lv_timer_handler(); /* let the GUI do its work */
-  delay(5);
+  frame.type = type;
+  strcpy(frame.data, data);
+  frame.checksum = checksum;
+
+  myTransfer.sendDatum(frame);
+}
+
+void serialSendTestValues() {
+  //Sends test values to the other side every 200ms
+
+  static unsigned long previousMillis = 0;
+  static int i = 0;
+
+  if (millis() - previousMillis >= 200) {
+    previousMillis = millis();
+
+    char buffer[10];
+    sprintf(buffer, "%d", i++);
+
+    sendFrame(0x08, buffer, 0x12);
+
+    if (i > 250) {
+      i = 0;
+    }
+    
+  }
+
+}
+
+
+void serialReceiveResponse() {
+  //Receives the response from the other side, checks every 20ms
+  //TODO: Change function name? This function will receive several types of frames in the future
+
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 20) {
+
+    previousMillis = millis();
+
+    if (myTransfer.available()) {
+
+      myTransfer.rxObj(frame);
+
+      char buffer[100];
+      sprintf(buffer, "Type: %d Data: %s Checksum: %d", frame.type, frame.data, frame.checksum);
+      
+      Serial.println(buffer);
+      lv_label_set_text(ui_Label1, buffer);
+
+    }
+  
+  }
+
+}
+
+void runScreen() {
+  //Runs the screen, calling the lv_task_handler function every 5ms
+
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 5) {
+    previousMillis = millis();
+    lv_task_handler();  /* let the GUI do its work */
+  }
+
+}
+
+void clickedButton(lv_event_t *e) {
+    lv_label_set_text(ui_Label1, "Hey, this is a test!");
+}
+
+void loop() {
+
+  serialReceiveResponse();
+  serialSendTestValues();
+  runScreen();
+
 }
