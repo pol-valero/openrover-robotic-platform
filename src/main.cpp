@@ -2,7 +2,7 @@
 #include <lvgl.h>
 //#include <demos/lv_demos.h>
 #include <Arduino_GFX_Library.h>
-#include <ui.h> //UI file header that SquareLineStudio generates
+#include <squareLineFiles/ui.h> //UI file header that SquareLineStudio generates
 
 #include "SerialTransfer.h"
 #include <Wire.h> //TODO: Remove wire.h if not needed (it is used for I2C communication)
@@ -203,6 +203,10 @@ void runScreen() {
     lv_task_handler();  /* let the GUI do its work */
   }
 
+}
+
+void clickedButton(lv_event_t *e) {
+    lv_label_set_text(ui_Label1, "Hey, this is a test!");
 }
 
 void loop() {
