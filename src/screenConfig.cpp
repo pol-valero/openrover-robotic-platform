@@ -118,7 +118,7 @@ void initScreen() {
 
 }
 
-void runScreenImplementation() {
+void runScreen() {
     //Runs the screen, calling the lv_task_handler function every 5ms
 
     static unsigned long previousMillis = 0;

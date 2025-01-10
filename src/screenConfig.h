@@ -3,6 +3,6 @@
 
 void initScreen();
 
-void runScreenImplementation();
+void runScreen();
 
 #endif
