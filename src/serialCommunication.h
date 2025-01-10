@@ -7,6 +7,8 @@ void serialReceiveResponse(char* response);
 
 void serialSendTestValues();
 
+void usbSerialPrint(char* message);
+
 //TODO: Send and receive frame headers
 
 #endif

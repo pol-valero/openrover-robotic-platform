@@ -58,24 +58,19 @@ void serialReceiveResponse(char* response) {
     //Receives the response from the other side, checks every 20ms
     //TODO: Change function name? This function will receive several types of frames in the future
 
-    asprintf(&response, "");
-    
-    static unsigned long previousMillis = 0;
+    sprintf(response, "");
 
-    if (millis() - previousMillis >= 20) {
-
-        previousMillis = millis();
-
-        if (myTransfer.available()) {
+    if (myTransfer.available()) {
 
         myTransfer.rxObj(frame);
 
         sprintf(response, "Type: %d Data: %s Checksum: %d", frame.type, frame.data, frame.checksum);
         
-        Serial.println(response);
-        //lv_label_set_text(ui_Label1, "PROVAA");   //TODO: Delete
-
-        }
     }
 
+}
+
+void usbSerialPrint(char* message) {
+    //Prints a message to through the USB-C serial port, connected to the computer
+    Serial.println(message);
 }

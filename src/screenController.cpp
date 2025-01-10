@@ -13,6 +13,7 @@ void clickedButton(lv_event_t *e) {
 void screenControllerExecution() {
 
     serialReceiveResponse(response);
+    //usbSerialPrint(response);
     if (strlen(response) > 0) {
         lv_label_set_text(ui_Label1, response);
     }
