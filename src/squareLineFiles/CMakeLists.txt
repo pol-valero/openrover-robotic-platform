@@ -1,7 +1,18 @@
-SET(SOURCES ui_Screen1.c
+SET(SOURCES ui_MainScreen.c
     ui.c
     ui_comp_hook.c
     ui_helpers.c
-    ui_img_rover_png.c)
+    ui_img_color_demo_png.c
+    ui_img_headimg_png.c
+    ui_img_roboticarmimg_png.c
+    ui_img_rotationimg_png.c
+    ui_img_rover_png.c
+    ui_img_signalstrengthimg_png.c
+    ui_img_batteryimg_png.c
+    ui_img_remoteimg_png.c
+    ui_img_rovericonimg_png.c
+    ui_img_homeimg_png.c
+    ui_img_monitorimg_png.c
+    ui_img_configimg_png.c)
 
 add_library(ui ${SOURCES})
