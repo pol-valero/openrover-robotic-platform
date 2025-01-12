@@ -114,6 +114,9 @@ void initScreen() {
 
         //////////////////////////////
 
+        //Change to home tab
+        lv_tabview_set_act(ui_TabView, 1, LV_ANIM_OFF);
+
   }
 
 }
