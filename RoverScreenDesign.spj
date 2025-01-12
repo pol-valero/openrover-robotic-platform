@@ -417,13 +417,2433 @@
                   {
                     "guid": "GUID94955633-968831S655411",
                     "deepid": 896493869,
+                    "children": [
+                      {
+                        "guid": "GUID24355027-968857S878411",
+                        "deepid": 1736730721,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "RPIgiveControlSwitch",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              -265,
+                              25
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              62,
+                              35
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 320,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [],
+                            "nid": 1010,
+                            "strtype": "SWITCH/Style_main",
+                            "strval": "lv.PART.MAIN, Rectangle, Pad, Anim1, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.INDICATOR",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      156,
+                                      156,
+                                      156,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 20000,
+                                "strtype": "_style/StyleState",
+                                "strval": "CHECKED",
+                                "childs": [
+                                  {
+                                    "nid": 20520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      0,
+                                      186,
+                                      24,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1020,
+                            "strtype": "SWITCH/Style_indicator",
+                            "strval": "lv.PART.INDICATOR, Rectangle",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.KNOB",
+                            "childs": [
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1030,
+                            "strtype": "SWITCH/Style_knob",
+                            "strval": "lv.PART.KNOB, Rectangle, Pad",
+                            "InheritedType": 11
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000388,
+                            "strtype": "_event/EventHandler",
+                            "strval": "CHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000389,
+                                "strtype": "_event/name",
+                                "strval": "rpiGiveControlSwChecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000390,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000391,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000392,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000393,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000394,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000395,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000396,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "rpiGiveControlSwChecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000397,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000398,
+                            "strtype": "_event/EventHandler",
+                            "strval": "UNCHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000399,
+                                "strtype": "_event/name",
+                                "strval": "rpiGiveControlSwUnchecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000400,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000401,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000402,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000403,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000404,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000405,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000406,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "rpiGiveControlSwUnchecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000407,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          }
+                        ],
+                        "saved_objtypeKey": "SWITCH"
+                      },
+                      {
+                        "guid": "GUID92656924-479185S387412",
+                        "deepid": -667052260,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "RPIcontrolLabel",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              -270,
+                              -23
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              168,
+                              39
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 110,
+                            "strtype": "OBJECT/Clickable",
+                            "strval": "False",
+                            "InheritedType": 2
+                          },
+                          {
+                            "nid": 300,
+                            "strtype": "OBJECT/Scrollbar_mode",
+                            "strval": "AUTO",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 310,
+                            "strtype": "OBJECT/Scroll_direction",
+                            "strval": "ALL",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 320,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1010,
+                            "strtype": "LABEL/Label",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1020,
+                            "strtype": "LABEL/Long_mode",
+                            "strval": "WRAP",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 1030,
+                            "strtype": "LABEL/Text",
+                            "strval": "Handoff control\\n to RaspberryPi",
+                            "InheritedType": 10
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10410,
+                                    "strtype": "_style/Text_Color",
+                                    "intarray": [
+                                      222,
+                                      218,
+                                      222,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10430,
+                                    "strtype": "_style/Text_Align",
+                                    "strval": "CENTER",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10450,
+                                    "strtype": "_style/Text_Font",
+                                    "strval": "montserrat_16",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10710,
+                                    "strtype": "_style/Border_Color",
+                                    "intarray": [
+                                      144,
+                                      144,
+                                      144,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10720,
+                                    "strtype": "_style/Border width",
+                                    "integer": 2,
+                                    "InheritedType": 6
+                                  },
+                                  {
+                                    "nid": 10730,
+                                    "strtype": "_style/Border side",
+                                    "strval": "RIGHT",
+                                    "InheritedType": 3
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1040,
+                            "strtype": "LABEL/Style_main",
+                            "strval": "lv.PART.MAIN, Text, Rectangle, Pad, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "nid": 1050,
+                            "strtype": "LABEL/Recolor",
+                            "strval": "False",
+                            "InheritedType": 2
+                          }
+                        ],
+                        "saved_objtypeKey": "LABEL"
+                      },
+                      {
+                        "guid": "GUID27447909-479190S350412",
+                        "deepid": -667052260,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "RPIpowerLabel",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              -118,
+                              -22
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              136,
+                              39
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 110,
+                            "strtype": "OBJECT/Clickable",
+                            "strval": "False",
+                            "InheritedType": 2
+                          },
+                          {
+                            "nid": 300,
+                            "strtype": "OBJECT/Scrollbar_mode",
+                            "strval": "AUTO",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 310,
+                            "strtype": "OBJECT/Scroll_direction",
+                            "strval": "ALL",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 320,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1010,
+                            "strtype": "LABEL/Label",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1020,
+                            "strtype": "LABEL/Long_mode",
+                            "strval": "WRAP",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 1030,
+                            "strtype": "LABEL/Text",
+                            "strval": "Power\\nRasberryPi",
+                            "InheritedType": 10
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10410,
+                                    "strtype": "_style/Text_Color",
+                                    "intarray": [
+                                      222,
+                                      218,
+                                      222,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10430,
+                                    "strtype": "_style/Text_Align",
+                                    "strval": "CENTER",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10450,
+                                    "strtype": "_style/Text_Font",
+                                    "strval": "montserrat_16",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10710,
+                                    "strtype": "_style/Border_Color",
+                                    "intarray": [
+                                      144,
+                                      144,
+                                      144,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10720,
+                                    "strtype": "_style/Border width",
+                                    "integer": 2,
+                                    "InheritedType": 6
+                                  },
+                                  {
+                                    "nid": 10730,
+                                    "strtype": "_style/Border side",
+                                    "strval": "RIGHT",
+                                    "InheritedType": 3
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1040,
+                            "strtype": "LABEL/Style_main",
+                            "strval": "lv.PART.MAIN, Text, Rectangle, Pad, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "nid": 1050,
+                            "strtype": "LABEL/Recolor",
+                            "strval": "False",
+                            "InheritedType": 2
+                          }
+                        ],
+                        "saved_objtypeKey": "LABEL"
+                      },
+                      {
+                        "guid": "GUID46601176-479191S51031412",
+                        "deepid": -667052260,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "OpenHatchLabel",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              20,
+                              -22
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              134,
+                              39
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 110,
+                            "strtype": "OBJECT/Clickable",
+                            "strval": "False",
+                            "InheritedType": 2
+                          },
+                          {
+                            "nid": 300,
+                            "strtype": "OBJECT/Scrollbar_mode",
+                            "strval": "AUTO",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 310,
+                            "strtype": "OBJECT/Scroll_direction",
+                            "strval": "ALL",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 320,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1010,
+                            "strtype": "LABEL/Label",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1020,
+                            "strtype": "LABEL/Long_mode",
+                            "strval": "WRAP",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 1030,
+                            "strtype": "LABEL/Text",
+                            "strval": "Open rover\\nhatch",
+                            "InheritedType": 10
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10410,
+                                    "strtype": "_style/Text_Color",
+                                    "intarray": [
+                                      222,
+                                      218,
+                                      222,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10430,
+                                    "strtype": "_style/Text_Align",
+                                    "strval": "CENTER",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10450,
+                                    "strtype": "_style/Text_Font",
+                                    "strval": "montserrat_16",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10710,
+                                    "strtype": "_style/Border_Color",
+                                    "intarray": [
+                                      144,
+                                      144,
+                                      144,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10720,
+                                    "strtype": "_style/Border width",
+                                    "integer": 2,
+                                    "InheritedType": 6
+                                  },
+                                  {
+                                    "nid": 10730,
+                                    "strtype": "_style/Border side",
+                                    "strval": "RIGHT",
+                                    "InheritedType": 3
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1040,
+                            "strtype": "LABEL/Style_main",
+                            "strval": "lv.PART.MAIN, Text, Rectangle, Pad, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "nid": 1050,
+                            "strtype": "LABEL/Recolor",
+                            "strval": "False",
+                            "InheritedType": 2
+                          }
+                        ],
+                        "saved_objtypeKey": "LABEL"
+                      },
+                      {
+                        "guid": "GUID10056505-479192S132412",
+                        "deepid": -667052260,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "HeadRandMovLabel",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              172,
+                              -23
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              150,
+                              39
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 110,
+                            "strtype": "OBJECT/Clickable",
+                            "strval": "False",
+                            "InheritedType": 2
+                          },
+                          {
+                            "nid": 300,
+                            "strtype": "OBJECT/Scrollbar_mode",
+                            "strval": "AUTO",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 310,
+                            "strtype": "OBJECT/Scroll_direction",
+                            "strval": "ALL",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 320,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1010,
+                            "strtype": "LABEL/Label",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1020,
+                            "strtype": "LABEL/Long_mode",
+                            "strval": "WRAP",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 1030,
+                            "strtype": "LABEL/Text",
+                            "strval": "Head random movements",
+                            "InheritedType": 10
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10410,
+                                    "strtype": "_style/Text_Color",
+                                    "intarray": [
+                                      222,
+                                      218,
+                                      222,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10430,
+                                    "strtype": "_style/Text_Align",
+                                    "strval": "CENTER",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10450,
+                                    "strtype": "_style/Text_Font",
+                                    "strval": "montserrat_16",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10710,
+                                    "strtype": "_style/Border_Color",
+                                    "intarray": [
+                                      144,
+                                      144,
+                                      144,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10720,
+                                    "strtype": "_style/Border width",
+                                    "integer": 2,
+                                    "InheritedType": 6
+                                  },
+                                  {
+                                    "nid": 10730,
+                                    "strtype": "_style/Border side",
+                                    "strval": "RIGHT",
+                                    "InheritedType": 3
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1040,
+                            "strtype": "LABEL/Style_main",
+                            "strval": "lv.PART.MAIN, Text, Rectangle, Pad, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "nid": 1050,
+                            "strtype": "LABEL/Recolor",
+                            "strval": "False",
+                            "InheritedType": 2
+                          }
+                        ],
+                        "saved_objtypeKey": "LABEL"
+                      },
+                      {
+                        "guid": "GUID15702222-479193S685412",
+                        "deepid": -667052260,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "EnableMotorsLabel",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              307,
+                              -23
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              128,
+                              39
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 110,
+                            "strtype": "OBJECT/Clickable",
+                            "strval": "False",
+                            "InheritedType": 2
+                          },
+                          {
+                            "nid": 300,
+                            "strtype": "OBJECT/Scrollbar_mode",
+                            "strval": "AUTO",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 310,
+                            "strtype": "OBJECT/Scroll_direction",
+                            "strval": "ALL",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 320,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1010,
+                            "strtype": "LABEL/Label",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 1020,
+                            "strtype": "LABEL/Long_mode",
+                            "strval": "WRAP",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 1030,
+                            "strtype": "LABEL/Text",
+                            "strval": "Enable\\nmotors",
+                            "InheritedType": 10
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10410,
+                                    "strtype": "_style/Text_Color",
+                                    "intarray": [
+                                      222,
+                                      218,
+                                      222,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  },
+                                  {
+                                    "nid": 10430,
+                                    "strtype": "_style/Text_Align",
+                                    "strval": "CENTER",
+                                    "InheritedType": 3
+                                  },
+                                  {
+                                    "nid": 10450,
+                                    "strtype": "_style/Text_Font",
+                                    "strval": "montserrat_16",
+                                    "InheritedType": 3
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1040,
+                            "strtype": "LABEL/Style_main",
+                            "strval": "lv.PART.MAIN, Text, Rectangle, Pad, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "nid": 1050,
+                            "strtype": "LABEL/Recolor",
+                            "strval": "False",
+                            "InheritedType": 2
+                          }
+                        ],
+                        "saved_objtypeKey": "LABEL"
+                      },
+                      {
+                        "guid": "GUID20096759-479194S475412",
+                        "deepid": 1736730721,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "PowerRPIswitch",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              -117,
+                              25
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              62,
+                              35
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 320,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [],
+                            "nid": 1010,
+                            "strtype": "SWITCH/Style_main",
+                            "strval": "lv.PART.MAIN, Rectangle, Pad, Anim1, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.INDICATOR",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      156,
+                                      156,
+                                      156,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 20000,
+                                "strtype": "_style/StyleState",
+                                "strval": "CHECKED",
+                                "childs": [
+                                  {
+                                    "nid": 20520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      0,
+                                      186,
+                                      24,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1020,
+                            "strtype": "SWITCH/Style_indicator",
+                            "strval": "lv.PART.INDICATOR, Rectangle",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.KNOB",
+                            "childs": [
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1030,
+                            "strtype": "SWITCH/Style_knob",
+                            "strval": "lv.PART.KNOB, Rectangle, Pad",
+                            "InheritedType": 11
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000408,
+                            "strtype": "_event/EventHandler",
+                            "strval": "CHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000409,
+                                "strtype": "_event/name",
+                                "strval": "powerRpiSwChecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000410,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000411,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000412,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000413,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000414,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000415,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000416,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "powerRpiSwChecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000417,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000418,
+                            "strtype": "_event/EventHandler",
+                            "strval": "UNCHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000419,
+                                "strtype": "_event/name",
+                                "strval": "powerRpiSwUnchecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000420,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000421,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000422,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000423,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000424,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000425,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000426,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "powerRpiSwUnchecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000427,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          }
+                        ],
+                        "saved_objtypeKey": "SWITCH"
+                      },
+                      {
+                        "guid": "GUID77315416-479195S15624412",
+                        "deepid": 1736730721,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "OpenHatchSwitch",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              22,
+                              25
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              62,
+                              35
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 320,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [],
+                            "nid": 1010,
+                            "strtype": "SWITCH/Style_main",
+                            "strval": "lv.PART.MAIN, Rectangle, Pad, Anim1, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.INDICATOR",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      156,
+                                      156,
+                                      156,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 20000,
+                                "strtype": "_style/StyleState",
+                                "strval": "CHECKED",
+                                "childs": [
+                                  {
+                                    "nid": 20520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      0,
+                                      186,
+                                      24,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1020,
+                            "strtype": "SWITCH/Style_indicator",
+                            "strval": "lv.PART.INDICATOR, Rectangle",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.KNOB",
+                            "childs": [
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1030,
+                            "strtype": "SWITCH/Style_knob",
+                            "strval": "lv.PART.KNOB, Rectangle, Pad",
+                            "InheritedType": 11
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000428,
+                            "strtype": "_event/EventHandler",
+                            "strval": "CHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000429,
+                                "strtype": "_event/name",
+                                "strval": "openHatchSwChecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000430,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000431,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000432,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000433,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000434,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000435,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000436,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "openHatchSwChecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000437,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000438,
+                            "strtype": "_event/EventHandler",
+                            "strval": "UNCHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000439,
+                                "strtype": "_event/name",
+                                "strval": "openHatchSwUnchecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000440,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000441,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000442,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000443,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000444,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000445,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000446,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "openHatchSwUnchecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000447,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          }
+                        ],
+                        "saved_objtypeKey": "SWITCH"
+                      },
+                      {
+                        "guid": "GUID98899369-479196S36711412",
+                        "deepid": 1736730721,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "HeadRandMovSwitch",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              172,
+                              25
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              62,
+                              35
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 320,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [],
+                            "nid": 1010,
+                            "strtype": "SWITCH/Style_main",
+                            "strval": "lv.PART.MAIN, Rectangle, Pad, Anim1, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.INDICATOR",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      156,
+                                      156,
+                                      156,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 20000,
+                                "strtype": "_style/StyleState",
+                                "strval": "CHECKED",
+                                "childs": [
+                                  {
+                                    "nid": 20520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      0,
+                                      186,
+                                      24,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1020,
+                            "strtype": "SWITCH/Style_indicator",
+                            "strval": "lv.PART.INDICATOR, Rectangle",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.KNOB",
+                            "childs": [
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1030,
+                            "strtype": "SWITCH/Style_knob",
+                            "strval": "lv.PART.KNOB, Rectangle, Pad",
+                            "InheritedType": 11
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000448,
+                            "strtype": "_event/EventHandler",
+                            "strval": "CHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000449,
+                                "strtype": "_event/name",
+                                "strval": "headRandMovSwChecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000450,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000451,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000452,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000453,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000454,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000455,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000456,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "headRandMovSwChecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000457,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000458,
+                            "strtype": "_event/EventHandler",
+                            "strval": "UNCHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000459,
+                                "strtype": "_event/name",
+                                "strval": "headRandMovSwUnchecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000460,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000461,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000462,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000463,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000464,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000465,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000466,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "headRandMovSwUnchecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000467,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          }
+                        ],
+                        "saved_objtypeKey": "SWITCH"
+                      },
+                      {
+                        "guid": "GUID74702134-479197S56208412",
+                        "deepid": 1736730721,
+                        "dont_export": false,
+                        "locked": false,
+                        "properties": [
+                          {
+                            "nid": 10,
+                            "strtype": "OBJECT/Name",
+                            "strval": "EnableMotorsSwitch",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 20,
+                            "strtype": "OBJECT/Layout",
+                            "InheritedType": 1
+                          },
+                          {
+                            "Flow": 0,
+                            "Wrap": false,
+                            "Reversed": false,
+                            "MainAlignment": 0,
+                            "CrossAlignment": 0,
+                            "TrackAlignment": 0,
+                            "LayoutType": 0,
+                            "nid": 30,
+                            "strtype": "OBJECT/Layout_type",
+                            "strval": "No_layout",
+                            "InheritedType": 13
+                          },
+                          {
+                            "nid": 40,
+                            "strtype": "OBJECT/Transform",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 50,
+                            "flags": 17,
+                            "strtype": "OBJECT/Position",
+                            "intarray": [
+                              307,
+                              24
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 60,
+                            "flags": 17,
+                            "strtype": "OBJECT/Size",
+                            "intarray": [
+                              62,
+                              35
+                            ],
+                            "InheritedType": 7
+                          },
+                          {
+                            "nid": 70,
+                            "strtype": "OBJECT/Align",
+                            "strval": "CENTER",
+                            "InheritedType": 3
+                          },
+                          {
+                            "nid": 90,
+                            "flags": 1048576,
+                            "strtype": "OBJECT/Flags",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 320,
+                            "strtype": "OBJECT/States",
+                            "InheritedType": 1
+                          },
+                          {
+                            "nid": 330,
+                            "strtype": "OBJECT/Checked",
+                            "strval": "True",
+                            "InheritedType": 2
+                          },
+                          {
+                            "part": "lv.PART.MAIN",
+                            "childs": [],
+                            "nid": 1010,
+                            "strtype": "SWITCH/Style_main",
+                            "strval": "lv.PART.MAIN, Rectangle, Pad, Anim1, Transform",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.INDICATOR",
+                            "childs": [
+                              {
+                                "nid": 10000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DEFAULT",
+                                "childs": [
+                                  {
+                                    "nid": 10520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      156,
+                                      156,
+                                      156,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 20000,
+                                "strtype": "_style/StyleState",
+                                "strval": "CHECKED",
+                                "childs": [
+                                  {
+                                    "nid": 20520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      0,
+                                      186,
+                                      24,
+                                      255
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              },
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1020,
+                            "strtype": "SWITCH/Style_indicator",
+                            "strval": "lv.PART.INDICATOR, Rectangle",
+                            "InheritedType": 11
+                          },
+                          {
+                            "part": "lv.PART.KNOB",
+                            "childs": [
+                              {
+                                "nid": 40000,
+                                "strtype": "_style/StyleState",
+                                "strval": "DISABLED",
+                                "childs": [
+                                  {
+                                    "nid": 40520,
+                                    "strtype": "_style/Bg_Color",
+                                    "intarray": [
+                                      56,
+                                      56,
+                                      56,
+                                      200
+                                    ],
+                                    "InheritedType": 7
+                                  }
+                                ],
+                                "InheritedType": 1
+                              }
+                            ],
+                            "nid": 1030,
+                            "strtype": "SWITCH/Style_knob",
+                            "strval": "lv.PART.KNOB, Rectangle, Pad",
+                            "InheritedType": 11
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000468,
+                            "strtype": "_event/EventHandler",
+                            "strval": "CHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000469,
+                                "strtype": "_event/name",
+                                "strval": "enableMotorsSwChecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000470,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000471,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000472,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000473,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000474,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000475,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000476,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "enableMotorsSwChecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000477,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          },
+                          {
+                            "disabled": false,
+                            "nid": 1000478,
+                            "strtype": "_event/EventHandler",
+                            "strval": "UNCHECKED(VALUE_CHANGED)",
+                            "childs": [
+                              {
+                                "nid": 1000479,
+                                "strtype": "_event/name",
+                                "strval": "enableMotorsSwUnchecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000480,
+                                "strtype": "_event/condition_C",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000481,
+                                "strtype": "_event/condition_P",
+                                "strval": "",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000482,
+                                "strtype": "_event/action",
+                                "strval": "CALL FUNCTION",
+                                "childs": [
+                                  {
+                                    "nid": 1000483,
+                                    "strtype": "CALL FUNCTION/Name",
+                                    "strval": "CALL FUNCTION",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000484,
+                                    "strtype": "CALL FUNCTION/Call",
+                                    "strval": "<{Function_name}>( event_struct )",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000485,
+                                    "strtype": "CALL FUNCTION/CallC",
+                                    "strval": "<{Function_name}>( e );",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000486,
+                                    "strtype": "CALL FUNCTION/Function_name",
+                                    "strval": "enableMotorsSwUnchecked",
+                                    "InheritedType": 10
+                                  },
+                                  {
+                                    "nid": 1000487,
+                                    "strtype": "CALL FUNCTION/Dont_export_function",
+                                    "strval": "True",
+                                    "InheritedType": 2
+                                  }
+                                ],
+                                "InheritedType": 10
+                              }
+                            ],
+                            "InheritedType": 4
+                          }
+                        ],
+                        "saved_objtypeKey": "SWITCH"
+                      }
+                    ],
                     "dont_export": false,
                     "locked": false,
                     "properties": [
                       {
                         "nid": 10,
                         "strtype": "OBJECT/Name",
-                        "strval": "Panel1",
+                        "strval": "OtherControlsPanel",
                         "InheritedType": 10
                       },
                       {
@@ -454,8 +2874,8 @@
                         "flags": 17,
                         "strtype": "OBJECT/Position",
                         "intarray": [
-                          -291,
-                          107
+                          -2,
+                          126
                         ],
                         "InheritedType": 7
                       },
@@ -464,8 +2884,8 @@
                         "flags": 17,
                         "strtype": "OBJECT/Size",
                         "intarray": [
-                          113,
-                          54
+                          739,
+                          114
                         ],
                         "InheritedType": 7
                       },
@@ -513,6 +2933,11 @@
                             "strtype": "_style/StyleState",
                             "strval": "DEFAULT",
                             "childs": [
+                              {
+                                "nid": 10510,
+                                "strtype": "_style/Bg_Radius",
+                                "InheritedType": 6
+                              },
                               {
                                 "nid": 10520,
                                 "strtype": "_style/Bg_Color",
@@ -929,44 +3354,6 @@
                                 "nid": 1000325,
                                 "strtype": "CALL FUNCTION/Dont_export_function",
                                 "strval": "True",
-                                "InheritedType": 2
-                              }
-                            ],
-                            "InheritedType": 10
-                          },
-                          {
-                            "nid": 1000326,
-                            "strtype": "_event/action",
-                            "strval": "CALL FUNCTION",
-                            "childs": [
-                              {
-                                "nid": 1000327,
-                                "strtype": "CALL FUNCTION/Name",
-                                "strval": "CALL FUNCTION",
-                                "InheritedType": 10
-                              },
-                              {
-                                "nid": 1000328,
-                                "strtype": "CALL FUNCTION/Call",
-                                "strval": "<{Function_name}>( event_struct )",
-                                "InheritedType": 10
-                              },
-                              {
-                                "nid": 1000329,
-                                "strtype": "CALL FUNCTION/CallC",
-                                "strval": "<{Function_name}>( e );",
-                                "InheritedType": 10
-                              },
-                              {
-                                "nid": 1000330,
-                                "strtype": "CALL FUNCTION/Function_name",
-                                "strval": "",
-                                "InheritedType": 10
-                              },
-                              {
-                                "nid": 1000331,
-                                "strtype": "CALL FUNCTION/Dont_export_function",
-                                "strval": "False",
                                 "InheritedType": 2
                               }
                             ],
@@ -2431,7 +4818,7 @@
                         "strtype": "OBJECT/Position",
                         "intarray": [
                           74,
-                          40
+                          39
                         ],
                         "InheritedType": 7
                       },
@@ -2440,8 +4827,8 @@
                         "flags": 17,
                         "strtype": "OBJECT/Size",
                         "intarray": [
-                          50,
-                          25
+                          54,
+                          29
                         ],
                         "InheritedType": 7
                       },
@@ -2554,131 +4941,6 @@
                     "saved_objtypeKey": "SWITCH"
                   },
                   {
-                    "guid": "GUID24355027-968857S878411",
-                    "deepid": 1736730721,
-                    "dont_export": false,
-                    "locked": false,
-                    "properties": [
-                      {
-                        "nid": 10,
-                        "strtype": "OBJECT/Name",
-                        "strval": "SwitchTest",
-                        "InheritedType": 10
-                      },
-                      {
-                        "nid": 20,
-                        "strtype": "OBJECT/Layout",
-                        "InheritedType": 1
-                      },
-                      {
-                        "Flow": 0,
-                        "Wrap": false,
-                        "Reversed": false,
-                        "MainAlignment": 0,
-                        "CrossAlignment": 0,
-                        "TrackAlignment": 0,
-                        "LayoutType": 0,
-                        "nid": 30,
-                        "strtype": "OBJECT/Layout_type",
-                        "strval": "No_layout",
-                        "InheritedType": 13
-                      },
-                      {
-                        "nid": 40,
-                        "strtype": "OBJECT/Transform",
-                        "InheritedType": 1
-                      },
-                      {
-                        "nid": 50,
-                        "flags": 17,
-                        "strtype": "OBJECT/Position",
-                        "intarray": [
-                          -306,
-                          155
-                        ],
-                        "InheritedType": 7
-                      },
-                      {
-                        "nid": 60,
-                        "flags": 17,
-                        "strtype": "OBJECT/Size",
-                        "intarray": [
-                          50,
-                          25
-                        ],
-                        "InheritedType": 7
-                      },
-                      {
-                        "nid": 70,
-                        "strtype": "OBJECT/Align",
-                        "strval": "CENTER",
-                        "InheritedType": 3
-                      },
-                      {
-                        "nid": 90,
-                        "flags": 1048576,
-                        "strtype": "OBJECT/Flags",
-                        "InheritedType": 1
-                      },
-                      {
-                        "nid": 320,
-                        "strtype": "OBJECT/States",
-                        "InheritedType": 1
-                      },
-                      {
-                        "nid": 330,
-                        "strtype": "OBJECT/Checked",
-                        "strval": "True",
-                        "InheritedType": 2
-                      },
-                      {
-                        "part": "lv.PART.MAIN",
-                        "childs": [],
-                        "nid": 1010,
-                        "strtype": "SWITCH/Style_main",
-                        "strval": "lv.PART.MAIN, Rectangle, Pad, Anim1, Transform",
-                        "InheritedType": 11
-                      },
-                      {
-                        "part": "lv.PART.INDICATOR",
-                        "childs": [
-                          {
-                            "nid": 20000,
-                            "strtype": "_style/StyleState",
-                            "strval": "CHECKED",
-                            "childs": [
-                              {
-                                "nid": 20520,
-                                "strtype": "_style/Bg_Color",
-                                "intarray": [
-                                  0,
-                                  186,
-                                  24,
-                                  255
-                                ],
-                                "InheritedType": 7
-                              }
-                            ],
-                            "InheritedType": 1
-                          }
-                        ],
-                        "nid": 1020,
-                        "strtype": "SWITCH/Style_indicator",
-                        "strval": "lv.PART.INDICATOR, Rectangle",
-                        "InheritedType": 11
-                      },
-                      {
-                        "part": "lv.PART.KNOB",
-                        "childs": [],
-                        "nid": 1030,
-                        "strtype": "SWITCH/Style_knob",
-                        "strval": "lv.PART.KNOB, Rectangle, Pad",
-                        "InheritedType": 11
-                      }
-                    ],
-                    "saved_objtypeKey": "SWITCH"
-                  },
-                  {
                     "guid": "GUID8672117-968858S547411",
                     "deepid": 2038236366,
                     "dont_export": false,
@@ -2718,7 +4980,7 @@
                         "flags": 17,
                         "strtype": "OBJECT/Position",
                         "intarray": [
-                          -29,
+                          -32,
                           41
                         ],
                         "InheritedType": 7
@@ -2838,7 +5100,6 @@
                   },
                   {
                     "nid": 1000227,
-                    "flags": 1048576,
                     "strtype": "TABPAGE/Flags",
                     "InheritedType": 1
                   },
@@ -2965,7 +5226,7 @@
                   {
                     "nid": 1000248,
                     "strtype": "TABPAGE/Scrollbar_mode",
-                    "strval": "AUTO",
+                    "strval": "OFF",
                     "InheritedType": 3
                   },
                   {
@@ -6451,7 +8712,7 @@
     "uiExportFolderPath": "/Users/polvalero/Documents/PlatformIO/Projects/RoverRcScreen/src/squareLineFiles",
     "projectExportFolderPath": "",
     "custom_variable_prefix": "uic",
-    "backup_cnt": 261,
+    "backup_cnt": 262,
     "autosave_cnt": 0,
     "lvgl_version": "8.3.6",
     "callfuncsexport": "C_FILE",
@@ -6467,7 +8728,7 @@
     "drive_fatfs_path": "",
     "naming": "Name",
     "naming_force_lowercase": false,
-    "nidcnt": 1000388,
+    "nidcnt": 1000488,
     "BitDepth": 16,
     "Name": "SQserialTest"
   }

@@ -26,3 +26,39 @@ def selfRotationControlSwChecked(event_struct):
 def selfRotationControlSwUnchecked(event_struct):
     return
 
+
+def rpiGiveControlSwChecked(event_struct):
+    return
+
+
+def rpiGiveControlSwUnchecked(event_struct):
+    return
+
+
+def powerRpiSwChecked(event_struct):
+    return
+
+
+def powerRpiSwUnchecked(event_struct):
+    return
+
+
+def openHatchSwChecked(event_struct):
+    return
+
+
+def openHatchSwUnchecked(event_struct):
+    return
+
+
+def headRandMovSwChecked(event_struct):
+    return
+
+
+def headRandMovSwUnchecked(event_struct):
+    return
+
+
+def enableMotorsSwChecked(event_struct):
+    return
+
