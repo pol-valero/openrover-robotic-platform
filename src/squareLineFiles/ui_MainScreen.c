@@ -45,19 +45,184 @@ lv_obj_clear_flag( ui_Image1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_img_set_zoom(ui_Image1,100);
 
 ui_HomeTab = lv_tabview_add_tab(ui_TabView, "     Home");
+lv_obj_set_scrollbar_mode(ui_HomeTab, LV_SCROLLBAR_MODE_OFF);
 
-ui_Panel1 = lv_obj_create(ui_HomeTab);
-lv_obj_set_width( ui_Panel1, 113);
-lv_obj_set_height( ui_Panel1, 54);
-lv_obj_set_x( ui_Panel1, -291 );
-lv_obj_set_y( ui_Panel1, 107 );
-lv_obj_set_align( ui_Panel1, LV_ALIGN_CENTER );
-lv_obj_clear_flag( ui_Panel1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_bg_color(ui_Panel1, lv_color_hex(0x5A595A), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_Panel1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_color(ui_Panel1, lv_color_hex(0x292829), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_border_opa(ui_Panel1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_Panel1, 3, LV_PART_MAIN| LV_STATE_DEFAULT);
+ui_OtherControlsPanel = lv_obj_create(ui_HomeTab);
+lv_obj_set_width( ui_OtherControlsPanel, 739);
+lv_obj_set_height( ui_OtherControlsPanel, 114);
+lv_obj_set_x( ui_OtherControlsPanel, -2 );
+lv_obj_set_y( ui_OtherControlsPanel, 126 );
+lv_obj_set_align( ui_OtherControlsPanel, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_OtherControlsPanel, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_OtherControlsPanel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_OtherControlsPanel, lv_color_hex(0x5A595A), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_OtherControlsPanel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_color(ui_OtherControlsPanel, lv_color_hex(0x292829), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_OtherControlsPanel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_OtherControlsPanel, 3, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_RPIgiveControlSwitch = lv_switch_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_RPIgiveControlSwitch, 62);
+lv_obj_set_height( ui_RPIgiveControlSwitch, 35);
+lv_obj_set_x( ui_RPIgiveControlSwitch, -265 );
+lv_obj_set_y( ui_RPIgiveControlSwitch, 25 );
+lv_obj_set_align( ui_RPIgiveControlSwitch, LV_ALIGN_CENTER );
+lv_obj_add_state( ui_RPIgiveControlSwitch, LV_STATE_DISABLED );     /// States
+
+lv_obj_set_style_bg_color(ui_RPIgiveControlSwitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_RPIgiveControlSwitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_RPIgiveControlSwitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_RPIgiveControlSwitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
+lv_obj_set_style_bg_color(ui_RPIgiveControlSwitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_RPIgiveControlSwitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
+
+lv_obj_set_style_bg_color(ui_RPIgiveControlSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_RPIgiveControlSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
+
+ui_RPIcontrolLabel = lv_label_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_RPIcontrolLabel, 168);
+lv_obj_set_height( ui_RPIcontrolLabel, 39);
+lv_obj_set_x( ui_RPIcontrolLabel, -270 );
+lv_obj_set_y( ui_RPIcontrolLabel, -23 );
+lv_obj_set_align( ui_RPIcontrolLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_RPIcontrolLabel,"Handoff control\n to RaspberryPi");
+lv_obj_set_style_text_color(ui_RPIcontrolLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_RPIcontrolLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_RPIcontrolLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_RPIcontrolLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_color(ui_RPIcontrolLabel, lv_color_hex(0x909090), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_RPIcontrolLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_RPIcontrolLabel, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_side(ui_RPIcontrolLabel, LV_BORDER_SIDE_RIGHT, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_RPIpowerLabel = lv_label_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_RPIpowerLabel, 136);
+lv_obj_set_height( ui_RPIpowerLabel, 39);
+lv_obj_set_x( ui_RPIpowerLabel, -118 );
+lv_obj_set_y( ui_RPIpowerLabel, -22 );
+lv_obj_set_align( ui_RPIpowerLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_RPIpowerLabel,"Power\nRasberryPi");
+lv_obj_set_style_text_color(ui_RPIpowerLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_RPIpowerLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_RPIpowerLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_RPIpowerLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_color(ui_RPIpowerLabel, lv_color_hex(0x909090), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_RPIpowerLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_RPIpowerLabel, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_side(ui_RPIpowerLabel, LV_BORDER_SIDE_RIGHT, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_OpenHatchLabel = lv_label_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_OpenHatchLabel, 134);
+lv_obj_set_height( ui_OpenHatchLabel, 39);
+lv_obj_set_x( ui_OpenHatchLabel, 20 );
+lv_obj_set_y( ui_OpenHatchLabel, -22 );
+lv_obj_set_align( ui_OpenHatchLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_OpenHatchLabel,"Open rover\nhatch");
+lv_obj_set_style_text_color(ui_OpenHatchLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_OpenHatchLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_OpenHatchLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_OpenHatchLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_color(ui_OpenHatchLabel, lv_color_hex(0x909090), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_OpenHatchLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_OpenHatchLabel, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_side(ui_OpenHatchLabel, LV_BORDER_SIDE_RIGHT, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_HeadRandMovLabel = lv_label_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_HeadRandMovLabel, 150);
+lv_obj_set_height( ui_HeadRandMovLabel, 39);
+lv_obj_set_x( ui_HeadRandMovLabel, 172 );
+lv_obj_set_y( ui_HeadRandMovLabel, -23 );
+lv_obj_set_align( ui_HeadRandMovLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_HeadRandMovLabel,"Head random movements");
+lv_obj_set_style_text_color(ui_HeadRandMovLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_HeadRandMovLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_HeadRandMovLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_HeadRandMovLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_color(ui_HeadRandMovLabel, lv_color_hex(0x909090), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_HeadRandMovLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_HeadRandMovLabel, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_side(ui_HeadRandMovLabel, LV_BORDER_SIDE_RIGHT, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_EnableMotorsLabel = lv_label_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_EnableMotorsLabel, 128);
+lv_obj_set_height( ui_EnableMotorsLabel, 39);
+lv_obj_set_x( ui_EnableMotorsLabel, 307 );
+lv_obj_set_y( ui_EnableMotorsLabel, -23 );
+lv_obj_set_align( ui_EnableMotorsLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_EnableMotorsLabel,"Enable\nmotors");
+lv_obj_set_style_text_color(ui_EnableMotorsLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_EnableMotorsLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_EnableMotorsLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_EnableMotorsLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_PowerRPIswitch = lv_switch_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_PowerRPIswitch, 62);
+lv_obj_set_height( ui_PowerRPIswitch, 35);
+lv_obj_set_x( ui_PowerRPIswitch, -117 );
+lv_obj_set_y( ui_PowerRPIswitch, 25 );
+lv_obj_set_align( ui_PowerRPIswitch, LV_ALIGN_CENTER );
+
+lv_obj_set_style_bg_color(ui_PowerRPIswitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_PowerRPIswitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_PowerRPIswitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_PowerRPIswitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
+lv_obj_set_style_bg_color(ui_PowerRPIswitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_PowerRPIswitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
+
+lv_obj_set_style_bg_color(ui_PowerRPIswitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_PowerRPIswitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
+
+ui_OpenHatchSwitch = lv_switch_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_OpenHatchSwitch, 62);
+lv_obj_set_height( ui_OpenHatchSwitch, 35);
+lv_obj_set_x( ui_OpenHatchSwitch, 22 );
+lv_obj_set_y( ui_OpenHatchSwitch, 25 );
+lv_obj_set_align( ui_OpenHatchSwitch, LV_ALIGN_CENTER );
+
+lv_obj_set_style_bg_color(ui_OpenHatchSwitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_OpenHatchSwitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_OpenHatchSwitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_OpenHatchSwitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
+lv_obj_set_style_bg_color(ui_OpenHatchSwitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_OpenHatchSwitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
+
+lv_obj_set_style_bg_color(ui_OpenHatchSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_OpenHatchSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
+
+ui_HeadRandMovSwitch = lv_switch_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_HeadRandMovSwitch, 62);
+lv_obj_set_height( ui_HeadRandMovSwitch, 35);
+lv_obj_set_x( ui_HeadRandMovSwitch, 172 );
+lv_obj_set_y( ui_HeadRandMovSwitch, 25 );
+lv_obj_set_align( ui_HeadRandMovSwitch, LV_ALIGN_CENTER );
+
+lv_obj_set_style_bg_color(ui_HeadRandMovSwitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_HeadRandMovSwitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_HeadRandMovSwitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_HeadRandMovSwitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
+lv_obj_set_style_bg_color(ui_HeadRandMovSwitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_HeadRandMovSwitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
+
+lv_obj_set_style_bg_color(ui_HeadRandMovSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_HeadRandMovSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
+
+ui_EnableMotorsSwitch = lv_switch_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_EnableMotorsSwitch, 62);
+lv_obj_set_height( ui_EnableMotorsSwitch, 35);
+lv_obj_set_x( ui_EnableMotorsSwitch, 307 );
+lv_obj_set_y( ui_EnableMotorsSwitch, 24 );
+lv_obj_set_align( ui_EnableMotorsSwitch, LV_ALIGN_CENTER );
+lv_obj_add_state( ui_EnableMotorsSwitch, LV_STATE_CHECKED );     /// States
+
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
+
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
 
 ui_HeadControlSwitch = lv_switch_create(ui_HomeTab);
 lv_obj_set_width( ui_HeadControlSwitch, 228);
@@ -207,10 +372,10 @@ lv_obj_set_style_bg_color(ui_SelfRotationControlSwitch, lv_color_hex(0xFFFFFF), 
 lv_obj_set_style_bg_opa(ui_SelfRotationControlSwitch, 0, LV_PART_KNOB| LV_STATE_CHECKED);
 
 ui_ArmServoSelectionSwitch = lv_switch_create(ui_HomeTab);
-lv_obj_set_width( ui_ArmServoSelectionSwitch, 50);
-lv_obj_set_height( ui_ArmServoSelectionSwitch, 25);
+lv_obj_set_width( ui_ArmServoSelectionSwitch, 54);
+lv_obj_set_height( ui_ArmServoSelectionSwitch, 29);
 lv_obj_set_x( ui_ArmServoSelectionSwitch, 74 );
-lv_obj_set_y( ui_ArmServoSelectionSwitch, 40 );
+lv_obj_set_y( ui_ArmServoSelectionSwitch, 39 );
 lv_obj_set_align( ui_ArmServoSelectionSwitch, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_ArmServoSelectionSwitch, LV_OBJ_FLAG_HIDDEN );   /// Flags
 
@@ -222,21 +387,10 @@ lv_obj_set_style_bg_opa(ui_ArmServoSelectionSwitch, 255, LV_PART_INDICATOR| LV_S
 lv_obj_set_style_bg_color(ui_ArmServoSelectionSwitch, lv_color_hex(0xCDCACD), LV_PART_KNOB | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_ArmServoSelectionSwitch, 255, LV_PART_KNOB| LV_STATE_DEFAULT);
 
-ui_SwitchTest = lv_switch_create(ui_HomeTab);
-lv_obj_set_width( ui_SwitchTest, 50);
-lv_obj_set_height( ui_SwitchTest, 25);
-lv_obj_set_x( ui_SwitchTest, -306 );
-lv_obj_set_y( ui_SwitchTest, 155 );
-lv_obj_set_align( ui_SwitchTest, LV_ALIGN_CENTER );
-lv_obj_add_state( ui_SwitchTest, LV_STATE_CHECKED );     /// States
-
-lv_obj_set_style_bg_color(ui_SwitchTest, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
-lv_obj_set_style_bg_opa(ui_SwitchTest, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
-
 ui_ControlClawServosLabel = lv_label_create(ui_HomeTab);
 lv_obj_set_width( ui_ControlClawServosLabel, LV_SIZE_CONTENT);  /// 1
 lv_obj_set_height( ui_ControlClawServosLabel, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_ControlClawServosLabel, -29 );
+lv_obj_set_x( ui_ControlClawServosLabel, -32 );
 lv_obj_set_y( ui_ControlClawServosLabel, 41 );
 lv_obj_set_align( ui_ControlClawServosLabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_ControlClawServosLabel,"Control claw servos");
@@ -477,6 +631,11 @@ lv_obj_add_flag( ui_configIcon, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_clear_flag( ui_configIcon, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_img_set_zoom(ui_configIcon,200);
 
+lv_obj_add_event_cb(ui_RPIgiveControlSwitch, ui_event_RPIgiveControlSwitch, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_PowerRPIswitch, ui_event_PowerRPIswitch, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_OpenHatchSwitch, ui_event_OpenHatchSwitch, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_HeadRandMovSwitch, ui_event_HeadRandMovSwitch, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_EnableMotorsSwitch, ui_event_EnableMotorsSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_HeadControlSwitch, ui_event_HeadControlSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ArmControlSwitch, ui_event_ArmControlSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_SelfRotationControlSwitch, ui_event_SelfRotationControlSwitch, LV_EVENT_ALL, NULL);

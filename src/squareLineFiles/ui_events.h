@@ -10,6 +10,16 @@
 extern "C" {
 #endif
 
+void rpiGiveControlSwChecked(lv_event_t * e);
+void rpiGiveControlSwUnchecked(lv_event_t * e);
+void powerRpiSwChecked(lv_event_t * e);
+void powerRpiSwUnchecked(lv_event_t * e);
+void openHatchSwChecked(lv_event_t * e);
+void openHatchSwUnchecked(lv_event_t * e);
+void headRandMovSwChecked(lv_event_t * e);
+void headRandMovSwUnchecked(lv_event_t * e);
+void enableMotorsSwChecked(lv_event_t * e);
+void enableMotorsSwUnchecked(lv_event_t * e);
 void headControlSwChecked(lv_event_t * e);
 void headControlSwUnchecked(lv_event_t * e);
 void armControlSwChecked(lv_event_t * e);

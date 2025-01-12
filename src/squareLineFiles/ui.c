@@ -16,7 +16,22 @@ lv_obj_t *ui_TabView;
 lv_obj_t *ui_MonitorTab;
 lv_obj_t *ui_Image1;
 lv_obj_t *ui_HomeTab;
-lv_obj_t *ui_Panel1;
+lv_obj_t *ui_OtherControlsPanel;
+void ui_event_RPIgiveControlSwitch( lv_event_t * e);
+lv_obj_t *ui_RPIgiveControlSwitch;
+lv_obj_t *ui_RPIcontrolLabel;
+lv_obj_t *ui_RPIpowerLabel;
+lv_obj_t *ui_OpenHatchLabel;
+lv_obj_t *ui_HeadRandMovLabel;
+lv_obj_t *ui_EnableMotorsLabel;
+void ui_event_PowerRPIswitch( lv_event_t * e);
+lv_obj_t *ui_PowerRPIswitch;
+void ui_event_OpenHatchSwitch( lv_event_t * e);
+lv_obj_t *ui_OpenHatchSwitch;
+void ui_event_HeadRandMovSwitch( lv_event_t * e);
+lv_obj_t *ui_HeadRandMovSwitch;
+void ui_event_EnableMotorsSwitch( lv_event_t * e);
+lv_obj_t *ui_EnableMotorsSwitch;
 void ui_event_HeadControlSwitch( lv_event_t * e);
 lv_obj_t *ui_HeadControlSwitch;
 lv_obj_t *ui_HeadControlLabel;
@@ -27,7 +42,6 @@ lv_obj_t *ui_SelfRotationControlLabel;
 void ui_event_SelfRotationControlSwitch( lv_event_t * e);
 lv_obj_t *ui_SelfRotationControlSwitch;
 lv_obj_t *ui_ArmServoSelectionSwitch;
-lv_obj_t *ui_SwitchTest;
 lv_obj_t *ui_ControlClawServosLabel;
 lv_obj_t *ui_ConfigTab;
 lv_obj_t *ui_Switch2;
@@ -65,12 +79,66 @@ lv_obj_t *ui____initial_actions0;
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
+void ui_event_RPIgiveControlSwitch( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      rpiGiveControlSwChecked( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      rpiGiveControlSwUnchecked( e );
+}
+}
+
+void ui_event_PowerRPIswitch( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      powerRpiSwChecked( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      powerRpiSwUnchecked( e );
+}
+}
+
+void ui_event_OpenHatchSwitch( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      openHatchSwChecked( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      openHatchSwUnchecked( e );
+}
+}
+
+void ui_event_HeadRandMovSwitch( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      headRandMovSwChecked( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      headRandMovSwUnchecked( e );
+}
+}
+
+void ui_event_EnableMotorsSwitch( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      enableMotorsSwChecked( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      enableMotorsSwUnchecked( e );
+}
+}
+
 void ui_event_HeadControlSwitch( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 
 if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
       headControlSwChecked( e );
-      ( e );
 }
 if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
       headControlSwUnchecked( e );
