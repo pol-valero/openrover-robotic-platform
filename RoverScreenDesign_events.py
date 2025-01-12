@@ -62,3 +62,7 @@ def headRandMovSwUnchecked(event_struct):
 def enableMotorsSwChecked(event_struct):
     return
 
+
+def enableMotorsSwUnchecked(event_struct):
+    return
+
