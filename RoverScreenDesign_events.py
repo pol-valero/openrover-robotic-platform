@@ -66,3 +66,15 @@ def enableMotorsSwChecked(event_struct):
 def enableMotorsSwUnchecked(event_struct):
     return
 
+
+def wheelSelectorReleased(event_struct):
+    return
+
+
+def plusDegreeBtnClicked(event_struct):
+    return
+
+
+def minusDegreeBtnClicked(event_struct):
+    return
+
