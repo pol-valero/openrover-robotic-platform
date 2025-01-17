@@ -26,6 +26,9 @@ void armControlSwChecked(lv_event_t * e);
 void armControlSwUnchecked(lv_event_t * e);
 void selfRotationControlSwChecked(lv_event_t * e);
 void selfRotationControlSwUnchecked(lv_event_t * e);
+void wheelSelectorReleased(lv_event_t * e);
+void plusDegreeBtnClicked(lv_event_t * e);
+void minusDegreeBtnClicked(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

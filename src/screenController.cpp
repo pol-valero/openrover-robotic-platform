@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <lvgl.h>
 
 #include "screenController.h"
@@ -6,7 +7,8 @@
 #include "uiObjVisibilityManager.h"
 
 char response[100];
-
+char testString[100];
+int testValue = 0;
 
 void headControlSwChecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Head control switch checked");
@@ -99,6 +101,32 @@ void enableMotorsSwUnchecked(lv_event_t *e) {
 
 }
 
+
+void wheelSelectorReleased(lv_event_t *e) {
+    lv_label_set_text(ui_NotificationsLabel, "Wheel selector released");
+
+    //Get string of the wheel selector
+    lv_roller_get_selected_str(ui_WheelSelectorRoller, testString, 0);
+    lv_label_set_text(ui_NotificationsLabel, testString);
+
+
+}
+
+void plusDegreeBtnClicked(lv_event_t *e) {
+    lv_label_set_text(ui_NotificationsLabel, "Plus degree button clicked");
+
+    sprintf(testString, "+%d degrees", ++testValue);    //Just for testing, delete later
+    lv_label_set_text(ui_TrimValueLabel, testString);
+
+}
+
+void minusDegreeBtnClicked(lv_event_t *e) {
+    lv_label_set_text(ui_NotificationsLabel, "Minus degree button clicked");
+
+    sprintf(testString, "-%d degrees", --testValue);
+    lv_label_set_text(ui_TrimValueLabel, testString);
+
+}
 
 void screenControllerExecution() {
 

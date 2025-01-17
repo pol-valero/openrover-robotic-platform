@@ -7,6 +7,7 @@
 #include "ui_helpers.h"
 
 ///////////////////// VARIABLES ////////////////////
+void rotate_Animation( lv_obj_t *TargetObject, int delay);
 
 
 // SCREEN: ui_MainScreen
@@ -14,7 +15,63 @@ void ui_MainScreen_screen_init(void);
 lv_obj_t *ui_MainScreen;
 lv_obj_t *ui_TabView;
 lv_obj_t *ui_MonitorTab;
-lv_obj_t *ui_Image1;
+lv_obj_t *ui_RcChannelValuesPanel;
+lv_obj_t *ui_Joystick1ValuesLabel;
+lv_obj_t *ui_Joystick2ValuesLabel;
+lv_obj_t *ui_AuxValuesLabel;
+lv_obj_t *ui_JoyX1valueLabel;
+lv_obj_t *ui_JoyY1valueLabel;
+lv_obj_t *ui_JoyX2valueLabel;
+lv_obj_t *ui_JoyY2valueLabel;
+lv_obj_t *ui_AUX1valueLabel;
+lv_obj_t *ui_AUX2valueLabel;
+lv_obj_t *ui_AUX3valueLabel;
+lv_obj_t *ui_AUX4valueLabel;
+lv_obj_t *ui_EnvMonitorPanel;
+lv_obj_t *ui_TempArc;
+lv_obj_t *ui_CurrentEnvDataLabel;
+lv_obj_t *ui_EnvDataChart;
+lv_obj_t *ui_HumArc;
+lv_obj_t *ui_PressureArc;
+lv_obj_t *ui_TempValueLabel;
+lv_obj_t *ui_HumValueLabel;
+lv_obj_t *ui_PressureValueLabel;
+lv_obj_t *ui_HeightValueLabel;
+lv_obj_t *ui_CentigradesSymbolLabel;
+lv_obj_t *ui_MaxMinEnvParametersLabel;
+lv_obj_t *ui_NowLabel;
+lv_obj_t *ui_MinusOneMinLabel;
+lv_obj_t *ui_PercentageSymbolLabel;
+lv_obj_t *ui_RcChanelValuesLabel;
+lv_obj_t *ui_RPIstatusPanel;
+lv_obj_t *ui_CpuTempBar;
+lv_obj_t *ui_OnlineStatusLabel;
+lv_obj_t *ui_OnlineStatusIndicatorPanel;
+lv_obj_t *ui_CpuTempLabel;
+lv_obj_t *ui_CpuMinTempLabel;
+lv_obj_t *ui_CpuWorkloadLabel;
+lv_obj_t *ui_CpuMinWorkloadLabel;
+lv_obj_t *ui_CpuWorkloadBar;
+lv_obj_t *ui_CpuTempValueLabel;
+lv_obj_t *ui_RPIzeroImage;
+lv_obj_t *ui_CpuWorloadValueLabel;
+lv_obj_t *ui_CameraStatusLabel;
+lv_obj_t *ui_CameraStatusIndicatorPanel;
+lv_obj_t *ui_CpuMaxTempLabel;
+lv_obj_t *ui_CpuMaxWorloadLabel;
+lv_obj_t *ui_SpeedometerPanel;
+lv_obj_t *ui_SpeedGaugeImage;
+lv_obj_t *ui_DistanceImage;
+lv_obj_t *ui_SpeedLabel;
+lv_obj_t *ui_DistanceLabel;
+lv_obj_t *ui_SpeedValueLabel;
+lv_obj_t *ui_DistanceValueLabel;
+lv_obj_t *ui_WheelRoverImage;
+lv_obj_t *ui_RevsLabel;
+lv_obj_t *ui_RevsValueLabel;
+lv_obj_t *ui_EnvMonitorLabel;
+lv_obj_t *ui_RpiStatusTitleLabel;
+lv_obj_t *ui_SpeedometerLabel;
 lv_obj_t *ui_HomeTab;
 lv_obj_t *ui_OtherControlsPanel;
 void ui_event_RPIgiveControlSwitch( lv_event_t * e);
@@ -44,7 +101,17 @@ lv_obj_t *ui_SelfRotationControlSwitch;
 lv_obj_t *ui_ArmServoSelectionSwitch;
 lv_obj_t *ui_ControlClawServosLabel;
 lv_obj_t *ui_ConfigTab;
-lv_obj_t *ui_Switch2;
+lv_obj_t *ui_ServosAngleTrimmerLabel;
+lv_obj_t *ui_ServosAngleTrimPanel;
+void ui_event_WheelSelectorRoller( lv_event_t * e);
+lv_obj_t *ui_WheelSelectorRoller;
+void ui_event_PlusDegreeButton( lv_event_t * e);
+lv_obj_t *ui_PlusDegreeButton;
+lv_obj_t *ui_PlusLabel;
+lv_obj_t *ui_TrimValueLabel;
+void ui_event_MinusDegreeButton( lv_event_t * e);
+lv_obj_t *ui_MinusDegreeButton;
+lv_obj_t *ui_MinusLabel;
 lv_obj_t *ui_TopPanel;
 lv_obj_t *ui_SignalBar;
 lv_obj_t *ui_NotificationsLabel;
@@ -56,8 +123,8 @@ lv_obj_t *ui_RoverBatteryContainer;
 lv_obj_t *ui_RoverBatteryIcon;
 lv_obj_t *ui_RoverBatteryBar;
 lv_obj_t *ui_RoverBatteryLabel;
-lv_obj_t *ui_RcIcon;
 lv_obj_t *ui_RoverIcon;
+lv_obj_t *ui_RcIcon;
 lv_obj_t *ui_homeIcon;
 lv_obj_t *ui_monitorIcon;
 lv_obj_t *ui_configIcon;
@@ -77,6 +144,29 @@ lv_obj_t *ui____initial_actions0;
 #endif
 
 ///////////////////// ANIMATIONS ////////////////////
+void rotate_Animation( lv_obj_t *TargetObject, int delay)
+{
+ui_anim_user_data_t *PropertyAnimation_0_user_data = lv_mem_alloc(sizeof(ui_anim_user_data_t));
+PropertyAnimation_0_user_data->target = TargetObject;
+PropertyAnimation_0_user_data->val = -1;
+lv_anim_t PropertyAnimation_0;
+lv_anim_init(&PropertyAnimation_0);
+lv_anim_set_time(&PropertyAnimation_0, 15000);
+lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
+lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_image_angle );
+lv_anim_set_values(&PropertyAnimation_0, 0, 3600 );
+lv_anim_set_path_cb( &PropertyAnimation_0, lv_anim_path_linear);
+lv_anim_set_delay( &PropertyAnimation_0, delay + 0 );
+lv_anim_set_deleted_cb( &PropertyAnimation_0, _ui_anim_callback_free_user_data );
+lv_anim_set_playback_time(&PropertyAnimation_0, 0);
+lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
+ lv_anim_set_repeat_count(&PropertyAnimation_0, LV_ANIM_REPEAT_INFINITE );
+lv_anim_set_repeat_delay(&PropertyAnimation_0, 0);
+lv_anim_set_early_apply( &PropertyAnimation_0, false );
+ lv_anim_set_get_value_cb(&PropertyAnimation_0, &_ui_anim_callback_get_image_angle );
+lv_anim_start(&PropertyAnimation_0);
+
+}
 
 ///////////////////// FUNCTIONS ////////////////////
 void ui_event_RPIgiveControlSwitch( lv_event_t * e) {
@@ -164,6 +254,30 @@ if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_C
 }
 if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
       selfRotationControlSwUnchecked( e );
+}
+}
+
+void ui_event_WheelSelectorRoller( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_RELEASED) {
+      wheelSelectorReleased( e );
+}
+}
+
+void ui_event_PlusDegreeButton( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      plusDegreeBtnClicked( e );
+}
+}
+
+void ui_event_MinusDegreeButton( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+if ( event_code == LV_EVENT_CLICKED) {
+      minusDegreeBtnClicked( e );
 }
 }
 
