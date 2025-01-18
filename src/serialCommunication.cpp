@@ -1,9 +1,6 @@
 #include <Arduino.h>
 #include <SerialTransfer.h>
 
-//TODO: Delete these two includes (interaction with screen will be done outside of this file)
-#include <lvgl.h>
-#include "squareLineFiles/ui.h" //UI file header that SquareLineStudio generates
 #include "serialCommunication.h"
 
 

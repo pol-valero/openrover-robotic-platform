@@ -1,18 +1,13 @@
 #ifndef SERIAL_COMMUNICATION_H
 #define SERIAL_COMMUNICATION_H
 
-typedef struct __attribute__((packed)) {
-  uint8_t type; //Hex value identifying the type of frame
-  uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
-  uint8_t data1B[5]; //Small data to be sent (1 byte each)
-  //TODO: Add field for checksum/validation?
-} Frame;
+#include "sharedStructs.h"
 
 void initSerial();
 
-Frame serialReceiveFrame();
+void serialSendFrame(Frame frame);
 
-void serialSendTestValues();
+Frame serialReceiveFrame();
 
 void usbSerialPrint(char* message);
 

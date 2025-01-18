@@ -1,0 +1,25 @@
+#ifndef SHARED_STRUCTS_H
+#define SHARED_STRUCTS_H
+
+#include <Arduino.h>
+
+typedef struct {
+  int y1;
+  int x1;
+  int y2;
+  int x2;
+  int aux1;
+  int aux2;
+  int aux3;
+  int aux4;
+} RcValues;
+
+typedef struct __attribute__((packed)) {
+  uint8_t type; //Hex value identifying the type of frame
+  uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
+  uint8_t data1B[5]; //Small data to be sent (1 byte each)
+  //TODO: Add field for checksum/validation?
+} Frame;
+
+
+#endif
