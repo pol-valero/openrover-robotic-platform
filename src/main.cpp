@@ -9,6 +9,7 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 
+#include "frameTypesDefinition.h"
 
 
 // We listen on interrupt 0 which is digital input pin D2 (on Arduino uno)
@@ -77,7 +78,7 @@ Frame rcValuesToFrame(RcValues rcvalues) {
 
   Frame frame;
 
-  frame.type = 0x01;
+  frame.type = INF_F_RC_VALUES;
   frame.data2B[0] = rcvalues.y1;
   frame.data2B[1] = rcvalues.x1;
   frame.data2B[2] = rcvalues.y2;
@@ -117,6 +118,15 @@ void serialReceiveFrame() {
     char buffer[100];
     sprintf(buffer, "Type: %d Data2B[0]: %d Data1B[0]: %d", frame.type, frame.data2B[0], frame.data1B[0]);  //TODO: Delete. Just for testing
     Serial.println(buffer);
+
+    if (frame.type == CMD_F_TEST) {
+      Frame responseFrame;
+      responseFrame.type = CMD_F_TEST;
+      responseFrame.data2B[1] = frame.data2B[1];
+      responseFrame.data1B[3] = frame.data1B[3];
+
+      serialSendFrame(responseFrame);
+    }
   }
   
 }
@@ -238,7 +248,7 @@ void loop() {
 
     serialSendRcValuesFrame(rcvalues);
     //radioSendRcValuesFrame(rcvalues);
-    serialReceiveFrame();
+    serialReceiveFrame(); //TODO: Put serial in other entity. Make this function return a frame (like with the ESP32)
     //radioReceiveFrame();
 
     calculateBatteryPercentage();
