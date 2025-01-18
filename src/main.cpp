@@ -32,17 +32,13 @@ typedef struct {
   int aux4;
 } RcValues;
 
-struct __attribute__((packed)) STRUCT { //TODO: Use typedef
-  uint8_t type; //Hex value identifying the type of frame
-  char data[48]; //Data of the frame
-  uint8_t checksum; //TODO: Delete. Only for testing purposes
-} frame; //TODO: Delete. We will be using the next struct for radio and serial
 
-struct __attribute__((packed)) STRUCT2 { //TODO: Use typedef
+typedef struct __attribute__((packed)) {
   uint8_t type; //Hex value identifying the type of frame
   uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
   uint8_t data1B[5]; //Small data to be sent (1 byte each)
-} tinyFrame; //TODO: Change to "frame" (we will use same struct for radio and serial)
+  //TODO: Add field for checksum/validation?
+} Frame; //The same struct is used for radio and serial)
 
 AltSoftSerial mySerial; //RX = 8, TX = 9
 //auto &mySerial = Serial;
@@ -70,51 +66,62 @@ void setup() {
 
 }
 
-//TODO: Change function name to "sendSerialFrame" and as parameters, have type, data2B and data1B (we will use same struct for radio and serial)
-//TODO: Create function "sendRadioFrame" with same parameters
-void sendFrame(uint8_t type, char data[48], uint8_t checksum) {
-
-  frame.type = type;
-  strcpy(frame.data, data);
-  frame.checksum = checksum;
-
+//TODO: Create function "radioSendFrame" with same parameters
+void serialSendFrame(Frame frame) {
   myTransfer.sendDatum(frame);
 }
 
-void serialSendRcValues(RcValues rcvalues) {
+
+
+Frame rcValuesToFrame(RcValues rcvalues) {
+
+  Frame frame;
+
+  frame.type = 0x01;
+  frame.data2B[0] = rcvalues.y1;
+  frame.data2B[1] = rcvalues.x1;
+  frame.data2B[2] = rcvalues.y2;
+  frame.data2B[3] = rcvalues.x2;
+  frame.data1B[0] = rcvalues.aux1;
+  frame.data1B[1] = rcvalues.aux2;
+  frame.data1B[2] = rcvalues.aux3;
+  frame.data1B[3] = rcvalues.aux4;
+
+  return frame;
+
+}
+
+
+void serialSendRcValuesFrame(RcValues rcvalues) {
   //Sends the Rc values every 100ms
 
   static unsigned long previousMillis = 0;
 
   if (millis() - previousMillis >= 100) {
     previousMillis = millis();
-    char buffer[50]; //TODO: Lower to minimum
-    sprintf(buffer, "X1:%d Y1:%d X2:%d Y2:%d AUX1:%d", rcvalues.x1, rcvalues.y1, rcvalues.x2, rcvalues.y2, rcvalues.aux1);
-    sendFrame(0x03, buffer, 26);
+    
+    Frame frame = rcValuesToFrame(rcvalues);
+    serialSendFrame(frame);
+
   }
 
 }
 
-void serialReceiveResponse() {
-  //Receives the response from the other side, checks every 5ms
-  //TODO: We check every 20ms because we are testing with high volume of information; when we are done, we can increase this value
-  //TODO: Change function name? This function will receive several types of frames in the future
+void serialReceiveFrame() {
+  //TODO: Add handle frame function inside?
 
-  static unsigned long previousMillis = 0;
+  if (myTransfer.available()) {
+    Frame frame;
+    myTransfer.rxObj(frame);
 
-  if (millis() - previousMillis >= 5) {
-    previousMillis = millis();
-    if (myTransfer.available()) {
-      myTransfer.rxObj(frame);
-
-      char buffer[50];
-      sprintf(buffer, "Type: %d Data: %s Checksum: %d", frame.type, frame.data, frame.checksum);
-      Serial.println(buffer);
-    }
+    char buffer[100];
+    sprintf(buffer, "Type: %d Data2B[0]: %d Data1B[0]: %d", frame.type, frame.data2B[0], frame.data1B[0]);  //TODO: Delete. Just for testing
+    Serial.println(buffer);
   }
+  
 }
 
-void radioReceiveResponse() {
+/*void radioReceiveFrame() {
   //Receives the response from the other side, checks every 20ms
   //TODO: Change function name? This function will receive several types of radio responses in the future
 
@@ -138,9 +145,9 @@ void radioReceiveResponse() {
     }
   }
 
-}
+}*/
 
-void radioSendData() {
+/*void radioSendData() {
   //Sends data to the other side, every 50ms
   //TODO: Change function name? This function will send several types of radio responses in the future
 
@@ -169,7 +176,7 @@ void radioSendData() {
   
   }
 
-}
+}*/
 
 void calculateBatteryPercentage() {
 
@@ -229,10 +236,11 @@ void loop() {
     rcvalues.aux3 = tx.getChannel(6);
     rcvalues.aux4 = tx.getChannel(7);
 
-    serialSendRcValues(rcvalues);
-    serialReceiveResponse();
-    radioReceiveResponse();
-    radioSendData();
+    serialSendRcValuesFrame(rcvalues);
+    //radioSendRcValuesFrame(rcvalues);
+    serialReceiveFrame();
+    //radioReceiveFrame();
+
     calculateBatteryPercentage();
     makeBuzzerSound();
   
