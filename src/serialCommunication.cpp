@@ -4,15 +4,10 @@
 //TODO: Delete these two includes (interaction with screen will be done outside of this file)
 #include <lvgl.h>
 #include "squareLineFiles/ui.h" //UI file header that SquareLineStudio generates
+#include "serialCommunication.h"
 
 
 SerialTransfer myTransfer;
-
-struct __attribute__((packed)) STRUCT {
-    uint8_t type; //Hex value identifying the type of frame
-    char data[48]; //Data of the frame
-    uint8_t checksum; //TODO: Delete. Only for testing purposes
-} frame; //TODO: Make typedef. Also, change structure to smaller new one with arrays. 
 
 
 void initSerial() {
@@ -21,18 +16,12 @@ void initSerial() {
     myTransfer.begin(Serial1);
 }
 
-void sendFrame(uint8_t type, char data[48], uint8_t checksum) {
-
-    frame.type = type;
-    strcpy(frame.data, data);
-    frame.checksum = checksum;
-
-    myTransfer.sendDatum(frame);
+void serialSendFrame(Frame frame) {
+  myTransfer.sendDatum(frame);
 }
 
-//TODO: Create receiveFrame function (with timeout as parameter?)
 
-void serialSendTestValues() {
+/*void serialSendTestValues() {
     //Sends test values to the other side every 200ms
 
     static unsigned long previousMillis = 0;
@@ -52,19 +41,17 @@ void serialSendTestValues() {
         
     }
 
-}
+}*/
 
-void serialReceiveResponse(char* response) {
-    //Receives the response from the other side, checks every 20ms
-    //TODO: Change function name? This function will receive several types of frames in the future
-
-    sprintf(response, "");
+Frame serialReceiveFrame() {
 
     if (myTransfer.available()) {
 
+        Frame frame;
+
         myTransfer.rxObj(frame);
 
-        sprintf(response, "Type: %d Data: %s Checksum: %d", frame.type, frame.data, frame.checksum);
+        return frame;
         
     }
 

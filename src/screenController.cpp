@@ -6,9 +6,36 @@
 #include "serialCommunication.h"
 #include "uiObjVisibilityManager.h"
 
-char response[100];
 char testString[100];
 int testValue = 0;
+
+typedef struct {
+  int y1;
+  int x1;
+  int y2;
+  int x2;
+  int aux1;
+  int aux2;
+  int aux3;
+  int aux4;
+} RcValues;
+
+RcValues rcValuesFromFrame(Frame frame) {
+
+    RcValues rcValues;
+    
+    rcValues.y1 = frame.data2B[0];
+    rcValues.x1 = frame.data2B[1];
+    rcValues.y2 = frame.data2B[2];
+    rcValues.x2 = frame.data2B[3];
+    rcValues.aux1 = frame.data1B[0];
+    rcValues.aux2 = frame.data1B[1];
+    rcValues.aux3 = frame.data1B[2];
+    rcValues.aux4 = frame.data1B[3];
+    
+    return rcValues;
+
+}
 
 void headControlSwChecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Head control switch checked");
@@ -128,13 +155,30 @@ void minusDegreeBtnClicked(lv_event_t *e) {
 
 }
 
+char* intToChars(int value) {
+    sprintf(testString, "%d", value);
+    return testString;
+}
+
+void handleReceivedFrame(Frame frame) {
+
+    RcValues rcValues = rcValuesFromFrame(frame);
+
+    lv_label_set_text(ui_JoyX1valueLabel, intToChars(rcValues.x1));
+    lv_label_set_text(ui_JoyY1valueLabel, intToChars(rcValues.y1));
+    lv_label_set_text(ui_JoyX2valueLabel, intToChars(rcValues.x2));
+    lv_label_set_text(ui_JoyY2valueLabel, intToChars(rcValues.y2));
+    lv_label_set_text(ui_AUX1valueLabel, intToChars(rcValues.aux1));
+    lv_label_set_text(ui_AUX2valueLabel, intToChars(rcValues.aux2));
+    lv_label_set_text(ui_AUX3valueLabel, intToChars(rcValues.aux3));
+    lv_label_set_text(ui_AUX4valueLabel, intToChars(rcValues.aux4));
+
+}
+
 void screenControllerExecution() {
 
-    serialReceiveResponse(response);
+    Frame frame = serialReceiveFrame();
+    handleReceivedFrame(frame);
     //usbSerialPrint(response);
-    if (strlen(response) > 0) {
-        //lv_label_set_text(ui_Label1, response);
-    }
-
-    serialSendTestValues();
+    //serialSendTestValues();   //TODO: Delete
 }
