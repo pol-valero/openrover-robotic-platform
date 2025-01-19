@@ -39,7 +39,7 @@ typedef struct __attribute__((packed)) {
   uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
   uint8_t data1B[5]; //Small data to be sent (1 byte each)
   //TODO: Add field for checksum/validation?
-} Frame; //The same struct is used for radio and serial)
+} Frame; //The same struct is used for radio and serial
 
 AltSoftSerial mySerial; //RX = 8, TX = 9
 //auto &mySerial = Serial;
@@ -67,33 +67,34 @@ void setup() {
 
 }
 
-//TODO: Create function "radioSendFrame" with same parameters
+
 void serialSendFrame(Frame frame) {
-  myTransfer.sendDatum(frame);
+
+  if (frame.type != NOT_VALID) {
+    myTransfer.sendDatum(frame);
+  }
+
 }
 
-
-
-Frame rcValuesToFrame(RcValues rcvalues) {
+Frame rcValuesToFrame(RcValues rcValues) {
 
   Frame frame;
 
   frame.type = INF_F_RC_VALUES;
-  frame.data2B[0] = rcvalues.y1;
-  frame.data2B[1] = rcvalues.x1;
-  frame.data2B[2] = rcvalues.y2;
-  frame.data2B[3] = rcvalues.x2;
-  frame.data1B[0] = rcvalues.aux1;
-  frame.data1B[1] = rcvalues.aux2;
-  frame.data1B[2] = rcvalues.aux3;
-  frame.data1B[3] = rcvalues.aux4;
+  frame.data2B[0] = rcValues.y1;
+  frame.data2B[1] = rcValues.x1;
+  frame.data2B[2] = rcValues.y2;
+  frame.data2B[3] = rcValues.x2;
+  frame.data1B[0] = rcValues.aux1;
+  frame.data1B[1] = rcValues.aux2;
+  frame.data1B[2] = rcValues.aux3;
+  frame.data1B[3] = rcValues.aux4;
 
   return frame;
 
 }
 
-
-void serialSendRcValuesFrame(RcValues rcvalues) {
+void serialSendRcValuesFrame(RcValues rcValues) {
   //Sends the Rc values every 100ms
 
   static unsigned long previousMillis = 0;
@@ -101,84 +102,80 @@ void serialSendRcValuesFrame(RcValues rcvalues) {
   if (millis() - previousMillis >= 100) {
     previousMillis = millis();
     
-    Frame frame = rcValuesToFrame(rcvalues);
+    Frame frame = rcValuesToFrame(rcValues);
     serialSendFrame(frame);
 
   }
 
 }
 
-void serialReceiveFrame() {
-  //TODO: Add handle frame function inside?
+Frame serialReceiveFrame() {
+
+  Frame frame;
+  frame.type = NOT_VALID;
 
   if (myTransfer.available()) {
-    Frame frame;
+
     myTransfer.rxObj(frame);
 
-    char buffer[100];
-    sprintf(buffer, "Type: %d Data2B[0]: %d Data1B[0]: %d", frame.type, frame.data2B[0], frame.data1B[0]);  //TODO: Delete. Just for testing
-    Serial.println(buffer);
+    return frame;
 
-    if (frame.type == CMD_F_TEST) {
-      Frame responseFrame;
-      responseFrame.type = CMD_F_TEST;
-      responseFrame.data2B[1] = frame.data2B[1];
-      responseFrame.data1B[3] = frame.data1B[3];
+  }
 
-      serialSendFrame(responseFrame);
-    }
+  return frame;
+  
+}
+
+Frame radioReceiveFrame() {
+
+  Frame frame;
+  frame.type = NOT_VALID;
+
+  radio.startListening();
+
+  if(radio.available()) {
+
+    radio.read(&frame, sizeof(frame));
+
+    return frame;
+
+  }
+
+  return frame;
+
+}
+
+void radioSendFrame(Frame frame) {
+
+  if (frame.type != NOT_VALID) {
+    radio.stopListening();
+    radio.write(&frame, sizeof(frame));
   }
   
 }
 
-/*void radioReceiveFrame() {
-  //Receives the response from the other side, checks every 20ms
-  //TODO: Change function name? This function will receive several types of radio responses in the future
-
-  static unsigned long previousMillis = 0;
-
-  if (millis() - previousMillis >= 20) {
-    previousMillis = millis();
-
-    radio.startListening();
-
-    if(radio.available()){
-
-      char buffer[200]; //TODO: Lower to minimum size
-
-      radio.read(&tinyFrame, sizeof(tinyFrame));
-
-      sprintf(buffer, "Type:%d Data2B[0]:%d Data2B[1]:%d Data1B[0]:%d Data1B[2]: %d", tinyFrame.type, tinyFrame.data2B[0], tinyFrame.data2B[1], tinyFrame.data1B[0], tinyFrame.data1B[2]);
-
-      Serial.println(buffer);
-
-    }
-  }
-
-}*/
-
-/*void radioSendData() {
+//TODO: Delete this test function
+void radioSendData() {
   //Sends data to the other side, every 50ms
-  //TODO: Change function name? This function will send several types of radio responses in the future
 
   static unsigned long previousMillis = 0;
   static int i = 0;
 
+  Frame frame;
+
   if (millis() - previousMillis >= 50) {
     previousMillis = millis();
 
-    tinyFrame.type = 0x04;
-    tinyFrame.data2B[0] = i;
-    tinyFrame.data2B[1] = i + 1;
-    tinyFrame.data1B[0] = i + 2;
-    tinyFrame.data1B[1] = i + 3;
-    tinyFrame.data1B[2] = i + 4;
+    frame.type = 0x04;
+    frame.data2B[0] = i;
+    frame.data2B[1] = i + 1;
+    frame.data1B[0] = i + 2;
+    frame.data1B[1] = i + 3;
+    frame.data1B[2] = i + 4;
 
     i++;
 
-    radio.stopListening();
-
-    radio.write(&tinyFrame, sizeof(tinyFrame));
+    radioSendFrame(frame);
 
     if (i > 250) {
       i = 0;
@@ -186,7 +183,7 @@ void serialReceiveFrame() {
   
   }
 
-}*/
+}
 
 void calculateBatteryPercentage() {
 
@@ -232,24 +229,63 @@ void makeBuzzerSound() {
 
 }
 
+RcValues getSpektrumRcValues() {
+  RcValues rcValues;
+
+  rcValues.y1 = tx.getChannel(0);
+  rcValues.x1 = tx.getChannel(3);
+  rcValues.y2 = tx.getChannel(2);
+  rcValues.x2 = tx.getChannel(1);
+  rcValues.aux1 = tx.getChannel(4);
+  rcValues.aux2 = tx.getChannel(5);
+  rcValues.aux3 = tx.getChannel(6);
+  rcValues.aux4 = tx.getChannel(7);
+
+  return rcValues;
+}
+
+void handleReceivedFrame(Frame frame) {
+
+  //Handles specific frames that must be handled by arduino nano, such as command frames 
+  //to make buzzer sounds when the battery of the rc remote is low, or play a melody. 
+
+  switch (frame.type) {
+
+    case CMD_F_TEST:
+      tone(buzzer_pin, 500, 100);
+
+      //TODO: Delete. Just for testing
+      Frame responseFrame;
+      responseFrame.type = CMD_F_TEST;
+      responseFrame.data2B[1] = frame.data2B[1];
+      responseFrame.data1B[3] = frame.data1B[3];
+
+      serialSendFrame(responseFrame);
+      //
+      break;
+
+    default:
+      break;
+      
+  }
+
+}
 
 void loop() {
 
-    RcValues rcvalues;
+    RcValues rcValues = getSpektrumRcValues();
 
-    rcvalues.y1 = tx.getChannel(0);
-    rcvalues.x1 = tx.getChannel(3);
-    rcvalues.y2 = tx.getChannel(2);
-    rcvalues.x2 = tx.getChannel(1);
-    rcvalues.aux1 = tx.getChannel(4);
-    rcvalues.aux2 = tx.getChannel(5);
-    rcvalues.aux3 = tx.getChannel(6);
-    rcvalues.aux4 = tx.getChannel(7);
+    serialSendRcValuesFrame(rcValues);
+    Frame serialFrame = serialReceiveFrame();
+    //radioSendFrame(serialFrame);
+    Frame radioFrame = radioReceiveFrame();
+    radioFrame.type = CMD_F_TEST; //TODO: Delete. Just for testing
+    serialSendFrame(radioFrame);
 
-    serialSendRcValuesFrame(rcvalues);
-    //radioSendRcValuesFrame(rcvalues);
-    serialReceiveFrame(); //TODO: Put serial in other entity. Make this function return a frame (like with the ESP32)
-    //radioReceiveFrame();
+    radioSendData(); //TODO: Delete this test function
+
+    handleReceivedFrame(serialFrame);
+    //handleReceivedFrame(radioFrame);  //Right now not necessary, but may be if we expand functionalities
 
     calculateBatteryPercentage();
     makeBuzzerSound();
