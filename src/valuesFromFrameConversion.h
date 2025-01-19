@@ -5,4 +5,6 @@
 
 RcValues rcValuesFromFrame(Frame frame);
 
+RcBatteryValues rcBattValuesFromFrame(Frame frame);
+
 #endif

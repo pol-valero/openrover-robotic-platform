@@ -14,6 +14,11 @@ typedef struct {
   int aux4;
 } RcValues;
 
+typedef struct {
+  float cellVoltage;
+  int percentage;
+} RcBatteryValues;
+
 typedef struct __attribute__((packed)) {
   uint8_t type; //Hex value identifying the type of frame
   uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)

@@ -79,6 +79,9 @@ void openHatchSwChecked(lv_event_t *e) {
 void openHatchSwUnchecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Open hatch switch unchecked");
 
+    Frame frame;    //TODO: Delete. Just for test.
+    frame.type = CMD_F_RC_BUZZER;
+    serialSendFrame(frame);
 }
 
 void headRandMovSwChecked(lv_event_t *e) {
@@ -116,7 +119,7 @@ void wheelSelectorReleased(lv_event_t *e) {
 
     //Get string of the wheel selector
     lv_roller_get_selected_str(ui_WheelSelectorRoller, testString, 0);
-    lv_label_set_text(ui_NotificationsLabel, testString);
+    lv_label_set_text(ui_NotificationsLabel, testString);   //TODO:Just for testing, delete later
 
 
 }
@@ -124,7 +127,7 @@ void wheelSelectorReleased(lv_event_t *e) {
 void plusDegreeBtnClicked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Plus degree button clicked");
 
-    sprintf(testString, "+%d degrees", ++testValue);    //Just for testing, delete later
+    sprintf(testString, "+%d degrees", ++testValue);    //TODO:Just for testing, delete later
     lv_label_set_text(ui_TrimValueLabel, testString);
 
 }

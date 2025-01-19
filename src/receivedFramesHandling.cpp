@@ -28,6 +28,18 @@ void updateRcValueLabels(Frame frame) {
 
 }
 
+void updateRcBattValuesLabelBar(Frame frame) {
+
+    RcBatteryValues rcBattValues = rcBattValuesFromFrame(frame);
+
+    char buffer[50];
+    sprintf(buffer, "%.1fV", rcBattValues.cellVoltage);
+
+    lv_label_set_text(ui_RcBatteryLabel, buffer);
+    lv_bar_set_value(ui_RcBatteryBar, rcBattValues.percentage, LV_ANIM_OFF);
+
+}
+
 void handleReceivedFrame(Frame frame) {
 
     switch (frame.type) {
@@ -39,7 +51,10 @@ void handleReceivedFrame(Frame frame) {
             char buffer[100];
             sprintf(buffer, "Frame type %d received. Data2B[1]: %d, Data1B[3]: %d", frame.type, frame.data2B[1], frame.data1B[3]);
             lv_label_set_text(ui_NotificationsLabel, buffer);
-
+            //
+            break;
+        case INF_F_RC_BAT_LEVEL:
+            updateRcBattValuesLabelBar(frame);
             break;
 
         default:
