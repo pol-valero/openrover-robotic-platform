@@ -31,8 +31,14 @@ typedef struct {
   int aux2;
   int aux3;
   int aux4;
+  bool dataValid;
 } RcValues;
 
+typedef struct {
+  float cellVoltage;
+  int percentage;
+  bool dataValid;
+} RcBatteryValues;
 
 typedef struct __attribute__((packed)) {
   uint8_t type; //Hex value identifying the type of frame
@@ -40,6 +46,7 @@ typedef struct __attribute__((packed)) {
   uint8_t data1B[5]; //Small data to be sent (1 byte each)
   //TODO: Add field for checksum/validation?
 } Frame; //The same struct is used for radio and serial
+
 
 AltSoftSerial mySerial; //RX = 8, TX = 9
 //auto &mySerial = Serial;
@@ -95,14 +102,25 @@ Frame rcValuesToFrame(RcValues rcValues) {
 }
 
 void serialSendRcValuesFrame(RcValues rcValues) {
-  //Sends the Rc values every 100ms
 
-  static unsigned long previousMillis = 0;
-
-  if (millis() - previousMillis >= 100) {
-    previousMillis = millis();
+  if (rcValues.dataValid) {
     
     Frame frame = rcValuesToFrame(rcValues);
+    serialSendFrame(frame);
+
+  }
+
+}
+
+void serialSendBattValuesFrame(RcBatteryValues battValues) {
+
+  if (battValues.dataValid) {
+
+    Frame frame;
+    frame.type = INF_F_RC_BAT_LEVEL;
+    frame.data1B[0] = battValues.cellVoltage * 10; //We multiply by 10 because the float data is sent as an integer
+    frame.data1B[1] = battValues.percentage;
+
     serialSendFrame(frame);
 
   }
@@ -154,44 +172,15 @@ void radioSendFrame(Frame frame) {
   
 }
 
-//TODO: Delete this test function
-void radioSendData() {
-  //Sends data to the other side, every 50ms
+
+RcBatteryValues getBatteryValues() {
 
   static unsigned long previousMillis = 0;
-  static int i = 0;
+  RcBatteryValues battValues;
 
-  Frame frame;
+  battValues.dataValid = false;
 
-  if (millis() - previousMillis >= 50) {
-    previousMillis = millis();
-
-    frame.type = 0x04;
-    frame.data2B[0] = i;
-    frame.data2B[1] = i + 1;
-    frame.data1B[0] = i + 2;
-    frame.data1B[1] = i + 3;
-    frame.data1B[2] = i + 4;
-
-    i++;
-
-    radioSendFrame(frame);
-
-    if (i > 250) {
-      i = 0;
-    }
-  
-  }
-
-}
-
-void calculateBatteryPercentage() {
-
-  char buffer[50]; //TODO: Lower to minimum size
-
-  static unsigned long previousMillis = 0;
-
-  if (millis() - previousMillis >= 100) { //TODO: Increase delay between readings 
+  if (millis() - previousMillis >= 1000) { 
 
     previousMillis = millis();
 
@@ -207,13 +196,13 @@ void calculateBatteryPercentage() {
 
     batt_percentage = map(batt_divider_voltage * 100, 4.2 * 100, 3.6 * 100, 100, 0); //We multiply by 100 because the map() function does not accept floats.
 
-    Serial.print("Battery cell voltage: ");
-    Serial.print(batt_divider_voltage);
-
-    sprintf(buffer, "\tBattery percentage: %d", batt_percentage);
-    Serial.println(buffer);
+    battValues.cellVoltage = batt_divider_voltage;
+    battValues.percentage = batt_percentage;
+    battValues.dataValid = true;
 
   }
+
+  return battValues;
 
 }
 
@@ -230,16 +219,26 @@ void makeBuzzerSound() {
 }
 
 RcValues getSpektrumRcValues() {
+  //Gets the RC values every 100ms
+  
   RcValues rcValues;
+  rcValues.dataValid = false;
 
-  rcValues.y1 = tx.getChannel(0);
-  rcValues.x1 = tx.getChannel(3);
-  rcValues.y2 = tx.getChannel(2);
-  rcValues.x2 = tx.getChannel(1);
-  rcValues.aux1 = tx.getChannel(4);
-  rcValues.aux2 = tx.getChannel(5);
-  rcValues.aux3 = tx.getChannel(6);
-  rcValues.aux4 = tx.getChannel(7);
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 100) {
+    previousMillis = millis();
+
+    rcValues.y1 = tx.getChannel(0);
+    rcValues.x1 = tx.getChannel(3);
+    rcValues.y2 = tx.getChannel(2);
+    rcValues.x2 = tx.getChannel(1);
+    rcValues.aux1 = tx.getChannel(4);
+    rcValues.aux2 = tx.getChannel(5);
+    rcValues.aux3 = tx.getChannel(6);
+    rcValues.aux4 = tx.getChannel(7);
+    rcValues.dataValid = true;
+  }
 
   return rcValues;
 }
@@ -251,10 +250,14 @@ void handleReceivedFrame(Frame frame) {
 
   switch (frame.type) {
 
+    case CMD_F_RC_BUZZER:
+      tone(buzzer_pin, 1000, 100);
+      break;
+
     case CMD_F_TEST:
+      //TODO: Delete. Just for testing
       tone(buzzer_pin, 500, 100);
 
-      //TODO: Delete. Just for testing
       Frame responseFrame;
       responseFrame.type = CMD_F_TEST;
       responseFrame.data2B[1] = frame.data2B[1];
@@ -266,7 +269,7 @@ void handleReceivedFrame(Frame frame) {
 
     default:
       break;
-      
+
   }
 
 }
@@ -274,20 +277,19 @@ void handleReceivedFrame(Frame frame) {
 void loop() {
 
     RcValues rcValues = getSpektrumRcValues();
-
     serialSendRcValuesFrame(rcValues);
-    Frame serialFrame = serialReceiveFrame();
-    //radioSendFrame(serialFrame);
-    Frame radioFrame = radioReceiveFrame();
-    radioFrame.type = CMD_F_TEST; //TODO: Delete. Just for testing
-    serialSendFrame(radioFrame);
 
-    radioSendData(); //TODO: Delete this test function
+    RcBatteryValues battValues = getBatteryValues();
+    serialSendBattValuesFrame(battValues);
+
+    Frame serialFrame = serialReceiveFrame();
+    radioSendFrame(serialFrame);
+    Frame radioFrame = radioReceiveFrame();
+    serialSendFrame(radioFrame);
 
     handleReceivedFrame(serialFrame);
     //handleReceivedFrame(radioFrame);  //Right now not necessary, but may be if we expand functionalities
 
-    calculateBatteryPercentage();
-    makeBuzzerSound();
+    //makeBuzzerSound();
   
 }

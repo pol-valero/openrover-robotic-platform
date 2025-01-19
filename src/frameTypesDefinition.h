@@ -5,6 +5,8 @@
 //CMD_F_ -> Command Frame -> Frame with control commands that require extra handling (ex.- change Rover mode, power Raspberry Pi...)
 #define NOT_VALID 0
 #define INF_F_RC_VALUES 1
+#define INF_F_RC_BAT_LEVEL 2
+#define CMD_F_RC_BUZZER 3
 #define CMD_F_TEST 250
 
 #endif
