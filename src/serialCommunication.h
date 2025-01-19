@@ -11,6 +11,4 @@ Frame serialReceiveFrame();
 
 void usbSerialPrint(char* message);
 
-//TODO: Send and receive frame headers
-
 #endif
