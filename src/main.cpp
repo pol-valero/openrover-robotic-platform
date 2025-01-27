@@ -3,7 +3,7 @@
 #include <AltSoftSerial.h>
 
 #include "SerialTransfer.h"
-#include <Wire.h> //TODO: Remove wire.h if not needed (it is used for I2C communication)
+#include <Wire.h>
 
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -12,10 +12,7 @@
 #include "frameTypesDefinition.h"
 
 
-// We listen on interrupt 0 which is digital input pin D2 (on Arduino uno)
-// We can take a look at http://arduino.cc/en/Reference/attachInterrupt for mapping
-// an interrupt number to pin number
-
+// By default we listen on interrupt 0, which in Arduino nano, is digital input pin D2
 RcTrainer tx;
 
 RF24 radio(6, 5); // CE, CSN
@@ -41,7 +38,7 @@ typedef struct {
 } RcBatteryValues;
 
 typedef struct __attribute__((packed)) {
-  uint8_t type; //Hex value identifying the type of frame
+  uint8_t type; //Integer value identifying the type of frame
   uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
   uint8_t data1B[5]; //Small data to be sent (1 byte each)
   //TODO: Add field for checksum/validation?
