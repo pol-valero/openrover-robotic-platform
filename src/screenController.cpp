@@ -7,8 +7,9 @@
 #include "uiObjVisibilityManager.h"
 #include "receivedFramesHandling.h"
 #include "frameTypesDefinition.h"
+#include "sharedFunctions.h"
 
-char testString[100];
+
 int testValue = 0;
 
 
@@ -118,8 +119,8 @@ void wheelSelectorReleased(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Wheel selector released");
 
     //Get string of the wheel selector
-    lv_roller_get_selected_str(ui_WheelSelectorRoller, testString, 0);
-    lv_label_set_text(ui_NotificationsLabel, testString);   //TODO:Just for testing, delete later
+    lv_roller_get_selected_str(ui_WheelSelectorRoller, sharedBuffer, 0);
+    lv_label_set_text(ui_NotificationsLabel, sharedBuffer);   //TODO:Just for testing, delete later
 
 
 }
@@ -127,16 +128,16 @@ void wheelSelectorReleased(lv_event_t *e) {
 void plusDegreeBtnClicked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Plus degree button clicked");
 
-    sprintf(testString, "+%d degrees", ++testValue);    //TODO:Just for testing, delete later
-    lv_label_set_text(ui_TrimValueLabel, testString);
+    //TODO:Just for testing, delete later
+    lv_label_set_text(ui_TrimValueLabel, intValueToString(++testValue, "degrees"));
 
 }
 
 void minusDegreeBtnClicked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Minus degree button clicked");
 
-    sprintf(testString, "-%d degrees", --testValue);
-    lv_label_set_text(ui_TrimValueLabel, testString);
+    //TODO:Just for testing, delete later
+    lv_label_set_text(ui_TrimValueLabel, intValueToString(--testValue, "degrees"));
 
 }
 

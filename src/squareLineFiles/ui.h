@@ -59,6 +59,9 @@ extern lv_obj_t *ui_MaxMinEnvParametersLabel;
 extern lv_obj_t *ui_NowLabel;
 extern lv_obj_t *ui_MinusOneMinLabel;
 extern lv_obj_t *ui_PercentageSymbolLabel;
+extern lv_obj_t *ui_TemperatureIcon;
+extern lv_obj_t *ui_PressureIcon;
+extern lv_obj_t *ui_HumidityIcon;
 extern lv_obj_t *ui_RcChanelValuesLabel;
 extern lv_obj_t *ui_RPIstatusPanel;
 extern lv_obj_t *ui_CpuTempBar;
@@ -151,6 +154,9 @@ extern lv_obj_t *ui_configIcon;
 extern lv_obj_t *ui____initial_actions0;
 
 // IMAGES AND IMAGE SETS
+LV_IMG_DECLARE( ui_img_tempimg_png);   // assets/tempImg.png
+LV_IMG_DECLARE( ui_img_pressureimg_png);   // assets/pressureImg.png
+LV_IMG_DECLARE( ui_img_humidityimg_png);   // assets/humidityImg.png
 LV_IMG_DECLARE( ui_img_raspberryimg_png);   // assets/raspberryImg.png
 LV_IMG_DECLARE( ui_img_speedimg_png);   // assets/speedImg.png
 LV_IMG_DECLARE( ui_img_distanceimg_png);   // assets/distanceImg.png

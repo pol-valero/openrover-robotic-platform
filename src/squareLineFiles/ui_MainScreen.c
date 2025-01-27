@@ -423,6 +423,39 @@ lv_obj_set_style_text_opa(ui_PercentageSymbolLabel, 255, LV_PART_MAIN| LV_STATE_
 lv_obj_set_style_text_align(ui_PercentageSymbolLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_PercentageSymbolLabel, &ui_font_Montserrat_medium_custom, LV_PART_MAIN| LV_STATE_DEFAULT);
 
+ui_TemperatureIcon = lv_img_create(ui_EnvMonitorPanel);
+lv_img_set_src(ui_TemperatureIcon, &ui_img_tempimg_png);
+lv_obj_set_width( ui_TemperatureIcon, LV_SIZE_CONTENT);  /// 19
+lv_obj_set_height( ui_TemperatureIcon, LV_SIZE_CONTENT);   /// 28
+lv_obj_set_x( ui_TemperatureIcon, -90 );
+lv_obj_set_y( ui_TemperatureIcon, -100 );
+lv_obj_set_align( ui_TemperatureIcon, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_TemperatureIcon, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_TemperatureIcon, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_img_set_zoom(ui_TemperatureIcon,180);
+
+ui_PressureIcon = lv_img_create(ui_EnvMonitorPanel);
+lv_img_set_src(ui_PressureIcon, &ui_img_pressureimg_png);
+lv_obj_set_width( ui_PressureIcon, LV_SIZE_CONTENT);  /// 27
+lv_obj_set_height( ui_PressureIcon, LV_SIZE_CONTENT);   /// 26
+lv_obj_set_x( ui_PressureIcon, 89 );
+lv_obj_set_y( ui_PressureIcon, -101 );
+lv_obj_set_align( ui_PressureIcon, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_PressureIcon, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_PressureIcon, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_img_set_zoom(ui_PressureIcon,190);
+
+ui_HumidityIcon = lv_img_create(ui_EnvMonitorPanel);
+lv_img_set_src(ui_HumidityIcon, &ui_img_humidityimg_png);
+lv_obj_set_width( ui_HumidityIcon, LV_SIZE_CONTENT);  /// 20
+lv_obj_set_height( ui_HumidityIcon, LV_SIZE_CONTENT);   /// 27
+lv_obj_set_x( ui_HumidityIcon, 0 );
+lv_obj_set_y( ui_HumidityIcon, -100 );
+lv_obj_set_align( ui_HumidityIcon, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_HumidityIcon, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_HumidityIcon, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_img_set_zoom(ui_HumidityIcon,190);
+
 ui_RcChanelValuesLabel = lv_label_create(ui_MonitorTab);
 lv_obj_set_width( ui_RcChanelValuesLabel, 333);
 lv_obj_set_height( ui_RcChanelValuesLabel, LV_SIZE_CONTENT);   /// 1

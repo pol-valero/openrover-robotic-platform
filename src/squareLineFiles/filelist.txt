@@ -2,6 +2,9 @@ ui_MainScreen.c
 ui.c
 ui_comp_hook.c
 ui_helpers.c
+ui_img_tempimg_png.c
+ui_img_pressureimg_png.c
+ui_img_humidityimg_png.c
 ui_img_raspberryimg_png.c
 ui_img_speedimg_png.c
 ui_img_distanceimg_png.c
