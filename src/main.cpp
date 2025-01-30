@@ -35,6 +35,7 @@ Last modification date: 9/7/24
 #define OP_HEAD_CONTROL 4
 //We will use the RC remote to enable this operations and then the RC can be turned off. When turned on again, we will be able to change the operation to another one. 
 #define OP_WEB_CONTROL 5
+#define SUB_OP_360_DEGREE_TO_CONVENTIONAL 6
 
 //TODO: Maybe we will need to distinguish between RC_OP_WHATEVER and WEB_OP_WHATEVER (if we want to do exactly the same operations via the web as in the remote control)
 //TODO:IMPORTANT: Maybe it would be interesting to put all the WEB control operations and functions in another .c. So that we would have a main.c with just the void (setup, loop), a rcControl.c, a webControl.c (with its corresponding .h) and a variables.h (or globalVariables.h) with all the shared variables.
@@ -55,7 +56,6 @@ Last modification date: 9/7/24
 
 
 int op_mode = OP_CONVENTIONAL_DRIVING;
-int last_op_mode = OP_CONVENTIONAL_DRIVING;
 bool entered_new_op_mode;
 
 
@@ -366,14 +366,22 @@ void calculateBatteryPercentage() {
 
 void printRcValues() {
 
-  if (rcLinkStatus == RADIO_OK) {
-    sprintf(buffer, "Lever 1: %d\t\tLever 2: %d\t\tJoystick1_x: %d\t\tJoystick1_y: %d\t\tJoystick2_x: %d\t\tJoystick2_y: %d", 
-    rc_data.lever_1, rc_data.lever_2, rc_data.joystick1_x, rc_data.joystick1_y, rc_data.joystick2_x, rc_data.joystick2_y);
+  //Print it every 500ms
+  static unsigned long previousMillis = 0;
 
-    Serial.println(buffer);
+  if (millis() - previousMillis >= 500) {
+    previousMillis = millis();
+  
+    if (rcLinkStatus == RADIO_OK) {
+      sprintf(buffer, "Lever 1: %d\t\tLever 2: %d\t\tJoystick1_x: %d\t\tJoystick1_y: %d\t\tJoystick2_x: %d\t\tJoystick2_y: %d", 
+      rc_data.lever_1, rc_data.lever_2, rc_data.joystick1_x, rc_data.joystick1_y, rc_data.joystick2_x, rc_data.joystick2_y);
 
-  } else {
-    Serial.println("ERROR: NO CONNECTION WITH RC TRANSMITTER OR ABNORMAL VALUES RECEIVED");
+      Serial.println(buffer);
+
+    } else {
+      Serial.println("ERROR: NO CONNECTION WITH RC TRANSMITTER OR ABNORMAL VALUES RECEIVED");
+    }
+
   }
 
 }
@@ -459,9 +467,7 @@ void stopMotors() {
 
 void readRcValues() {
 
-  static long initial_time;
-
-  static long packets_lost = 0;
+  static long msTimeSinceLastPacket = 0;
 
   Rc_data rc_data_received; //This variable will contain the data received when we change the trasmitter's code so that it sends a struct.
   //TODO: The fields in this variable will be checked to see if any value is off. Only if no value is off we will return RADIO_OK and we will modify the rc_data variable with the new values
@@ -469,7 +475,7 @@ void readRcValues() {
   //TODO: Change transmitter code to send the Radio_data struct directly and not an array
    if(radio.available()){
 
-     packets_lost = 0;
+    msTimeSinceLastPacket = 0;
 
     radio.read(&radio_data, sizeof(radio_data));
 
@@ -490,21 +496,24 @@ void readRcValues() {
   
   } else {
 
-    rcLinkStatus = RADIO_KO;
+    static unsigned long previousMillis1 = 0;
 
-    packets_lost++;
+    if (millis() - previousMillis1 >= 50) {
+      previousMillis1 = millis();
 
-    if (packets_lost > 1000) {
+      msTimeSinceLastPacket += 50;
+    }
+
+    //If we spend more than 200ms without receiving a packet, the rc connection will be considered as lost
+    if (msTimeSinceLastPacket >= 200) {
+
+      rcLinkStatus = RADIO_KO;
       
-      initial_time = millis();
+      static unsigned long previousMillis2 = 0;
 
-      stopMotors();
-
-      while (millis() - initial_time < 5000) {
-      tone(buzzer_pin, 200);
-      delay(500);
-      noTone(buzzer_pin);
-      delay(500);
+      if (millis() - previousMillis2 >= 3000) {
+        previousMillis2 = millis();
+        tone(buzzer_pin, 200, 500);
       }
 
     }
@@ -656,25 +665,31 @@ void turnControl360Degree() {
 
   int speed; //From 0 to 255
   
-  static int actualAngle = 0;
+  static int currentAngle = 0;
   const int finalAngle = 45;
 
-  if (entered_new_op_mode == true) {
-    actualAngle = 0;
+  if (entered_new_op_mode == true) { 
+    currentAngle = 0;
   }
 
-  while (actualAngle != finalAngle) {
+  static unsigned long previousMillis = 0;
 
-      actualAngle++;
+  //We increment/decrement the servos angle every 10ms
+  if (millis() - previousMillis >= 10) {
+    previousMillis = millis();
 
-      servoWrite(W_SERVO_1, w_servo_center[1] - actualAngle);
-      servoWrite(W_SERVO_2, w_servo_center[2] + actualAngle);
-      servoWrite(W_SERVO_3, w_servo_center[3] + actualAngle);
-      servoWrite(W_SERVO_4, w_servo_center[4] - actualAngle);
+    if (currentAngle != finalAngle) {
 
-      delay(10);
+        currentAngle++;
+
+        servoWrite(W_SERVO_1, w_servo_center[1] - currentAngle);
+        servoWrite(W_SERVO_2, w_servo_center[2] + currentAngle);
+        servoWrite(W_SERVO_3, w_servo_center[3] + currentAngle);
+        servoWrite(W_SERVO_4, w_servo_center[4] - currentAngle);
 
     }
+
+  }
 
   if (joystickX_isCentered(JOY_RIGHT)) {
 
@@ -711,33 +726,46 @@ void turnControl360Degree() {
 
 void returnFrom360ToConventional () {
   
-  int actualAngle2 = 0;
-  const int finalAngle2 = 45;
-  while (actualAngle2 != finalAngle2) {
-    actualAngle2++;
-    servoWrite(W_SERVO_1, (w_servo_center[1] - finalAngle2) + actualAngle2);
-    servoWrite(W_SERVO_2, (w_servo_center[2] + finalAngle2) - actualAngle2);
-    servoWrite(W_SERVO_3, (w_servo_center[3] + finalAngle2) - actualAngle2);
-    servoWrite(W_SERVO_4, (w_servo_center[4] - finalAngle2) + actualAngle2);
-    delay(10);
+  static int currentAngle = 0;
+  const int finalAngle = 45;
+
+  if (entered_new_op_mode == true) { 
+    currentAngle = 0;
   }
+
+  static unsigned long previousMillis = 0;
+
+  //We increment/decrement the servos angle every 10ms
+  if (millis() - previousMillis >= 10) {
+    previousMillis = millis();
+  
+    if (currentAngle != finalAngle) {
+      currentAngle++;
+      servoWrite(W_SERVO_1, (w_servo_center[1] - finalAngle) + currentAngle);
+      servoWrite(W_SERVO_2, (w_servo_center[2] + finalAngle) - currentAngle);
+      servoWrite(W_SERVO_3, (w_servo_center[3] + finalAngle) - currentAngle);
+      servoWrite(W_SERVO_4, (w_servo_center[4] - finalAngle) + currentAngle);
+    } else {
+      //If we have reached the final angle, we can switch to the conventional driving mode
+      op_mode = OP_CONVENTIONAL_DRIVING;
+    }
+
+  }
+
 }
 
 //Sets "entered_new_op_mode" to true if we have just changed modes and are executing the first iteration of a operation mode
 void updateNewOperationIndicator() {
 
-
-  //Things to do when changing from a certain Op to another certain Op
-  if (last_op_mode == OP_360_DEGREE_TURN_CONTROL && op_mode == OP_CONVENTIONAL_DRIVING) {
-    returnFrom360ToConventional ();
-  }
+  static int last_op_mode = OP_CONVENTIONAL_DRIVING;
 
   if (last_op_mode != op_mode) {
-      entered_new_op_mode = true;
-    } else {
-      entered_new_op_mode = false;
-    }
-    last_op_mode = op_mode;
+    entered_new_op_mode = true;
+  } else {
+    entered_new_op_mode = false;
+  }
+
+  last_op_mode = op_mode;
 
 }
 
@@ -745,7 +773,12 @@ void setOperationMode() {
 
   if (rc_data.lever_1 == 0 && rc_data.lever_2 == 0) {
 
-    op_mode = OP_CONVENTIONAL_DRIVING;
+    if (op_mode == OP_360_DEGREE_TURN_CONTROL || op_mode == SUB_OP_360_DEGREE_TO_CONVENTIONAL) {
+      op_mode = SUB_OP_360_DEGREE_TO_CONVENTIONAL;
+    } else {
+      op_mode = OP_CONVENTIONAL_DRIVING;
+    }
+
     updateNewOperationIndicator();
 
   }  else if (rc_data.lever_1 == 0 && rc_data.lever_2 == 1) {
@@ -866,6 +899,11 @@ void setMotors() {
   //(outer_wheels_speed, inner_front_back_wheels_speed, inner_middle_wheel_speed) will have the speed (0-100) calculated at "calculateMotorsSpeed"
   //We will map each of these speeds to a range of (0-255) and put them into the corresponding motorX_pwm_speed in this function. 
 
+  if (rcLinkStatus == RADIO_KO) {
+    stopMotors();
+    return;
+  }
+
   if (joystickY_isCentered(JOY_LEFT)) {
 
     stopMotors();
@@ -985,6 +1023,9 @@ void operationModeExecution() {
     case OP_WEB_CONTROL:
       //webOperationModeExecution(); //This function will be in the webControl.c
       break;
+    case SUB_OP_360_DEGREE_TO_CONVENTIONAL:
+      returnFrom360ToConventional();
+      break;
 
     default:
       break;
@@ -997,7 +1038,7 @@ void operationModeExecution() {
 void loop() {
 
   readRcValues();
-  //printRcValues();
+  printRcValues();
   setOperationMode();
   operationModeExecution();
 
