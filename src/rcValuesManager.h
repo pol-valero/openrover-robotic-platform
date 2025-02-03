@@ -26,6 +26,8 @@ typedef struct {
 
 void setupRadio(); //Put in radio file
 
+void setupBuzzer();
+
 void printRcValues();
 
 Rc_data readRcValues();

@@ -83,7 +83,7 @@ void servoWrite(int servo_identifier,  int degrees) {
       if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
         w_servo1.write(degrees);
       } else {
-        //Serial.println("Servo1 angle out of bounds");
+        //Servo1 angle out of bounds
       }
       break;
 
@@ -91,7 +91,7 @@ void servoWrite(int servo_identifier,  int degrees) {
       if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
         w_servo2.write(degrees);
       } else {
-        //Serial.println("Servo2 angle out of bounds");
+        //Servo2 angle out of bounds
       }
       break;
 
@@ -99,7 +99,7 @@ void servoWrite(int servo_identifier,  int degrees) {
       if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
         w_servo3.write(degrees);
       } else {
-        //Serial.println("Servo3 angle out of bounds");
+        //Servo3 angle out of bounds
       }
       break;
 
@@ -107,7 +107,7 @@ void servoWrite(int servo_identifier,  int degrees) {
       if (degrees > w_servo_min_angle && degrees < w_servo_max_angle) {
         w_servo4.write(degrees);
       } else {
-        //Serial.println("Servo4 angle out of bounds");
+        //Servo4 angle out of bounds
       }
       break;
   }
@@ -123,7 +123,6 @@ void setWheelServosStraight() {
 
 }
 
-//TODO: SetWheelServosAngles(values from Rc as argument; or get it with function call to "rcValuesManager.c"). Will call caclWheelServos angle. 
 void setWheelServosAnglesConventionalControl(Rc_data rc_data) {
   //Depending on the channels values (steering LEFT/RIGHT) we will add or subtract each servos'
   //(outer_servos_angle_beta, inner_servos_angle_beta) to its w_servo_center constant, so that it goes to the correct position

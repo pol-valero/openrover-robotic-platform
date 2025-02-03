@@ -3,12 +3,14 @@
 
 //#include "sharedStructs.h"
 
-void initSerial();
+void setupSerial();
 
 //void serialSendFrame(Frame frame);
 
 //Frame serialReceiveFrame();
 
 void usbSerialPrint(char* message);
+
+void usbSerialPrintFloat(float number);
 
 #endif

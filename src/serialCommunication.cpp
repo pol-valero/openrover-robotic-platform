@@ -1,36 +1,19 @@
 #include <Arduino.h>
-//#include <SerialTransfer.h>   //TODO: Uncomment and modify SerialTransfer related items
+//#include <SerialTransfer.h>   //TODO: Uncomment and put SerialTransfer related items for RPI Serial communication
 
 //SerialTransfer myTransfer;
 
-void initSerial() {
+void setupSerial() {
     Serial.begin(9600);
-    //Serial1.begin(38400, SERIAL_8N1, , ); // RX, TX
-    //myTransfer.begin(Serial1);
 }
-
-/*void serialSendFrame(Frame frame) {
-  myTransfer.sendDatum(frame);
-}
-
-Frame serialReceiveFrame() {
-
-    Frame frame;
-    frame.type = NOT_VALID;
-
-    if (myTransfer.available()) {
-
-        myTransfer.rxObj(frame);
-
-        return frame;
-        
-    }
-
-    return frame;
-
-}*/
 
 void usbSerialPrint(char* message) {
     //Prints a message to through the USB serial port, connected to the computer
-    Serial.println(message);
+    Serial.print(message);
+}
+
+void usbSerialPrintFloat(float number) {
+    //Prints a float number to through the USB serial port, connected to the computer
+    //This function is useful as the arduino processors do not support floats/doubles in sprintf
+    Serial.print(number);
 }

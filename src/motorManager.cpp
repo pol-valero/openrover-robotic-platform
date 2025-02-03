@@ -260,7 +260,7 @@ void calculateMotorsSpeed(Rc_data rc_data) {
 
 }
 
-//TODO: SetMotorsSpeeds(generalSpeed (0-255) as argument; or get it with function call to "rcValuesManager.c"). Will call calculateMotorsSpeed.
+//TODO: SetMotorsSpeeds(generalSpeed (0-255) as argument
 void setMotorSpeedsConventionalControl(Rc_data rc_data) {
   //Depending on the channels values (steering LEFT/RIGHT and throttle FWD/BCK) we will set each motor to its according 
   //(outer_wheels_speed, inner_front_back_wheels_speed, inner_middle_wheel_speed) and rotation direction using the "setMotorSpeed" function

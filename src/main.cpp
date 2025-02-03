@@ -9,53 +9,11 @@
 #include "motorManager.h"
 #include "rcValuesManager.h"
 #include "opModeManager.h"
-
-
-
-
-
-
-
-
-
-
-//TODO: Maybe we will need to distinguish between RC_OP_WHATEVER and WEB_OP_WHATEVER (if we want to do exactly the same operations via the web as in the remote control)
-//TODO:IMPORTANT: Maybe it would be interesting to put all the WEB control operations and functions in another .c. So that we would have a main.c with just the void (setup, loop), a rcControl.c, a webControl.c (with its corresponding .h) and a variables.h (or globalVariables.h) with all the shared variables.
-//(it would also be interesting to have other modules motors.c, wheelServos.c... with the functions that need to be shared ex.- setMotorSpeed(), calculateWheelServosAngle()...). Alternatively, we could just have a sharedFunctions.c to group them all. 
- 
+#include "serialCommunication.h"
+#include "batteryManager.h"
 
 
 Rc_data rc_data2;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-char buffer2[200];
-
-const int batt_input_pin = A15; 
 
 const int servo_relay_pin = 28;
 
@@ -71,16 +29,13 @@ void setup() {
   
   setupMotors();
 
-  Serial.begin(9600); //TODO: setupSerial()
+  setupSerial();
 
   setupRadio();
 
+  setupBuzzer();
 
-  
-
-  pinMode(batt_input_pin, INPUT);
-
-
+  setupBatteryMonitor();
 
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
   digitalWrite(servo_relay_pin, HIGH);  //We power up the servos and we send them their initial positions
@@ -88,69 +43,6 @@ void setup() {
   //////////////////////////////////////////////
 
 }
-
-
-
-void calculateBatteryPercentage() {
-
-  //TODO: Check timer before doing function so that the procedure is only done a couple of times per second and not continuously 
-
-  int batt_divider_voltage_analog_value;  //Analog value read from the voltage divider output, which is 4V when the battery is fully charged
-  float batt_divider_voltage; //Volts of the voltage divider output
-  int batt_percentage; //Percentage of the battery, from 0% (3.6V per cell) to 100% (4.2V per cell)
-
-  batt_divider_voltage_analog_value = analogRead(batt_input_pin);
-
-  batt_divider_voltage = (5.00 / 1023) * batt_divider_voltage_analog_value;
-
-  //Calculations: The max charge of the battery will be 4.2V per cell, 12.6V in total. 
-  //The voltage divider output when fully charged is 4V, therefore if we apply multiply by a correction factor of 4.2 / 4 = 1.05 the resulting voltage will be roughly the same as each cell of the battery. 
-
-  batt_percentage = map(batt_divider_voltage * 1.05 * 100, 4.2 * 100, 3.6 * 100, 100, 0); //We multiply by 100 because the map() function does not accept floats.
-
-  Serial.print("Battery cell voltage: ");
-  Serial.print(batt_divider_voltage * 1.05);
-
-  sprintf(buffer2, "\tBattery percentage: %d", batt_percentage);
-  Serial.println(buffer2);
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -186,13 +78,13 @@ void operationModeExecution() {
 
 }
 
-
 void loop() {
 
   rc_data2 = readRcValues();
-  printRcValues();
+  //printRcValues();
   chooseOperationMode(rc_data2);
   operationModeExecution();
+  //printBatteryValues();
 
 }
 

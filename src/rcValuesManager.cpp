@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 #include "rcValuesManager.h"
+#include "serialCommunication.h"
 
 //TODO:TODO: Put NRF24L01 related items in another file (and put the NRF24 setupRadio() in that file)
 
@@ -13,11 +14,11 @@ RF24 radio(48, 49); //CE, CSN pins
 const byte address[6] = "00001";
 int radio_data[6];
 
-char buffer[200];
+static char buffer[200];
 
 Rc_data rc_data;
 
-bool rcLinkStatus = RADIO_KO;
+bool rcLinkStatus = RADIO_KO; //TODO: Maybe instead of "RADIO" use RemoteControlLinkKO, as we will also use the same variable for web control status?
 
 const int buzzer_pin = 29;
 
@@ -26,27 +27,28 @@ void setupRadio() {
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_MAX);
   radio.startListening();
+}
 
-  pinMode(buzzer_pin, OUTPUT);  //TODO: Relocate
-
+void setupBuzzer() {
+  pinMode(buzzer_pin, OUTPUT);
 }
 
 void printRcValues() {
 
-  //Print it every 500ms
+  //Print it every 1 second
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 500) {
+  if (millis() - previousMillis >= 1000) {
     previousMillis = millis();
   
     if (rcLinkStatus == RADIO_OK) {
-      sprintf(buffer, "Lever 1: %d\t\tLever 2: %d\t\tJoystick1_x: %d\t\tJoystick1_y: %d\t\tJoystick2_x: %d\t\tJoystick2_y: %d", 
+      sprintf(buffer, "Lever 1: %d\t\tLever 2: %d\t\tJoystick1_x: %d\t\tJoystick1_y: %d\t\tJoystick2_x: %d\t\tJoystick2_y: %d\n", 
       rc_data.lever_1, rc_data.lever_2, rc_data.joystick1_x, rc_data.joystick1_y, rc_data.joystick2_x, rc_data.joystick2_y);
 
-      Serial.println(buffer);
+      usbSerialPrint(buffer);
 
     } else {
-      Serial.println("ERROR: NO CONNECTION WITH RC TRANSMITTER OR ABNORMAL VALUES RECEIVED");
+      usbSerialPrint("ERROR: NO CONNECTION WITH RC TRANSMITTER OR ABNORMAL VALUES RECEIVED\n");
     }
 
   }
