@@ -8,8 +8,7 @@
 #define OP_ROBOTIC_ARM_CONTROL 3
 #define OP_HEAD_CONTROL 4
 //We will use the RC remote to enable this operations and then the RC can be turned off. When turned on again, we will be able to change the operation to another one. 
-#define OP_WEB_CONTROL 5
-#define SUB_OP_360_DEGREE_TO_CONVENTIONAL 6
+#define SUB_OP_360_DEGREE_TO_CONVENTIONAL 5
 
 void chooseOperationMode(Rc_data rc_data);
 

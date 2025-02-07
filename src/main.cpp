@@ -64,9 +64,6 @@ void operationModeExecution() {
     case OP_HEAD_CONTROL:
       //headControl();
       break;
-    case OP_WEB_CONTROL:
-      //webOperationModeExecution(); //This function will be in the webControl.c
-      break;
     case SUB_OP_360_DEGREE_TO_CONVENTIONAL:
       setWheelServosAnglesToConventional();
       break;
@@ -79,6 +76,17 @@ void operationModeExecution() {
 }
 
 void loop() {
+
+  //TODO: Only call operationModeExecution inside functions every 50ms or so? (instead of calling them every loop iteration)
+
+  //serialReceiveFrame
+  //handleReceivedFrame
+  //radioReceiveFrame
+  //handleReceivedFrame
+  //operationModeExecution
+  //getStatusDataFrame  -> ex.- temp, hum, battery, RPI status...
+  //radioSendFrame  //inside this function, use bool to determine wether to send the frame or not (depending if the RC is powered on or not)
+  //serialSendFrame //same, but depending on the RPI powered on or not
 
   rc_data2 = readRcValues();
   //printRcValues();
