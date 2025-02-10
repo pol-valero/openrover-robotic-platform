@@ -52,6 +52,8 @@ SerialTransfer myTransfer;
 const int batt_input_pin = A0; //Analog pin where the battery voltage is read
 const int buzzer_pin = A3; //Analog pin where the buzzer is connected
 
+bool radioControlEnabled = false;
+
 
 void setup() {
 
@@ -278,31 +280,67 @@ void correctRcValues(RcValues &rcValues) {
 }
 
 RcValues getSpektrumRcValues() {
-  //Gets the RC values every 100ms
+  
+  RcValues rcValues;
+
+  rcValues.y1 = tx.getChannel(0);
+  rcValues.x1 = tx.getChannel(3);
+  rcValues.y2 = tx.getChannel(2);
+  rcValues.x2 = tx.getChannel(1);
+  rcValues.aux1 = tx.getChannel(4);
+  rcValues.aux2 = tx.getChannel(5);
+  rcValues.aux3 = tx.getChannel(6);
+  rcValues.aux4 = tx.getChannel(7);
+
+  rcValues.dataValid = true;
+
+  correctRcValues(rcValues);
+
+  return rcValues;
+
+}
+
+RcValues getSpektrumRcValuesForSerial () {
   
   RcValues rcValues;
   rcValues.dataValid = false;
 
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 30) {
+  //Gets the RC values every 100ms
+  if (millis() - previousMillis >= 100) {
     previousMillis = millis();
 
-    rcValues.y1 = tx.getChannel(0);
-    rcValues.x1 = tx.getChannel(3);
-    rcValues.y2 = tx.getChannel(2);
-    rcValues.x2 = tx.getChannel(1);
-    rcValues.aux1 = tx.getChannel(4);
-    rcValues.aux2 = tx.getChannel(5);
-    rcValues.aux3 = tx.getChannel(6);
-    rcValues.aux4 = tx.getChannel(7);
-    rcValues.dataValid = true;
-
-    correctRcValues(rcValues);
+    rcValues = getSpektrumRcValues();
 
   }
 
   return rcValues;
+
+}
+
+RcValues getSpektrumRcValuesForRadio () {
+  
+  RcValues rcValues;
+  rcValues.dataValid = false;
+
+  static unsigned long previousMillis = 0;
+
+  //Gets the RC values every 30ms
+  if (millis() - previousMillis >= 30) {
+    previousMillis = millis();
+
+    rcValues = getSpektrumRcValues();
+    rcValues.dataValid = radioControlEnabled;
+
+  }
+
+  return rcValues;
+
+}
+
+bool rcRadioEnableStatusFromFrame(Frame frame) {
+  return frame.data1B[0] == 1;
 }
 
 void handleReceivedFrame(Frame frame) {
@@ -314,6 +352,10 @@ void handleReceivedFrame(Frame frame) {
 
     case CMD_F_RC_BUZZER:
       tone(buzzer_pin, 1000, 100);
+      break;
+
+    case CMD_F_RC_RADIO_ENABLING:
+      radioControlEnabled = rcRadioEnableStatusFromFrame(frame);
       break;
 
     case CMD_F_TEST:
@@ -338,8 +380,10 @@ void handleReceivedFrame(Frame frame) {
 
 void loop() {
 
-    RcValues rcValues = getSpektrumRcValues();
+    RcValues rcValues; 
+    rcValues = getSpektrumRcValuesForSerial();
     serialSendRcValuesFrame(rcValues);
+    rcValues = getSpektrumRcValuesForRadio();
     radioSendRcValuesFrame(rcValues);
 
     RcBatteryValues battValues = getBatteryValues();
@@ -352,7 +396,5 @@ void loop() {
 
     handleReceivedFrame(serialFrame);
     //handleReceivedFrame(radioFrame);  //Right now not necessary, but may be if we expand functionalities
-
-    //makeBuzzerSound();
   
 }
