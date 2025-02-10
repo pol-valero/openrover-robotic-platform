@@ -5,4 +5,6 @@
 
 RcValues rcValuesFromFrame(Frame frame);
 
+int roverOpModeSelectionFromFrame(Frame frame);
+
 #endif

@@ -7,6 +7,8 @@
 #define INF_F_RC_VALUES 1
 #define INF_F_RC_BAT_LEVEL 2
 #define CMD_F_RC_BUZZER 3
+#define CMD_F_RC_RADIO_ENABLING 4
+#define CMD_F_ROVER_OP_MODE_SELECTION 5
 #define CMD_F_TEST 250
 
 #endif

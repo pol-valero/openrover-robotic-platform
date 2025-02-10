@@ -16,3 +16,7 @@ RcValues rcValuesFromFrame(Frame frame) {
     return rcValues;
 
 }
+
+int roverOpModeSelectionFromFrame(Frame frame) {
+    return frame.data1B[0];
+}

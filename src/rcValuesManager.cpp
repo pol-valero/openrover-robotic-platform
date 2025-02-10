@@ -73,7 +73,7 @@ void checkRcLinkStatus(Frame frame) {
       
       static unsigned long previousMillis2 = 0;
 
-      if (millis() - previousMillis2 >= 3000) {
+      if (millis() - previousMillis2 >= 10000) {
         previousMillis2 = millis();
         tone(buzzer_pin, 200, 500);
       }
