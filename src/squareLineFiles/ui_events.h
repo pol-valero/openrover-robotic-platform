@@ -18,8 +18,8 @@ void openHatchSwChecked(lv_event_t * e);
 void openHatchSwUnchecked(lv_event_t * e);
 void headRandMovSwChecked(lv_event_t * e);
 void headRandMovSwUnchecked(lv_event_t * e);
-void enableMotorsSwChecked(lv_event_t * e);
-void enableMotorsSwUnchecked(lv_event_t * e);
+void enableRadioRcSwChecked(lv_event_t * e);
+void enableRadioRcSwUnchecked(lv_event_t * e);
 void headControlSwChecked(lv_event_t * e);
 void headControlSwUnchecked(lv_event_t * e);
 void armControlSwChecked(lv_event_t * e);
@@ -29,6 +29,8 @@ void selfRotationControlSwUnchecked(lv_event_t * e);
 void wheelSelectorReleased(lv_event_t * e);
 void plusDegreeBtnClicked(lv_event_t * e);
 void minusDegreeBtnClicked(lv_event_t * e);
+void enableMotorsSwChecked(lv_event_t * e);
+void enableMotorsSwUnchecked(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

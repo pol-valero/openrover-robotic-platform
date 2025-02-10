@@ -117,6 +117,9 @@ void initScreen() {
         //Change to home tab
         lv_tabview_set_act(ui_TabView, 1, LV_ANIM_OFF);
 
+        //Put initial notifications label message
+        lv_label_set_text(ui_NotificationsLabel, "REMINDER: Check RcValues before enabling radio RC.");
+
   }
 
 }

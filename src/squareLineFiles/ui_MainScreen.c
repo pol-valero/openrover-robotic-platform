@@ -934,17 +934,17 @@ lv_obj_set_style_border_opa(ui_HeadRandMovLabel, 255, LV_PART_MAIN| LV_STATE_DEF
 lv_obj_set_style_border_width(ui_HeadRandMovLabel, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_border_side(ui_HeadRandMovLabel, LV_BORDER_SIDE_RIGHT, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_EnableMotorsLabel = lv_label_create(ui_OtherControlsPanel);
-lv_obj_set_width( ui_EnableMotorsLabel, 128);
-lv_obj_set_height( ui_EnableMotorsLabel, 39);
-lv_obj_set_x( ui_EnableMotorsLabel, 307 );
-lv_obj_set_y( ui_EnableMotorsLabel, -23 );
-lv_obj_set_align( ui_EnableMotorsLabel, LV_ALIGN_CENTER );
-lv_label_set_text(ui_EnableMotorsLabel,"Enable\nmotors");
-lv_obj_set_style_text_color(ui_EnableMotorsLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_EnableMotorsLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_EnableMotorsLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_EnableMotorsLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
+ui_EnableRadioRcLabel = lv_label_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_EnableRadioRcLabel, 128);
+lv_obj_set_height( ui_EnableRadioRcLabel, 39);
+lv_obj_set_x( ui_EnableRadioRcLabel, 307 );
+lv_obj_set_y( ui_EnableRadioRcLabel, -23 );
+lv_obj_set_align( ui_EnableRadioRcLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_EnableRadioRcLabel,"Enable\nradio RC");
+lv_obj_set_style_text_color(ui_EnableRadioRcLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_EnableRadioRcLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_EnableRadioRcLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_EnableRadioRcLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_PowerRPIswitch = lv_switch_create(ui_OtherControlsPanel);
 lv_obj_set_width( ui_PowerRPIswitch, 62);
@@ -997,23 +997,22 @@ lv_obj_set_style_bg_opa(ui_HeadRandMovSwitch, 200, LV_PART_INDICATOR| LV_STATE_D
 lv_obj_set_style_bg_color(ui_HeadRandMovSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
 lv_obj_set_style_bg_opa(ui_HeadRandMovSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
 
-ui_EnableMotorsSwitch = lv_switch_create(ui_OtherControlsPanel);
-lv_obj_set_width( ui_EnableMotorsSwitch, 62);
-lv_obj_set_height( ui_EnableMotorsSwitch, 35);
-lv_obj_set_x( ui_EnableMotorsSwitch, 307 );
-lv_obj_set_y( ui_EnableMotorsSwitch, 24 );
-lv_obj_set_align( ui_EnableMotorsSwitch, LV_ALIGN_CENTER );
-lv_obj_add_state( ui_EnableMotorsSwitch, LV_STATE_CHECKED );     /// States
+ui_EnableRadioRcSwitch = lv_switch_create(ui_OtherControlsPanel);
+lv_obj_set_width( ui_EnableRadioRcSwitch, 62);
+lv_obj_set_height( ui_EnableRadioRcSwitch, 35);
+lv_obj_set_x( ui_EnableRadioRcSwitch, 307 );
+lv_obj_set_y( ui_EnableRadioRcSwitch, 24 );
+lv_obj_set_align( ui_EnableRadioRcSwitch, LV_ALIGN_CENTER );
 
-lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
-lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
-lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
-lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
+lv_obj_set_style_bg_color(ui_EnableRadioRcSwitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_EnableRadioRcSwitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_EnableRadioRcSwitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_EnableRadioRcSwitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
+lv_obj_set_style_bg_color(ui_EnableRadioRcSwitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_EnableRadioRcSwitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
 
-lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
-lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
+lv_obj_set_style_bg_color(ui_EnableRadioRcSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_EnableRadioRcSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
 
 ui_HeadControlSwitch = lv_switch_create(ui_HomeTab);
 lv_obj_set_width( ui_HeadControlSwitch, 228);
@@ -1284,6 +1283,61 @@ lv_obj_set_style_text_color(ui_MinusLabel, lv_color_hex(0x5A595A), LV_PART_MAIN 
 lv_obj_set_style_text_opa(ui_MinusLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_MinusLabel, &lv_font_montserrat_34, LV_PART_MAIN| LV_STATE_DEFAULT);
 
+ui_OtherConfigsLabel = lv_label_create(ui_ConfigTab);
+lv_obj_set_width( ui_OtherConfigsLabel, 333);
+lv_obj_set_height( ui_OtherConfigsLabel, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_OtherConfigsLabel, -200 );
+lv_obj_set_y( ui_OtherConfigsLabel, -16 );
+lv_obj_set_align( ui_OtherConfigsLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_OtherConfigsLabel,"Other configs");
+lv_obj_set_style_text_color(ui_OtherConfigsLabel, lv_color_hex(0xCCC9CC), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_OtherConfigsLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_OtherConfigsLabel, &lv_font_montserrat_20, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_OtherConfigsPanel = lv_obj_create(ui_ConfigTab);
+lv_obj_set_width( ui_OtherConfigsPanel, 736);
+lv_obj_set_height( ui_OtherConfigsPanel, 110);
+lv_obj_set_x( ui_OtherConfigsPanel, 1 );
+lv_obj_set_y( ui_OtherConfigsPanel, 61 );
+lv_obj_set_align( ui_OtherConfigsPanel, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_OtherConfigsPanel, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_OtherConfigsPanel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_OtherConfigsPanel, lv_color_hex(0x5A595A), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_OtherConfigsPanel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_color(ui_OtherConfigsPanel, lv_color_hex(0x292829), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_OtherConfigsPanel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_OtherConfigsPanel, 3, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_EnableMotorsLabel = lv_label_create(ui_OtherConfigsPanel);
+lv_obj_set_width( ui_EnableMotorsLabel, 128);
+lv_obj_set_height( ui_EnableMotorsLabel, 39);
+lv_obj_set_x( ui_EnableMotorsLabel, -303 );
+lv_obj_set_y( ui_EnableMotorsLabel, -19 );
+lv_obj_set_align( ui_EnableMotorsLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_EnableMotorsLabel,"Enable\nmotors");
+lv_obj_set_style_text_color(ui_EnableMotorsLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_EnableMotorsLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_EnableMotorsLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_EnableMotorsLabel, &lv_font_montserrat_16, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_EnableMotorsSwitch = lv_switch_create(ui_OtherConfigsPanel);
+lv_obj_set_width( ui_EnableMotorsSwitch, 62);
+lv_obj_set_height( ui_EnableMotorsSwitch, 35);
+lv_obj_set_x( ui_EnableMotorsSwitch, -306 );
+lv_obj_set_y( ui_EnableMotorsSwitch, 23 );
+lv_obj_set_align( ui_EnableMotorsSwitch, LV_ALIGN_CENTER );
+lv_obj_add_state( ui_EnableMotorsSwitch, LV_STATE_CHECKED );     /// States
+
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x9C9C9C), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x00BA18), LV_PART_INDICATOR | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 255, LV_PART_INDICATOR| LV_STATE_CHECKED);
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x383838), LV_PART_INDICATOR | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 200, LV_PART_INDICATOR| LV_STATE_DISABLED);
+
+lv_obj_set_style_bg_color(ui_EnableMotorsSwitch, lv_color_hex(0x383838), LV_PART_KNOB | LV_STATE_DISABLED );
+lv_obj_set_style_bg_opa(ui_EnableMotorsSwitch, 200, LV_PART_KNOB| LV_STATE_DISABLED);
+
 ui_TopPanel = lv_obj_create(ui_MainScreen);
 lv_obj_set_width( ui_TopPanel, 811);
 lv_obj_set_height( ui_TopPanel, 63);
@@ -1488,12 +1542,13 @@ lv_obj_add_event_cb(ui_RPIgiveControlSwitch, ui_event_RPIgiveControlSwitch, LV_E
 lv_obj_add_event_cb(ui_PowerRPIswitch, ui_event_PowerRPIswitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_OpenHatchSwitch, ui_event_OpenHatchSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_HeadRandMovSwitch, ui_event_HeadRandMovSwitch, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_EnableMotorsSwitch, ui_event_EnableMotorsSwitch, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_EnableRadioRcSwitch, ui_event_EnableRadioRcSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_HeadControlSwitch, ui_event_HeadControlSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ArmControlSwitch, ui_event_ArmControlSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_SelfRotationControlSwitch, ui_event_SelfRotationControlSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_WheelSelectorRoller, ui_event_WheelSelectorRoller, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_PlusDegreeButton, ui_event_PlusDegreeButton, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_MinusDegreeButton, ui_event_MinusDegreeButton, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_EnableMotorsSwitch, ui_event_EnableMotorsSwitch, LV_EVENT_ALL, NULL);
 
 }

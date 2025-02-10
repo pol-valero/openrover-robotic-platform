@@ -7,6 +7,7 @@
 #include "uiObjVisibilityManager.h"
 #include "frameTypesDefinition.h"
 #include "sharedFunctions.h"
+#include "valuesToFrameConversion.h"
 
 
 int testValue = 0;
@@ -94,6 +95,22 @@ void headRandMovSwUnchecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Head random movement switch unchecked");
 
     headRandMovSwUpdateRelatedObjectsVisibility(false);
+}
+
+void enableRadioRcSwChecked(lv_event_t *e) {
+    lv_label_set_text(ui_NotificationsLabel, "Enable radio RC switch checked");
+
+    Frame frame = rcRadioEnableStatusToFrame(true);
+    serialSendFrame(frame);
+
+}
+
+void enableRadioRcSwUnchecked(lv_event_t *e) {
+    lv_label_set_text(ui_NotificationsLabel, "Enable radio RC switch unchecked");
+
+    Frame frame = rcRadioEnableStatusToFrame(false);
+    serialSendFrame(frame);
+
 }
 
 void enableMotorsSwChecked(lv_event_t *e) {

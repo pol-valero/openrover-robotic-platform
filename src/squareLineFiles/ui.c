@@ -83,15 +83,15 @@ lv_obj_t *ui_RPIcontrolLabel;
 lv_obj_t *ui_RPIpowerLabel;
 lv_obj_t *ui_OpenHatchLabel;
 lv_obj_t *ui_HeadRandMovLabel;
-lv_obj_t *ui_EnableMotorsLabel;
+lv_obj_t *ui_EnableRadioRcLabel;
 void ui_event_PowerRPIswitch( lv_event_t * e);
 lv_obj_t *ui_PowerRPIswitch;
 void ui_event_OpenHatchSwitch( lv_event_t * e);
 lv_obj_t *ui_OpenHatchSwitch;
 void ui_event_HeadRandMovSwitch( lv_event_t * e);
 lv_obj_t *ui_HeadRandMovSwitch;
-void ui_event_EnableMotorsSwitch( lv_event_t * e);
-lv_obj_t *ui_EnableMotorsSwitch;
+void ui_event_EnableRadioRcSwitch( lv_event_t * e);
+lv_obj_t *ui_EnableRadioRcSwitch;
 void ui_event_HeadControlSwitch( lv_event_t * e);
 lv_obj_t *ui_HeadControlSwitch;
 lv_obj_t *ui_HeadControlLabel;
@@ -115,6 +115,11 @@ lv_obj_t *ui_TrimValueLabel;
 void ui_event_MinusDegreeButton( lv_event_t * e);
 lv_obj_t *ui_MinusDegreeButton;
 lv_obj_t *ui_MinusLabel;
+lv_obj_t *ui_OtherConfigsLabel;
+lv_obj_t *ui_OtherConfigsPanel;
+lv_obj_t *ui_EnableMotorsLabel;
+void ui_event_EnableMotorsSwitch( lv_event_t * e);
+lv_obj_t *ui_EnableMotorsSwitch;
 lv_obj_t *ui_TopPanel;
 lv_obj_t *ui_SignalBar;
 lv_obj_t *ui_NotificationsLabel;
@@ -216,14 +221,14 @@ if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_
 }
 }
 
-void ui_event_EnableMotorsSwitch( lv_event_t * e) {
+void ui_event_EnableRadioRcSwitch( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 
 if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
-      enableMotorsSwChecked( e );
+      enableRadioRcSwChecked( e );
 }
 if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
-      enableMotorsSwUnchecked( e );
+      enableRadioRcSwUnchecked( e );
 }
 }
 
@@ -281,6 +286,17 @@ void ui_event_MinusDegreeButton( lv_event_t * e) {
 
 if ( event_code == LV_EVENT_CLICKED) {
       minusDegreeBtnClicked( e );
+}
+}
+
+void ui_event_EnableMotorsSwitch( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      enableMotorsSwChecked( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      enableMotorsSwUnchecked( e );
 }
 }
 

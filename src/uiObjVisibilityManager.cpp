@@ -66,6 +66,9 @@ void rpiGiveControlSwUpdateRelatedObjectsVisibility(bool swChecked) {
         lv_obj_add_state(ui_OpenHatchSwitch, LV_STATE_DISABLED);
         lv_obj_add_state(ui_HeadRandMovSwitch, LV_STATE_DISABLED);
         lv_obj_add_state(ui_EnableMotorsSwitch, LV_STATE_DISABLED);
+        lv_obj_add_state(ui_EnableRadioRcSwitch, LV_STATE_DISABLED);
+        lv_obj_add_state(ui_PlusDegreeButton, LV_STATE_DISABLED);
+        lv_obj_add_state(ui_MinusDegreeButton, LV_STATE_DISABLED);
     } else {
         lv_obj_clear_state(ui_HeadControlSwitch, LV_STATE_DISABLED);
         lv_obj_clear_state(ui_ArmControlSwitch, LV_STATE_DISABLED);
@@ -74,6 +77,9 @@ void rpiGiveControlSwUpdateRelatedObjectsVisibility(bool swChecked) {
         lv_obj_clear_state(ui_OpenHatchSwitch, LV_STATE_DISABLED);
         lv_obj_clear_state(ui_HeadRandMovSwitch, LV_STATE_DISABLED);
         lv_obj_clear_state(ui_EnableMotorsSwitch, LV_STATE_DISABLED);
+        lv_obj_clear_state(ui_EnableRadioRcSwitch, LV_STATE_DISABLED);
+        lv_obj_clear_state(ui_PlusDegreeButton, LV_STATE_DISABLED);
+        lv_obj_clear_state(ui_MinusDegreeButton, LV_STATE_DISABLED);
     }
 }
 
