@@ -40,11 +40,17 @@ void armControlSwUnchecked(lv_event_t *e) {
 void selfRotationControlSwChecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "360 degree rotation control switch checked");
 
+    Frame frame = roverOpModeSelectionToFrame(OP_360_DEGREE_TURN_CONTROL);
+    serialSendFrame(frame);
+
     selfRotationControlSwUpdateRelatedObjectsVisibility(true);
 }
 
 void selfRotationControlSwUnchecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "360 degree rotation control switch unchecked");
+
+    Frame frame = roverOpModeSelectionToFrame(OP_CONVENTIONAL_DRIVING);
+    serialSendFrame(frame);
 
     selfRotationControlSwUpdateRelatedObjectsVisibility(false);
 }

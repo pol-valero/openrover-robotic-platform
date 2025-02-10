@@ -5,4 +5,6 @@
 
 Frame rcRadioEnableStatusToFrame(bool enabled);
 
+Frame roverOpModeSelectionToFrame(int opMode);
+
 #endif

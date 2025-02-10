@@ -15,3 +15,13 @@ Frame rcRadioEnableStatusToFrame(bool enabled) {
 
     return frame;
 }
+
+Frame roverOpModeSelectionToFrame(int opMode) {
+    
+    Frame frame;
+    frame.type = CMD_F_ROVER_OP_MODE_SELECTION;
+    frame.data1B[0] = opMode;
+
+    return frame;
+
+}
