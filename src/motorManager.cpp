@@ -207,7 +207,8 @@ void stopMotors() {
 
 }
 
-void calculateMotorsSpeed(Rc_data rc_data) {
+//speedAndDirection (-255...0...255) as argument (negative values are backwards speed)
+void calculateMotorsSpeed(int speedAndDirection) {
   //Ackerman steering geometry calculations
 
   int speed;
@@ -221,11 +222,11 @@ void calculateMotorsSpeed(Rc_data rc_data) {
 
   if (joystickX_isCentered(JOY_RIGHT)) {
 
-    outer_wheels_speed = inner_front_back_wheels_speed = inner_middle_wheel_speed = abs(rc_data.joystick1_y);
+    outer_wheels_speed = inner_front_back_wheels_speed = inner_middle_wheel_speed = abs(speedAndDirection);
     
   } else {
     
-    speed = abs(rc_data.joystick1_y);
+    speed = abs(speedAndDirection);
     speed = map(speed, 0, 255, 0, 100); //we convert the speed to a 0-100 range to make the calculations
 
     if (speed >= 30) {
@@ -260,8 +261,7 @@ void calculateMotorsSpeed(Rc_data rc_data) {
 
 }
 
-//TODO: SetMotorsSpeeds(generalSpeed (0-255) as argument
-void setMotorSpeedsConventionalControl(Rc_data rc_data) {
+void setMotorSpeedsConventionalControl() {
   //Depending on the channels values (steering LEFT/RIGHT and throttle FWD/BCK) we will set each motor to its according 
   //(outer_wheels_speed, inner_front_back_wheels_speed, inner_middle_wheel_speed) and rotation direction using the "setMotorSpeed" function
   //(outer_wheels_speed, inner_front_back_wheels_speed, inner_middle_wheel_speed) will have the speed (0-100) calculated at "calculateMotorsSpeed"
@@ -272,13 +272,19 @@ void setMotorSpeedsConventionalControl(Rc_data rc_data) {
     return;
   }
 
+  RcValues rcValues = getRcValues();
+  int speedAndDirection = rcValues.y1;  //speedAndDirection (-255...0...255). Negative values are backwards speed.
+  
+  //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
+  //both in this function and the "calculateMotorsSpeed" function
+
   if (joystickY_isCentered(JOY_LEFT)) {
 
     stopMotors();
 
   } else {
 
-      calculateMotorsSpeed(rc_data);
+      calculateMotorsSpeed(speedAndDirection);
 
       if (joystickIsUp(JOY_LEFT)) {
 
@@ -334,8 +340,7 @@ void setMotorSpeedsConventionalControl(Rc_data rc_data) {
 
 }
 
-//TODO: (generalSpeed (0-255) as argument; or get it with function call)
-void setMotorSpeeds360Control(Rc_data rc_data) {
+void setMotorSpeeds360Control() {
 
   int speed; //From 0 to 255
 
@@ -344,13 +349,18 @@ void setMotorSpeeds360Control(Rc_data rc_data) {
     return;
   }
 
+  RcValues rcValues = getRcValues();
+  int speedAndDirection = rcValues.x2;  //speedAndDirection (-255...0...255). Negative values are counter-clockwise speed.
+
+  //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
+
   if (joystickX_isCentered(JOY_RIGHT)) {
 
     stopMotors();
 
   } else {
 
-    speed = abs(rc_data.joystick2_x);
+    speed = abs(speedAndDirection);
 
     if (joystickIsLeft(JOY_RIGHT)) {
 

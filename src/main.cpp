@@ -11,9 +11,9 @@
 #include "opModeManager.h"
 #include "serialCommunication.h"
 #include "batteryManager.h"
+#include "radioCommunication.h"
+#include "receivedFramesHandling.h"
 
-
-Rc_data rc_data2;
 
 const int servo_relay_pin = 28;
 
@@ -51,11 +51,11 @@ void operationModeExecution() {
   switch (getOpMode()) {
 
     case OP_CONVENTIONAL_DRIVING:
-      setMotorSpeedsConventionalControl(rc_data2);
-      setWheelServosAnglesConventionalControl(rc_data2);
+      setMotorSpeedsConventionalControl();
+      setWheelServosAnglesConventionalControl();
       break;
     case OP_360_DEGREE_TURN_CONTROL:
-      setMotorSpeeds360Control(rc_data2);
+      setMotorSpeeds360Control();
       setWheelServosAnglesTo360();
       break;
     case OP_ROBOTIC_ARM_CONTROL:
@@ -88,10 +88,16 @@ void loop() {
   //radioSendFrame  //inside this function, use bool to determine wether to send the frame or not (depending if the RC is powered on or not)
   //serialSendFrame //same, but depending on the RPI powered on or not
 
-  rc_data2 = readRcValues();
+
+  Frame frame = radioReceiveFrame();
+  handleReceivedFrame(frame);
+  operationModeExecution(); //TODO: Put this function inside "opModeManager.cpp"
   //printRcValues();
-  chooseOperationMode(rc_data2);
-  operationModeExecution();
+
+  //rc_data2 = readRcValues();
+  //printRcValues();
+  //chooseOperationMode(rc_data2);
+  //operationModeExecution();
   //printBatteryValues();
 
 }

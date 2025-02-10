@@ -7,30 +7,15 @@
 #define JOY_LEFT 1
 #define JOY_RIGHT 2
 
-typedef struct {
+#include "sharedStructs.h"
 
 
-  int lever_1;  //TODO: When updating the transmitter code to send structs, we will change these ints to bool
-  int lever_2;
-
-  //TODO: IMPORTANT: Maybe it is a good idea that the arduino in the RC is in charge of sending this values set to 0 if they are within a certain center range and send (1 to 255, 1 to -255) otherwise. 
-
-  //(Positive axis: 1 to 255)
-  //(Negative axis: -1 to -255)
-  int joystick1_x; 
-  int joystick1_y;
-  int joystick2_x;
-  int joystick2_y;
-
-} Rc_data;
-
-void setupRadio(); //Put in radio file
 
 void setupBuzzer();
 
 void printRcValues();
 
-Rc_data readRcValues();
+void checkRcLinkStatus(Frame frame);
 
 bool joystickIsRight(int joystickSelection);
 
@@ -47,5 +32,9 @@ bool joystickY_isCentered(int joystickSelection);
 bool joystickXY_isCentered(int joystickSelection);
 
 bool getRcLinkStatus();
+
+void setRcValues(RcValues newRcValues);
+
+RcValues getRcValues();
 
 #endif

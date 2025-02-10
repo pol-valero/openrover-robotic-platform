@@ -5,8 +5,8 @@
 
 void setupMotors();
 
-void setMotorSpeedsConventionalControl(Rc_data rc_data);
+void setMotorSpeedsConventionalControl();
 
-void setMotorSpeeds360Control(Rc_data rc_data);
+void setMotorSpeeds360Control();
 
 #endif
