@@ -5,7 +5,6 @@
 #include "squareLineFiles/ui.h" //UI file header that SquareLineStudio generates
 #include "serialCommunication.h"
 #include "uiObjVisibilityManager.h"
-#include "receivedFramesHandling.h"
 #include "frameTypesDefinition.h"
 #include "sharedFunctions.h"
 
@@ -138,13 +137,5 @@ void minusDegreeBtnClicked(lv_event_t *e) {
 
     //TODO:Just for testing, delete later
     lv_label_set_text(ui_TrimValueLabel, intValueToString(--testValue, "degrees"));
-
-}
-
-
-void screenControllerExecution() {
-
-    Frame frame = serialReceiveFrame();
-    handleReceivedFrame(frame);
 
 }

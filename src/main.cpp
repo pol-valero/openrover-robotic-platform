@@ -3,6 +3,7 @@
 #include "screenConfig.h"
 #include "serialCommunication.h"
 #include "screenController.h"
+#include "receivedFramesHandling.h"
 
 
 void setup() {
@@ -16,6 +17,8 @@ void setup() {
 void loop() {
 
   runScreen();
-  screenControllerExecution();
+
+  Frame frame = serialReceiveFrame();
+  handleReceivedFrame(frame);
 
 }
