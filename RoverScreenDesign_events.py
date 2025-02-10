@@ -78,3 +78,11 @@ def plusDegreeBtnClicked(event_struct):
 def minusDegreeBtnClicked(event_struct):
     return
 
+
+def enableRadioRcSwChecked(event_struct):
+    return
+
+
+def enableRadioRcSwUnchecked(event_struct):
+    return
+
