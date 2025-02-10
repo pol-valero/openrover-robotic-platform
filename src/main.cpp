@@ -39,7 +39,7 @@ typedef struct {
 
 typedef struct __attribute__((packed)) {
   uint8_t type; //Integer value identifying the type of frame
-  uint16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values 0-1023)
+  int16_t data2B[4]; //Large data to be sent (2 bytes each) (ex.- joystick values -255...255)
   uint8_t data1B[5]; //Small data to be sent (1 byte each)
   //TODO: Add field for checksum/validation?
 } Frame; //The same struct is used for radio and serial
@@ -169,6 +169,17 @@ void radioSendFrame(Frame frame) {
   
 }
 
+void radioSendRcValuesFrame(RcValues rcValues) {
+
+  if (rcValues.dataValid) {
+    
+    Frame frame = rcValuesToFrame(rcValues);
+    radioSendFrame(frame);
+
+  }
+
+}
+
 
 RcBatteryValues getBatteryValues() {
 
@@ -215,6 +226,57 @@ void makeBuzzerSound() {
 
 }
 
+//We need to correct the values of the RC remote, because the values are not centered at 0, and we want a range of -255..255 in each axis
+void correctRcValues(RcValues &rcValues) {
+
+  if (rcValues.x1 > 470 && rcValues.x1 < 550) {
+   rcValues.x1 = 0;
+  } else {
+    if (rcValues.x1 <= 470) {
+      rcValues.x1 = map(rcValues.x1, 470, 0, -1, -255);
+    } else {
+      rcValues.x1 = map(rcValues.x1, 550, 1023, 0, 255);
+    }
+  }
+
+  if (rcValues.y1 > 470 && rcValues.y1 < 550) {
+   rcValues.y1 = 0;
+  } else {
+    if (rcValues.y1 <= 470) {
+      rcValues.y1 = map(rcValues.y1, 470, 0, -1, -255);
+    } else {
+      rcValues.y1 = map(rcValues.y1, 550, 1023, 0, 255);
+    }
+  }
+
+  if (rcValues.x2 > 470 && rcValues.x2 < 550) {
+   rcValues.x2 = 0;
+  } else {
+    if (rcValues.x2 <= 470) {
+      rcValues.x2 = map(rcValues.x2, 470, 0, -1, -255);
+    } else {
+      rcValues.x2 = map(rcValues.x2, 550, 1023, 0, 255);
+    }
+  }
+
+  if (rcValues.y2 > 470 && rcValues.y2 < 550) {
+   rcValues.y2 = 0;
+  } else {
+    if (rcValues.y2 <= 470) {
+      rcValues.y2 = map(rcValues.y2, 470, 0, -1, -255);
+    } else {
+      rcValues.y2 = map(rcValues.y2, 550, 1023, 0, 255);
+    }
+  }
+
+  //TODO: Once the final use of each AUX is determined, we will map the values to the correct range (ex.- 0..1)
+  rcValues.aux1 = map(rcValues.aux1, 0, 1023, 0, 255); 
+  rcValues.aux2 = map(rcValues.aux2, 0, 1023, 0, 255);
+  rcValues.aux3 = map(rcValues.aux3, 0, 1023, 0, 255);
+  rcValues.aux4 = map(rcValues.aux4, 0, 1023, 0, 255); 
+
+}
+
 RcValues getSpektrumRcValues() {
   //Gets the RC values every 100ms
   
@@ -223,7 +285,7 @@ RcValues getSpektrumRcValues() {
 
   static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 100) {
+  if (millis() - previousMillis >= 30) {
     previousMillis = millis();
 
     rcValues.y1 = tx.getChannel(0);
@@ -235,6 +297,9 @@ RcValues getSpektrumRcValues() {
     rcValues.aux3 = tx.getChannel(6);
     rcValues.aux4 = tx.getChannel(7);
     rcValues.dataValid = true;
+
+    correctRcValues(rcValues);
+
   }
 
   return rcValues;
@@ -275,6 +340,7 @@ void loop() {
 
     RcValues rcValues = getSpektrumRcValues();
     serialSendRcValuesFrame(rcValues);
+    radioSendRcValuesFrame(rcValues);
 
     RcBatteryValues battValues = getBatteryValues();
     serialSendBattValuesFrame(battValues);
