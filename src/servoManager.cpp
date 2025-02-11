@@ -58,9 +58,9 @@ void calculateWheelServosAngle(int turnJoystickValue) {
 
   //Ackerman steering geometry calculations
 
-  if (joystickX_isCentered(JOY_RIGHT)) {
+  if (joystickX_isCentered(JOY_LEFT)) {
     turning_radius = MAX_INTEGER; //We put the turning radius to the maximum integer to indicate that we are not turning
-  } else if (joystickIsLeft(JOY_RIGHT)) {
+  } else if (joystickIsLeft(JOY_LEFT)) {
       turning_radius = map(turnJoystickValue, 0, -255, max_turning_radius, min_turning_radius); //4000mm to 700mm turning radius
   } else {
       turning_radius = map(turnJoystickValue, 0, 255, max_turning_radius, min_turning_radius); 
@@ -133,12 +133,12 @@ void setWheelServosAnglesConventionalControl() {
   //servoX_angle. Then we will write each servoX_angle to the corresponding servo using the Servo.write function
 
   RcValues rcValues = getRcValues();
-  int turnJoystickValue = rcValues.x2;  //Value of the joystick used to turn, "turnJoystickValue" (-255...0...255). Negative values when joystick is left, positive values when joystick is right.
+  int turnJoystickValue = rcValues.x1;  //Value of the joystick used to turn, "turnJoystickValue" (-255...0...255). Negative values when joystick is left, positive values when joystick is right.
 
   //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
   //both in this function and the "calculateWheelServosAngle" function
 
-  if (joystickX_isCentered(JOY_RIGHT)) {
+  if (joystickX_isCentered(JOY_LEFT)) {
 
     setWheelServosStraight();
 
@@ -146,7 +146,7 @@ void setWheelServosAnglesConventionalControl() {
     
     calculateWheelServosAngle(turnJoystickValue);
 
-    if (joystickIsLeft(JOY_RIGHT)) {
+    if (joystickIsLeft(JOY_LEFT)) {
       servoWrite(W_SERVO_1, w_servo_center[1] - outer_servo_front_angle_beta);
       servoWrite(W_SERVO_2, w_servo_center[2] + outer_servo_back_angle_beta);
       servoWrite(W_SERVO_3, w_servo_center[3] - inner_servo_front_angle_beta);
@@ -164,8 +164,6 @@ void setWheelServosAnglesConventionalControl() {
 }
 
 void setWheelServosAnglesTo360() {
-
-  int speed; //From 0 to 255
   
   static int currentAngle = 0;
   const int finalAngle = 45;

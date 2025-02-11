@@ -44,37 +44,6 @@ void setup() {
 
 }
 
-
-
-void operationModeExecution() {
-
-  switch (getOpMode()) {
-
-    case OP_CONVENTIONAL_DRIVING:
-      setMotorSpeedsConventionalControl();
-      setWheelServosAnglesConventionalControl();
-      break;
-    case OP_360_DEGREE_TURN_CONTROL:
-      setMotorSpeeds360Control();
-      setWheelServosAnglesTo360();
-      break;
-    case OP_ROBOTIC_ARM_CONTROL:
-      //roboticArmControl();
-      break;
-    case OP_HEAD_CONTROL:
-      //headControl();
-      break;
-    case SUB_OP_360_DEGREE_TO_CONVENTIONAL:
-      setWheelServosAnglesToConventional();
-      break;
-
-    default:
-      break;
-
-  }
-
-}
-
 void loop() {
 
   //TODO: Only call operationModeExecution inside functions every 50ms or so? (instead of calling them every loop iteration)
@@ -91,7 +60,7 @@ void loop() {
 
   Frame frame = radioReceiveFrame();
   handleReceivedFrame(frame);
-  operationModeExecution(); //TODO: Put this function inside "opModeManager.cpp"
+  operationModeExecution();
   //printRcValues();
 
   //rc_data2 = readRcValues();

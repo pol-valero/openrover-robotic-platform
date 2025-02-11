@@ -1,6 +1,8 @@
 #include <Arduino.h>
 
 #include "opModeManager.h"
+#include "servoManager.h"
+#include "motorManager.h"
 
 //TODO: Maybe we will need to distinguish between RC_OP_WHATEVER and WEB_OP_WHATEVER (if we want to do exactly the same operations via the web as in the remote control)
 //TODO: Maybe we won't need to distinguish between RC_OP_WHATEVER and WEB_OP_WHATEVER, as exactly the same operations will be done via the web as in the remote control (the only difference will be if the frames are 
@@ -25,34 +27,11 @@ void updateNewOperationIndicator() {
 
 }
 
-//TODO: We will delete this function, as we will change opMode depending on the type of frame received (handled in receivedFramesHandling.cpp)
-/*void chooseOperationMode(Rc_data rc_data) {
-
-  if (rc_data.lever_1 == 0 && rc_data.lever_2 == 0) {
-
-    if (op_mode == OP_360_DEGREE_TURN_CONTROL || op_mode == SUB_OP_360_DEGREE_TO_CONVENTIONAL) {
-      op_mode = SUB_OP_360_DEGREE_TO_CONVENTIONAL;
-    } else {
-      op_mode = OP_CONVENTIONAL_DRIVING;
-    }
-
-    updateNewOperationIndicator();
-
-  }  else if (rc_data.lever_1 == 0 && rc_data.lever_2 == 1) {
-
-    op_mode = OP_360_DEGREE_TURN_CONTROL;
-    updateNewOperationIndicator();
-
-  } else {
-      op_mode = -1;
-  }
-}*/
-
 void opConventionalDrivingSelected() {
 
   //If we come from the 360 degree control operation, we will go to the sub-operation to turn the wheels to the conventional position
   //The same applies if we come from the sub-operation to turn the wheels to the conventional position
-  if (op_mode == OP_360_DEGREE_TURN_CONTROL) {  //TODO: Maybe SUB_OP part inside this if wont be needed (as we have changed other parts of the code)
+  if (op_mode == OP_360_DEGREE_TURN_CONTROL || op_mode == SUB_OP_360_DEGREE_TO_CONVENTIONAL) {
       op_mode = SUB_OP_360_DEGREE_TO_CONVENTIONAL;
     } else {
       op_mode = OP_CONVENTIONAL_DRIVING;
@@ -68,21 +47,47 @@ void op360DegreeTurnControlSelected() {
 
 void setOpMode(int new_op_mode) {
   op_mode = new_op_mode;
-  //updateNewOperationIndicator();
-  //TODO: Call updateNewOperationIndicator() here?
-}
-
-int getOpMode() {
-  return op_mode;
+  updateNewOperationIndicator();
 }
 
 bool hasEnteredNewOpMode() {
   
   bool enteredNewOpModeAux = entered_new_op_mode;
 
+  //We want the reading to be "destructive", so that "entered_new_op_mode = true" is only returned when we have changed opmodes
+  //and we are executing the first iteration of the new opmode (where this function will be called)
   if (entered_new_op_mode == true) {
     entered_new_op_mode = false;
   }
 
   return enteredNewOpModeAux;
+}
+
+void operationModeExecution() {
+
+  switch (op_mode) {
+
+    case OP_CONVENTIONAL_DRIVING:
+      setMotorSpeedsConventionalControl();
+      setWheelServosAnglesConventionalControl();
+      break;
+    case OP_360_DEGREE_TURN_CONTROL:
+      setMotorSpeeds360Control();
+      setWheelServosAnglesTo360();
+      break;
+    case OP_ROBOTIC_ARM_CONTROL:
+      //roboticArmControl();
+      break;
+    case OP_HEAD_CONTROL:
+      //headControl();
+      break;
+    case SUB_OP_360_DEGREE_TO_CONVENTIONAL:
+      setWheelServosAnglesToConventional();
+      break;
+
+    default:
+      break;
+
+  }
+
 }

@@ -16,8 +16,8 @@ void op360DegreeTurnControlSelected();
 
 void setOpMode(int new_op_mode);
 
-int getOpMode();
-
 bool hasEnteredNewOpMode();
+
+void operationModeExecution();
 
 #endif

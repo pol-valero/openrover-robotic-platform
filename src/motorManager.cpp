@@ -207,12 +207,9 @@ void stopMotors() {
 
 }
 
-//speedAndDirection (-255...0...255) as argument (negative values are backwards speed)
-void calculateMotorsSpeed(int speedAndDirection) {
+//speed (0...255) as argument
+void calculateMotorsSpeed(int speed) {
   //Ackerman steering geometry calculations
-
-  int speed;
-  int maxSpeed, minSpeed;
 
   int correctionFactor1 = 0;  //Value that we will subtract from the inner wheels speed, so that tire slipping does not occur when having high speed and high angle
   //These correction factors are necessary because even tough the wheel speed equations are correct, the inner tires slip a bit (due to unknown physical factors) at high speed and high angle
@@ -220,13 +217,12 @@ void calculateMotorsSpeed(int speedAndDirection) {
 
   int turning_radius;
 
-  if (joystickX_isCentered(JOY_RIGHT)) {
+  if (joystickX_isCentered(JOY_LEFT)) {
 
-    outer_wheels_speed = inner_front_back_wheels_speed = inner_middle_wheel_speed = abs(speedAndDirection);
+    outer_wheels_speed = inner_front_back_wheels_speed = inner_middle_wheel_speed = speed;
     
   } else {
     
-    speed = abs(speedAndDirection);
     speed = map(speed, 0, 255, 0, 100); //we convert the speed to a 0-100 range to make the calculations
 
     if (speed >= 30) {
@@ -273,22 +269,22 @@ void setMotorSpeedsConventionalControl() {
   }
 
   RcValues rcValues = getRcValues();
-  int speedAndDirection = rcValues.y1;  //speedAndDirection (-255...0...255). Negative values are backwards speed.
+  int speedAndDirection = rcValues.y2;  //speedAndDirection (-255...0...255). Negative values are backwards speed.
   
   //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
   //both in this function and the "calculateMotorsSpeed" function
 
-  if (joystickY_isCentered(JOY_LEFT)) {
+  if (joystickY_isCentered(JOY_RIGHT)) {
 
     stopMotors();
 
   } else {
 
-      calculateMotorsSpeed(speedAndDirection);
+      calculateMotorsSpeed(abs(speedAndDirection));
 
-      if (joystickIsUp(JOY_LEFT)) {
+      if (joystickIsUp(JOY_RIGHT)) {
 
-        if (joystickIsLeft(JOY_RIGHT)) {
+        if (joystickIsLeft(JOY_LEFT)) {
 
           setMotorSpeed(MOTOR_1, outer_wheels_speed, FWD);
           setMotorSpeed(MOTOR_2, outer_wheels_speed, FWD);
@@ -312,7 +308,7 @@ void setMotorSpeedsConventionalControl() {
 
       } else {
 
-        if (joystickIsLeft(JOY_RIGHT)) {
+        if (joystickIsLeft(JOY_LEFT)) {
 
           setMotorSpeed(MOTOR_1, outer_wheels_speed, BCK);
           setMotorSpeed(MOTOR_2, outer_wheels_speed, BCK);
