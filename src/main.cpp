@@ -13,6 +13,7 @@
 #include "batteryManager.h"
 #include "radioCommunication.h"
 #include "receivedFramesHandling.h"
+#include "statusDataManager.h"
 
 
 const int servo_relay_pin = 28;
@@ -46,7 +47,8 @@ void setup() {
 
 void loop() {
 
-  //TODO: Only call operationModeExecution inside functions every 50ms or so? (instead of calling them every loop iteration)
+  //TODO: Only call operationModeExecution inside functions every 30ms or so? (instead of calling them every loop iteration) 
+  //(especially the ones that do the complex Ackermann calculations)
 
   //serialReceiveFrame
   //handleReceivedFrame
@@ -58,10 +60,11 @@ void loop() {
   //serialSendFrame //same, but depending on the RPI powered on or not
 
 
-  Frame frame = radioReceiveFrame();
-  handleReceivedFrame(frame);
+  Frame receivedRadioFrame = radioReceiveFrame();
+  handleReceivedFrame(receivedRadioFrame);
   operationModeExecution();
-  //printRcValues();
+  Frame statusDataFrame = getStatusDataFrame();
+  radioSendFrame(statusDataFrame);
 
   //rc_data2 = readRcValues();
   //printRcValues();
