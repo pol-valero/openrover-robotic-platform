@@ -9,6 +9,7 @@
 #define CMD_F_RC_BUZZER 3
 #define CMD_F_RC_RADIO_ENABLING 4
 #define CMD_F_ROVER_OP_MODE_SELECTION 5
+#define INF_F_ROVER_BAT_LEVEL 6
 #define CMD_F_TEST 250
 
 #endif

@@ -22,7 +22,7 @@ typedef struct {
 typedef struct {
   float cellVoltage;
   int percentage;
-} RcBatteryValues;
+} BatteryValues;
 
 typedef struct __attribute__((packed)) {
   uint8_t type; //Integer value identifying the type of frame

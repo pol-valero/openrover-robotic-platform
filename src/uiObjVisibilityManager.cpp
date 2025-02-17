@@ -104,7 +104,9 @@ void headRandMovSwUpdateRelatedObjectsVisibility(bool swChecked) {
     } else {
         if (!lv_obj_has_state(ui_ArmControlSwitch, LV_STATE_CHECKED) && !lv_obj_has_state(ui_SelfRotationControlSwitch, LV_STATE_CHECKED)) {
             lv_obj_clear_state(ui_HeadControlSwitch, LV_STATE_DISABLED);
-            lv_obj_clear_state(ui_RPIgiveControlSwitch, LV_STATE_DISABLED);
+            if(lv_obj_has_state(ui_PowerRPIswitch, LV_STATE_CHECKED)) {
+                lv_obj_clear_state(ui_RPIgiveControlSwitch, LV_STATE_DISABLED);
+            }
         }
     }
 }

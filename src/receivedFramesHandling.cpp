@@ -25,10 +25,19 @@ void updateRcValueLabels(Frame frame) {
 
 void updateRcBattValuesLabelBar(Frame frame) {
 
-    RcBatteryValues rcBattValues = rcBattValuesFromFrame(frame);
+    BatteryValues rcBattValues = battValuesFromFrame(frame);
 
     lv_label_set_text(ui_RcBatteryLabel, floatValueToString(rcBattValues.cellVoltage, "V"));
     lv_bar_set_value(ui_RcBatteryBar, rcBattValues.percentage, LV_ANIM_OFF);
+
+}
+
+void updateRoverBattValuesLabelBar(Frame frame) {
+
+    BatteryValues roverBattValues = battValuesFromFrame(frame);
+
+    lv_label_set_text(ui_RoverBatteryLabel, floatValueToString(roverBattValues.cellVoltage, "V"));
+    lv_bar_set_value(ui_RoverBatteryBar, roverBattValues.percentage, LV_ANIM_OFF);
 
 }
 
@@ -47,6 +56,9 @@ void handleReceivedFrame(Frame frame) {
             break;
         case INF_F_RC_BAT_LEVEL:
             updateRcBattValuesLabelBar(frame);
+            break;
+        case INF_F_ROVER_BAT_LEVEL:
+            updateRoverBattValuesLabelBar(frame);
             break;
 
         default:

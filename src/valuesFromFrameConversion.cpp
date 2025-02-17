@@ -20,13 +20,13 @@ RcValues rcValuesFromFrame(Frame frame) {
 
 }
 
-RcBatteryValues rcBattValuesFromFrame(Frame frame) {
+BatteryValues battValuesFromFrame(Frame frame) {
 
-    RcBatteryValues rcBattValues;
+    BatteryValues battValues;
     
-    rcBattValues.cellVoltage = frame.data1B[0] / 10.0;  //We divide by 10.0 because the initial value was multiplied by 10, to be sent as an integer
-    rcBattValues.percentage = frame.data1B[1];
+    battValues.cellVoltage = frame.data1B[0] / 10.0;  //We divide by 10.0 because the initial value was multiplied by 10, to be sent as an integer
+    battValues.percentage = frame.data1B[1];
     
-    return rcBattValues;
+    return battValues;
 
 }
