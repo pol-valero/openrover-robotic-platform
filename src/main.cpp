@@ -5,7 +5,7 @@
 
 #include <Arduino.h>
 
-#include "servoManager.h"
+#include "wheelServoManager.h"
 #include "motorManager.h"
 #include "rcValuesManager.h"
 #include "opModeManager.h"
@@ -14,6 +14,7 @@
 #include "radioCommunication.h"
 #include "receivedFramesHandling.h"
 #include "statusDataManager.h"
+#include "armServoManager.h"
 
 
 const int servo_relay_pin = 28;
@@ -26,7 +27,7 @@ void setup() {
   digitalWrite(servo_relay_pin, LOW); //We immediately put the relay that powers the servos in an OPEN position to make sure that no power gets to the servos before the program initializes
   //////////////////////////////////////////////
 
-  setupServos();
+  setupWheelServos();
   
   setupMotors();
 
@@ -38,9 +39,12 @@ void setup() {
 
   setupBatteryMonitor();
 
+  setupArmServos();
+
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
   digitalWrite(servo_relay_pin, HIGH);  //We power up the servos and we send them their initial positions
   setWheelServosStraight();
+  setArmServosToFullyFolded();
   //////////////////////////////////////////////
 
 }

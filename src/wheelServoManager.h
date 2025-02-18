@@ -2,7 +2,7 @@
 #define SERVO_MANAGER_H
 
 
-void setupServos();
+void setupWheelServos();
 
 int getTurningRadius();
 

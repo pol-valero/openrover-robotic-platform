@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Servo.h>  
 
-#include "servoManager.h"
+#include "wheelServoManager.h"
 #include "ackermannParameters.h"
 #include "opModeManager.h"
 #include "rcValuesManager.h"
@@ -9,8 +9,10 @@
 
 #define MAX_INTEGER 32766
 
+//Right arm servos, from front to back
 #define W_SERVO_1 1
 #define W_SERVO_2 2
+//Left arm servos, from front to back
 #define W_SERVO_3 3
 #define W_SERVO_4 4
 
@@ -42,7 +44,7 @@ int outer_servo_back_angle_beta;
 int inner_servo_front_angle_beta;
 int inner_servo_back_angle_beta;
 
-void setupServos() {
+void setupWheelServos() {
     w_servo1.attach(w_servo1_pin);
     w_servo2.attach(w_servo2_pin);
     w_servo3.attach(w_servo3_pin);
