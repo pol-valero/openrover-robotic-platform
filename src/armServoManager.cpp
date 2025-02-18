@@ -37,11 +37,13 @@ void setupArmServos() {
 //These are the initial positions of the arm servos, 
 //where the arm will be fully folded
 void setArmServosToFullyFolded () {
-
-    arm_servo5.write(45);
-    arm_servo4.write(40);
-    arm_servo3.write(180);
-    arm_servo2.write(95);
+    
     arm_servo1.write(30);
+    arm_servo2.write(95);
+    arm_servo3.write(170);
+    arm_servo4.write(40);
+    arm_servo5.write(45);
 
 }
+
+//TODO: ServoWrite with arm limits
