@@ -12,8 +12,6 @@
 
 void opConventionalDrivingSelected();
 
-void op360DegreeTurnControlSelected();
-
 void setOpMode(int new_op_mode);
 
 bool hasEnteredNewOpMode();

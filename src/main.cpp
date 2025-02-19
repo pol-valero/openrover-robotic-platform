@@ -39,7 +39,7 @@ void setup() {
 
   setupBatteryMonitor();
 
-  setupArmServos();
+  setupArmServos(); //TODO: Remove as we will call it when we need it?
 
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
   digitalWrite(servo_relay_pin, HIGH);  //We power up the servos and we send them their initial positions

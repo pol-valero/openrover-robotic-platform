@@ -7,4 +7,6 @@ RcValues rcValuesFromFrame(Frame frame);
 
 int roverOpModeSelectionFromFrame(Frame frame);
 
+bool armServoSelectionFromFrame(Frame frame);
+
 #endif

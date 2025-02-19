@@ -5,4 +5,8 @@ void setupArmServos();
 
 void setArmServosToFullyFolded ();
 
+void setRoboticArmServosAngles();
+
+void setArmServoSelection(bool parameterControlClawServosSelected);
+
 #endif

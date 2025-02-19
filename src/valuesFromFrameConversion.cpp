@@ -20,3 +20,11 @@ RcValues rcValuesFromFrame(Frame frame) {
 int roverOpModeSelectionFromFrame(Frame frame) {
     return frame.data1B[0];
 }
+
+bool armServoSelectionFromFrame(Frame frame) {
+    if (frame.data1B[0] == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
