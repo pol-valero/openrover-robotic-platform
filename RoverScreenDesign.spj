@@ -14775,6 +14775,136 @@
                         "strtype": "SWITCH/Style_knob",
                         "strval": "lv.PART.KNOB, Rectangle, Pad",
                         "InheritedType": 11
+                      },
+                      {
+                        "disabled": false,
+                        "nid": 1000648,
+                        "strtype": "_event/EventHandler",
+                        "strval": "CHECKED(VALUE_CHANGED)",
+                        "childs": [
+                          {
+                            "nid": 1000649,
+                            "strtype": "_event/name",
+                            "strval": "armServoSelectionSwChecked",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 1000650,
+                            "strtype": "_event/condition_C",
+                            "strval": "",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 1000651,
+                            "strtype": "_event/condition_P",
+                            "strval": "",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 1000652,
+                            "strtype": "_event/action",
+                            "strval": "CALL FUNCTION",
+                            "childs": [
+                              {
+                                "nid": 1000653,
+                                "strtype": "CALL FUNCTION/Name",
+                                "strval": "CALL FUNCTION",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000654,
+                                "strtype": "CALL FUNCTION/Call",
+                                "strval": "<{Function_name}>( event_struct )",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000655,
+                                "strtype": "CALL FUNCTION/CallC",
+                                "strval": "<{Function_name}>( e );",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000656,
+                                "strtype": "CALL FUNCTION/Function_name",
+                                "strval": "armServoSelectionSwChecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000657,
+                                "strtype": "CALL FUNCTION/Dont_export_function",
+                                "strval": "True",
+                                "InheritedType": 2
+                              }
+                            ],
+                            "InheritedType": 10
+                          }
+                        ],
+                        "InheritedType": 4
+                      },
+                      {
+                        "disabled": false,
+                        "nid": 1000658,
+                        "strtype": "_event/EventHandler",
+                        "strval": "UNCHECKED(VALUE_CHANGED)",
+                        "childs": [
+                          {
+                            "nid": 1000659,
+                            "strtype": "_event/name",
+                            "strval": "armServoSelectionSwUnchecked",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 1000660,
+                            "strtype": "_event/condition_C",
+                            "strval": "",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 1000661,
+                            "strtype": "_event/condition_P",
+                            "strval": "",
+                            "InheritedType": 10
+                          },
+                          {
+                            "nid": 1000662,
+                            "strtype": "_event/action",
+                            "strval": "CALL FUNCTION",
+                            "childs": [
+                              {
+                                "nid": 1000663,
+                                "strtype": "CALL FUNCTION/Name",
+                                "strval": "CALL FUNCTION",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000664,
+                                "strtype": "CALL FUNCTION/Call",
+                                "strval": "<{Function_name}>( event_struct )",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000665,
+                                "strtype": "CALL FUNCTION/CallC",
+                                "strval": "<{Function_name}>( e );",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000666,
+                                "strtype": "CALL FUNCTION/Function_name",
+                                "strval": "armServoSelectionSwUnchecked",
+                                "InheritedType": 10
+                              },
+                              {
+                                "nid": 1000667,
+                                "strtype": "CALL FUNCTION/Dont_export_function",
+                                "strval": "True",
+                                "InheritedType": 2
+                              }
+                            ],
+                            "InheritedType": 10
+                          }
+                        ],
+                        "InheritedType": 4
                       }
                     ],
                     "saved_objtypeKey": "SWITCH"
@@ -20651,7 +20781,7 @@
     "drive_fatfs_path": "",
     "naming": "Name",
     "naming_force_lowercase": false,
-    "nidcnt": 1000648,
+    "nidcnt": 1000668,
     "BitDepth": 16,
     "Name": "SQserialTest"
   }

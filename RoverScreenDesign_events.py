@@ -86,3 +86,11 @@ def enableRadioRcSwChecked(event_struct):
 def enableRadioRcSwUnchecked(event_struct):
     return
 
+
+def armServoSelectionSwChecked(event_struct):
+    return
+
+
+def armServoSelectionSwUnchecked(event_struct):
+    return
+
