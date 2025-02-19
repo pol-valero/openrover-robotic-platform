@@ -1546,6 +1546,7 @@ lv_obj_add_event_cb(ui_EnableRadioRcSwitch, ui_event_EnableRadioRcSwitch, LV_EVE
 lv_obj_add_event_cb(ui_HeadControlSwitch, ui_event_HeadControlSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ArmControlSwitch, ui_event_ArmControlSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_SelfRotationControlSwitch, ui_event_SelfRotationControlSwitch, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_ArmServoSelectionSwitch, ui_event_ArmServoSelectionSwitch, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_WheelSelectorRoller, ui_event_WheelSelectorRoller, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_PlusDegreeButton, ui_event_PlusDegreeButton, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_MinusDegreeButton, ui_event_MinusDegreeButton, LV_EVENT_ALL, NULL);

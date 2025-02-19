@@ -101,6 +101,7 @@ lv_obj_t *ui_ArmControlLabel;
 lv_obj_t *ui_SelfRotationControlLabel;
 void ui_event_SelfRotationControlSwitch( lv_event_t * e);
 lv_obj_t *ui_SelfRotationControlSwitch;
+void ui_event_ArmServoSelectionSwitch( lv_event_t * e);
 lv_obj_t *ui_ArmServoSelectionSwitch;
 lv_obj_t *ui_ControlClawServosLabel;
 lv_obj_t *ui_ConfigTab;
@@ -262,6 +263,17 @@ if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_C
 }
 if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
       selfRotationControlSwUnchecked( e );
+}
+}
+
+void ui_event_ArmServoSelectionSwitch( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      armServoSelectionSwChecked( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      armServoSelectionSwUnchecked( e );
 }
 }
 

@@ -25,3 +25,17 @@ Frame roverOpModeSelectionToFrame(int opMode) {
     return frame;
 
 }
+
+Frame armServoSelectionToFrame(bool controlClawServosSelected) {
+    
+    Frame frame;
+    frame.type = CMD_F_ARM_SERVO_SELECTION;
+    if (controlClawServosSelected) {
+        frame.data1B[0] = 1;
+    } else {
+        frame.data1B[0] = 0;
+    }
+
+    return frame;
+
+}

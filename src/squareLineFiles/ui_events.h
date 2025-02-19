@@ -26,6 +26,8 @@ void armControlSwChecked(lv_event_t * e);
 void armControlSwUnchecked(lv_event_t * e);
 void selfRotationControlSwChecked(lv_event_t * e);
 void selfRotationControlSwUnchecked(lv_event_t * e);
+void armServoSelectionSwChecked(lv_event_t * e);
+void armServoSelectionSwUnchecked(lv_event_t * e);
 void wheelSelectorReleased(lv_event_t * e);
 void plusDegreeBtnClicked(lv_event_t * e);
 void minusDegreeBtnClicked(lv_event_t * e);

@@ -7,4 +7,6 @@ Frame rcRadioEnableStatusToFrame(bool enabled);
 
 Frame roverOpModeSelectionToFrame(int opMode);
 
+Frame armServoSelectionToFrame(bool controlClawServosSelected);
+
 #endif

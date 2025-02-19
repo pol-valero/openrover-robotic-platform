@@ -28,13 +28,35 @@ void headControlSwUnchecked(lv_event_t *e) {
 void armControlSwChecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Arm control switch checked");
 
+    Frame frame = roverOpModeSelectionToFrame(OP_ROBOTIC_ARM_CONTROL);
+    serialSendFrame(frame);
+
     armControlSwUpdateRelatedObjectsVisibility(true);
 }
 
 void armControlSwUnchecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Arm control switch unchecked");
+
+    Frame frame = roverOpModeSelectionToFrame(OP_CONVENTIONAL_DRIVING);
+    serialSendFrame(frame);
     
     armControlSwUpdateRelatedObjectsVisibility(false);
+}
+
+void armServoSelectionSwChecked(lv_event_t *e) {
+    lv_label_set_text(ui_NotificationsLabel, "Arm servo selection switch checked");
+
+    Frame frame = armServoSelectionToFrame(true);
+    serialSendFrame(frame);
+
+}
+
+void armServoSelectionSwUnchecked(lv_event_t *e) {
+    lv_label_set_text(ui_NotificationsLabel, "Arm servo selection switch unchecked");
+
+    Frame frame = armServoSelectionToFrame(false);
+    serialSendFrame(frame);
+
 }
 
 void selfRotationControlSwChecked(lv_event_t *e) {

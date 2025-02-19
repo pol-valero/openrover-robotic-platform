@@ -118,6 +118,7 @@ extern lv_obj_t *ui_ArmControlLabel;
 extern lv_obj_t *ui_SelfRotationControlLabel;
 void ui_event_SelfRotationControlSwitch( lv_event_t * e);
 extern lv_obj_t *ui_SelfRotationControlSwitch;
+void ui_event_ArmServoSelectionSwitch( lv_event_t * e);
 extern lv_obj_t *ui_ArmServoSelectionSwitch;
 extern lv_obj_t *ui_ControlClawServosLabel;
 extern lv_obj_t *ui_ConfigTab;
