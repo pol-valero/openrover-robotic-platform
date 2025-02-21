@@ -41,11 +41,37 @@ void updateRoverBattValuesLabelBar(Frame frame) {
 
 }
 
+void doAuxChannelsActions(Frame frame) {
+    //Depending on the value of the AUX channels, we trigger some actions (ex.- changing the status of a switch on the screen)
+
+    bool aux1ValueChanged = false;
+    static int lastAux1Value = 0;
+
+    RcValues rcValues = rcValuesFromFrame(frame);   
+    
+    if (rcValues.aux1 != lastAux1Value) {
+        aux1ValueChanged = true;
+        lastAux1Value = rcValues.aux1;
+    }
+
+    if (lv_obj_has_state(ui_ArmControlSwitch, LV_STATE_CHECKED) && aux1ValueChanged) {
+        if (rcValues.aux1 == 1 && !lv_obj_has_state(ui_ArmServoSelectionSwitch, LV_STATE_CHECKED)) {
+            lv_obj_add_state(ui_ArmServoSelectionSwitch, LV_STATE_CHECKED);
+            lv_event_send(ui_ArmServoSelectionSwitch, LV_EVENT_VALUE_CHANGED, NULL);
+        } else if (rcValues.aux1 == 0 && lv_obj_has_state(ui_ArmServoSelectionSwitch, LV_STATE_CHECKED)) {
+            lv_obj_clear_state(ui_ArmServoSelectionSwitch, LV_STATE_CHECKED);
+            lv_event_send(ui_ArmServoSelectionSwitch, LV_EVENT_VALUE_CHANGED, NULL);
+        }
+    }
+    
+}
+
 void handleReceivedFrame(Frame frame) {
 
     switch (frame.type) {
         case INF_F_RC_VALUES:
             updateRcValueLabels(frame);
+            doAuxChannelsActions(frame);
             break;
         case CMD_F_TEST:
             //TODO: Delete. Just for test.
