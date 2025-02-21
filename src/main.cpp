@@ -293,6 +293,34 @@ void correctRcValues(RcValues &rcValues) {
   rcValues.aux3 = map(rcValues.aux3, 0, 1023, 0, 255);
   rcValues.aux4 = map(rcValues.aux4, 0, 1023, 0, 255); 
 
+  if (rcValues.aux1 < 10) {
+    rcValues.aux1 = 0;
+  } else {
+    rcValues.aux1 = 1;
+  }
+
+  if (rcValues.aux2 < 10) {
+    rcValues.aux2 = 0;
+  } else if (rcValues.aux2 > 245) {
+    rcValues.aux2 = 2;
+  } else {
+    rcValues.aux2 = 1;
+  }
+
+  if (rcValues.aux3 < 10) {
+    rcValues.aux3 = 0;
+  } else {
+    rcValues.aux3 = 1;
+  }
+
+  if (rcValues.aux4 < 10) {
+    rcValues.aux4 = 0;
+  } else if(rcValues.aux4 > 245) {
+    rcValues.aux4 = 2;
+  } else {
+    rcValues.aux4 = 1;
+  }
+  
 }
 
 RcValues getSpektrumRcValues() {
