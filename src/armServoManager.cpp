@@ -189,8 +189,18 @@ void setRoboticArmS4toS5Angles() {
 }
 
 void setRoboticArmServosAngles() {
+    
+    static bool firstTimeRoboticArmControl = true;
 
-    //TODO: Check if the angles are in fully folded (or only check angles of servos 1 and 3, as they are the ones that folded = limit bound position. And also check that Servo 4 < certain angle)
+    if (firstTimeRoboticArmControl == true) {
+        //We initialize the servos and send them their initial positions (before, they were not holding any position)
+        setupArmServos();
+        setArmServosToFullyFolded();
+        firstTimeRoboticArmControl = false;
+
+        armServo4Angle = ARM_SERVO_4_FOLDED_ANGLE + 45; //From the fully folded position, we add 45 degrees so that the gripper is freed from the 3d printed rest support on the front wall of the rover
+        arm_servo4.write(armServo4Angle); 
+    }
     
     static unsigned long previousMillis = 0;
 
