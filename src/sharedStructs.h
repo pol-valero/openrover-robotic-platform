@@ -26,5 +26,11 @@ typedef struct __attribute__((packed)) {
   //TODO: Add field for checksum/validation?
 } Frame;
 
+typedef struct {
+  int temperature;
+  int humidity;
+  int pressure;
+  int altitude;
+} EnvironmentalValues;
 
 #endif

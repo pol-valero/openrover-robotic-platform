@@ -15,7 +15,7 @@
 #include "receivedFramesHandling.h"
 #include "statusDataManager.h"
 #include "armServoManager.h"
-
+#include "sensorsManager.h"
 
 const int servo_relay_pin = 28;
 
@@ -38,6 +38,8 @@ void setup() {
   setupBuzzer();
 
   setupBatteryMonitor();
+
+  setupSensors();
 
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
   digitalWrite(servo_relay_pin, HIGH);  //We power up the servos and we send them their initial positions
@@ -66,6 +68,8 @@ void loop() {
   operationModeExecution();
   Frame statusDataFrame = getStatusDataFrame();
   radioSendFrame(statusDataFrame);
+
+  getEnvironmentalValues(); //TODO: DELETE
 
   //rc_data2 = readRcValues();
   //printRcValues();
