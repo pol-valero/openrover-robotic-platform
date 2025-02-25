@@ -38,4 +38,10 @@ typedef struct {
   int altitude;
 } EnvironmentalValues;
 
+typedef struct {
+  int rpm;
+  int metersPerHour;
+  int distance;
+} SpeedometerValues;
+
 #endif

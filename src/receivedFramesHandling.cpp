@@ -91,6 +91,16 @@ void updateEnvMonitorValuesLabelsArcsChart(Frame frame) {
     
 }
 
+void updateSpeedometerValueLabels(Frame frame) {
+
+    SpeedometerValues speedometerValues = speedometerValuesFromFrame(frame);
+
+    lv_label_set_text(ui_RevsValueLabel, intValueToString(speedometerValues.rpm, "rpm"));
+    lv_label_set_text(ui_SpeedValueLabel, intValueToString(speedometerValues.metersPerHour, "m/h"));
+    lv_label_set_text(ui_DistanceValueLabel, intValueToString(speedometerValues.distance, "m"));
+
+}
+
 void handleReceivedFrame(Frame frame) {
 
     switch (frame.type) {
@@ -106,6 +116,9 @@ void handleReceivedFrame(Frame frame) {
             break;
         case INF_F_ENVIRONMENTAL_MONITORIZATION:
             updateEnvMonitorValuesLabelsArcsChart(frame);
+            break;
+        case INF_F_SPEEDOMETER_VALUES:
+            updateSpeedometerValueLabels(frame);
             break;
 
         default:

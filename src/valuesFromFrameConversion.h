@@ -9,4 +9,6 @@ BatteryValues battValuesFromFrame(Frame frame);
 
 EnvironmentalValues environmentalValuesFromFrame(Frame frame);
 
+SpeedometerValues speedometerValuesFromFrame(Frame frame);
+
 #endif

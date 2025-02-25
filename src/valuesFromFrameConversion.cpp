@@ -43,3 +43,15 @@ EnvironmentalValues environmentalValuesFromFrame(Frame frame) {
     return envValues;
 
 }
+
+SpeedometerValues speedometerValuesFromFrame(Frame frame) {
+
+    SpeedometerValues speedValues;
+    
+    speedValues.rpm = frame.data2B[0];
+    speedValues.metersPerHour = frame.data2B[1];
+    speedValues.distance = frame.data2B[2];
+    
+    return speedValues;
+
+}
