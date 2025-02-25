@@ -2625,7 +2625,7 @@
                           {
                             "nid": 1240,
                             "strtype": "CHART/ChartData",
-                            "strval": "[{\"Axis\":0,\"Color\":[213,80,82,255],\"Series\":[7,14,16,40,10,7,12,39,30,16,30,35,40,40,36,18,8,5,2,17,10,14,16,10,33,17,31,25,32,4]},{\"Axis\":2,\"Color\":[41,109,197,255],\"Series\":[66,68,72,46,91,16,54,64,26,87,11,52,34,47,57,41,35,85,83,23,41,13,39,50,47,29,48,20,61,31]}]",
+                            "strval": "[{\"Axis\":0,\"Color\":[213,80,82,255],\"Series\":[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]},{\"Axis\":2,\"Color\":[41,109,197,255],\"Series\":[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13]}]",
                             "InheritedType": 12
                           },
                           {
@@ -3590,7 +3590,7 @@
                             "flags": 17,
                             "strtype": "OBJECT/Size",
                             "intarray": [
-                              62,
+                              66,
                               15
                             ],
                             "InheritedType": 7
@@ -4212,7 +4212,7 @@
                             "flags": 17,
                             "strtype": "OBJECT/Position",
                             "intarray": [
-                              -116,
+                              121,
                               95
                             ],
                             "InheritedType": 7
@@ -4222,7 +4222,7 @@
                             "flags": 17,
                             "strtype": "OBJECT/Size",
                             "intarray": [
-                              47,
+                              39,
                               20
                             ],
                             "InheritedType": 7
@@ -4370,7 +4370,7 @@
                             "flags": 17,
                             "strtype": "OBJECT/Position",
                             "intarray": [
-                              116,
+                              -116,
                               95
                             ],
                             "InheritedType": 7
@@ -8006,8 +8006,7 @@
                         "InheritedType": 11
                       }
                     ],
-                    "saved_objtypeKey": "PANEL",
-                    "tree_closed": true
+                    "saved_objtypeKey": "PANEL"
                   },
                   {
                     "guid": "GUID46855905-326004S29952412",
