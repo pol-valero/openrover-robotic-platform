@@ -5,6 +5,7 @@
 #include "batteryManager.h"
 #include "valuesToFrameConversion.h"
 #include "sensorsManager.h"
+#include "motorManager.h"
 
 Frame getRoverBatteryFrame() {
 
@@ -46,6 +47,25 @@ Frame getEnvironmentalMonitoringFrame() {
     
 }
 
+Frame getSpeedometerFrame() {
+    
+    Frame frame;
+    frame.type = NOT_VALID;
+
+    static unsigned long previousMillis = 0;
+
+    //We get the speedometer values every 1 second
+    if (millis() - previousMillis >= 1000) {
+        previousMillis = millis();
+
+        SpeedometerValues speedometerValues = getSpeedometerValues();
+        frame = speedometerValuesToFrame(speedometerValues);
+
+    }
+
+    return frame;
+}
+
 Frame getStatusDataFrame() {
     
     Frame frame;
@@ -61,9 +81,13 @@ Frame getStatusDataFrame() {
         return frame;
     }
 
+    frame = getSpeedometerFrame();
+    if (frame.type != NOT_VALID) {
+        return frame;
+    }
+
     //TODO:
     //frame = getRpiStatusFrame();
-    //frame = getOdometerFrame();
 
     return frame;
     

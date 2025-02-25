@@ -73,6 +73,8 @@ int outer_wheels_speed;
 int inner_front_back_wheels_speed;
 int inner_middle_wheel_speed;
 
+SpeedometerValues speedometerValues = {0, 0, 0};
+
 
 void setupMotors() {
   PalatisSoftPWM.begin(15); ///15Hz PWM
@@ -257,6 +259,32 @@ void calculateMotorsSpeed(int speed) {
 
 }
 
+void updateSpeedometerMetrics(int speed) {
+
+  //NOTE: This function is just an aproximation of speed and distance. For greater accuracy, a hall sensor would be used to count the RPMs of the wheel
+
+  if (speed < 30) {
+    speedometerValues.rpm = 0;
+  } else {
+    speedometerValues.rpm = map(speed, 30, 255, 10, 25);  //The motor, when loaded with the rover weight, can reach aproximately 25 rpm at full speed.
+  }
+
+  speedometerValues.metersPerHour = (speedometerValues.rpm * 0.4 * 60); //The wheel perimeter is 40cm (0.4m), so we multiply the rpm by 0.4 to get the meters per minute, then we multiply by 60 to get the meters per hour
+
+  //Every second, we increase the distance
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 1000) {
+    previousMillis = millis();
+
+    static float distance = 0;
+    distance += speedometerValues.rpm * 0.4 / 60;
+    
+    speedometerValues.distance = distance;   //We add the meters travelled in the last second (suposing the RPMs were constant)
+  }
+
+}
+
 void setMotorSpeedsConventionalControl() {
   //Depending on the channels values (steering LEFT/RIGHT and throttle FWD/BCK) we will set each motor to its according 
   //(outer_wheels_speed, inner_front_back_wheels_speed, inner_middle_wheel_speed) and rotation direction using the "setMotorSpeed" function
@@ -273,6 +301,8 @@ void setMotorSpeedsConventionalControl() {
   
   //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
   //both in this function and the "calculateMotorsSpeed" function
+
+  updateSpeedometerMetrics(abs(speedAndDirection));
 
   if (joystickY_isCentered(JOY_RIGHT)) {
 
@@ -350,6 +380,8 @@ void setMotorSpeeds360Control() {
 
   //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
 
+  updateSpeedometerMetrics(abs(speedAndDirection));
+
   if (joystickX_isCentered(JOY_RIGHT)) {
 
     stopMotors();
@@ -380,4 +412,8 @@ void setMotorSpeeds360Control() {
 
   }
 
+}
+
+SpeedometerValues getSpeedometerValues() {
+  return speedometerValues;
 }

@@ -9,4 +9,6 @@ void setMotorSpeedsConventionalControl();
 
 void setMotorSpeeds360Control();
 
+SpeedometerValues getSpeedometerValues();
+
 #endif

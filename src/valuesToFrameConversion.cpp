@@ -30,3 +30,17 @@ Frame environmentalValuesToFrame(EnvironmentalValues environmentalValues) {
     return frame;
     
 }
+
+Frame speedometerValuesToFrame(SpeedometerValues speedometerValues) {
+    
+    Frame frame;
+    
+    frame.type = INF_F_SPEEDOMETER_VALUES;
+    
+    frame.data2B[0] = speedometerValues.rpm;
+    frame.data2B[1] = speedometerValues.metersPerHour; 
+    frame.data2B[2] = speedometerValues.distance; 
+    
+    return frame;
+    
+}

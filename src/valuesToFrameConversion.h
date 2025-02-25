@@ -7,4 +7,6 @@ Frame roverBattValuesToFrame(BatteryValues batteryValues);
 
 Frame environmentalValuesToFrame(EnvironmentalValues environmentalValues);
 
+Frame speedometerValuesToFrame(SpeedometerValues speedometerValues);
+
 #endif

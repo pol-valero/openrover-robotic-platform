@@ -66,8 +66,8 @@ void checkRcLinkStatus(Frame frame) {
       msTimeSinceLastPacket += 50;
     }
 
-    //If we spend more than 200ms without receiving a packet, the rc connection will be considered as lost
-    if (msTimeSinceLastPacket >= 200) {
+    //If we spend more than 500ms without receiving a packet, the rc connection will be considered as lost
+    if (msTimeSinceLastPacket >= 500) {
 
       rcLinkStatus = RADIO_KO;
       
