@@ -66,6 +66,31 @@ void doAuxChannelsActions(Frame frame) {
     
 }
 
+void updateEnvMonitorValuesLabelsArcsChart(Frame frame) {
+
+    char buffer[10];
+
+    EnvironmentalValues envValues = environmentalValuesFromFrame(frame);
+
+    //Update the data labels
+    lv_label_set_text(ui_TempValueLabel, intValueToString(envValues.temperature, "°C"));
+    lv_label_set_text(ui_HumValueLabel, intValueToString(envValues.humidity, "%"));
+    lv_label_set_text(ui_PressureValueLabel, intValueToString(envValues.pressure, "hPa"));
+    sprintf(buffer, "(%dm)", envValues.altitude);
+    lv_label_set_text(ui_HeightValueLabel, buffer);
+
+    //Update the arcs
+    lv_arc_set_value(ui_TempArc, envValues.temperature);
+    lv_arc_set_value(ui_HumArc, envValues.humidity);
+    lv_arc_set_value(ui_PressureArc, envValues.pressure);
+
+    //Update the chart with the new values
+    lv_chart_set_next_value(ui_EnvDataChart, ui_EnvDataChart_series_1, envValues.temperature);
+    lv_chart_set_next_value(ui_EnvDataChart, ui_EnvDataChart_series_2, envValues.humidity);
+    lv_chart_refresh(ui_EnvDataChart);
+    
+}
+
 void handleReceivedFrame(Frame frame) {
 
     switch (frame.type) {
@@ -73,18 +98,14 @@ void handleReceivedFrame(Frame frame) {
             updateRcValueLabels(frame);
             doAuxChannelsActions(frame);
             break;
-        case CMD_F_TEST:
-            //TODO: Delete. Just for test.
-            char buffer[100];
-            sprintf(buffer, "Frame type %d received. Data2B[1]: %d, Data1B[3]: %d", frame.type, frame.data2B[1], frame.data1B[3]);
-            lv_label_set_text(ui_NotificationsLabel, buffer);
-            //
-            break;
         case INF_F_RC_BAT_LEVEL:
             updateRcBattValuesLabelBar(frame);
             break;
         case INF_F_ROVER_BAT_LEVEL:
             updateRoverBattValuesLabelBar(frame);
+            break;
+        case INF_F_ENVIRONMENTAL_MONITORIZATION:
+            updateEnvMonitorValuesLabelsArcsChart(frame);
             break;
 
         default:

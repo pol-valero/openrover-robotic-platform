@@ -7,4 +7,6 @@ RcValues rcValuesFromFrame(Frame frame);
 
 BatteryValues battValuesFromFrame(Frame frame);
 
+EnvironmentalValues environmentalValuesFromFrame(Frame frame);
+
 #endif

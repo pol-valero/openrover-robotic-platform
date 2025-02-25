@@ -154,6 +154,8 @@ extern lv_obj_t *ui_RcIcon;
 extern lv_obj_t *ui_homeIcon;
 extern lv_obj_t *ui_monitorIcon;
 extern lv_obj_t *ui_configIcon;
+extern lv_chart_series_t* ui_EnvDataChart_series_1;
+extern lv_chart_series_t* ui_EnvDataChart_series_2;
 // CUSTOM VARIABLES
 
 // EVENTS

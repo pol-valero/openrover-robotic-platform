@@ -30,3 +30,16 @@ BatteryValues battValuesFromFrame(Frame frame) {
     return battValues;
 
 }
+
+EnvironmentalValues environmentalValuesFromFrame(Frame frame) {
+
+    EnvironmentalValues envValues;
+    
+    envValues.temperature = frame.data2B[0];
+    envValues.humidity = frame.data2B[1];
+    envValues.pressure = frame.data2B[2];
+    envValues.altitude = frame.data2B[3];
+    
+    return envValues;
+
+}

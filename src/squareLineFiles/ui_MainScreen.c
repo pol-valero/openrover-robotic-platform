@@ -5,6 +5,9 @@
 
 #include "ui.h"
 
+lv_chart_series_t* ui_EnvDataChart_series_1 = NULL;
+lv_chart_series_t* ui_EnvDataChart_series_2 = NULL;
+
 void ui_MainScreen_screen_init(void)
 {
 ui_MainScreen = lv_obj_create(NULL);
@@ -254,10 +257,10 @@ lv_chart_set_div_line_count( ui_EnvDataChart, 5, 7);
 lv_chart_set_axis_tick( ui_EnvDataChart, LV_CHART_AXIS_PRIMARY_X, 0, 0, 7, 2, false, 50);
 lv_chart_set_axis_tick( ui_EnvDataChart, LV_CHART_AXIS_PRIMARY_Y, 5, 3, 5, 2, true, 50);
 lv_chart_set_axis_tick( ui_EnvDataChart, LV_CHART_AXIS_SECONDARY_Y, 5, 3, 5, 2, true, 25);
-lv_chart_series_t* ui_EnvDataChart_series_1 = lv_chart_add_series(ui_EnvDataChart, lv_color_hex(0xD55052), LV_CHART_AXIS_PRIMARY_Y);
+ui_EnvDataChart_series_1 = lv_chart_add_series(ui_EnvDataChart, lv_color_hex(0xD55052), LV_CHART_AXIS_PRIMARY_Y);
 static lv_coord_t ui_EnvDataChart_series_1_array[] = { 7,14,16,40,10,7,12,39,30,16,30,35,40,40,36,18,8,5,2,17,10,14,16,10,33,17,31,25,32,4 };
 lv_chart_set_ext_y_array(ui_EnvDataChart, ui_EnvDataChart_series_1, ui_EnvDataChart_series_1_array);
-lv_chart_series_t* ui_EnvDataChart_series_2 = lv_chart_add_series(ui_EnvDataChart, lv_color_hex(0x296DC5), LV_CHART_AXIS_SECONDARY_Y);
+ui_EnvDataChart_series_2 = lv_chart_add_series(ui_EnvDataChart, lv_color_hex(0x296DC5), LV_CHART_AXIS_SECONDARY_Y);
 static lv_coord_t ui_EnvDataChart_series_2_array[] = { 66,68,72,46,91,16,54,64,26,87,11,52,34,47,57,41,35,85,83,23,41,13,39,50,47,29,48,20,61,31 };
 lv_chart_set_ext_y_array(ui_EnvDataChart, ui_EnvDataChart_series_2, ui_EnvDataChart_series_2_array);
 lv_obj_set_style_bg_color(ui_EnvDataChart, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -340,7 +343,7 @@ lv_obj_set_style_text_align(ui_HumValueLabel, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN
 lv_obj_set_style_text_font(ui_HumValueLabel, &ui_font_Montserrat_medium_custom, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_PressureValueLabel = lv_label_create(ui_EnvMonitorPanel);
-lv_obj_set_width( ui_PressureValueLabel, 62);
+lv_obj_set_width( ui_PressureValueLabel, 66);
 lv_obj_set_height( ui_PressureValueLabel, 15);
 lv_obj_set_x( ui_PressureValueLabel, 130 );
 lv_obj_set_y( ui_PressureValueLabel, -70 );
