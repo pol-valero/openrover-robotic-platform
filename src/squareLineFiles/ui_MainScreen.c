@@ -258,10 +258,10 @@ lv_chart_set_axis_tick( ui_EnvDataChart, LV_CHART_AXIS_PRIMARY_X, 0, 0, 7, 2, fa
 lv_chart_set_axis_tick( ui_EnvDataChart, LV_CHART_AXIS_PRIMARY_Y, 5, 3, 5, 2, true, 50);
 lv_chart_set_axis_tick( ui_EnvDataChart, LV_CHART_AXIS_SECONDARY_Y, 5, 3, 5, 2, true, 25);
 ui_EnvDataChart_series_1 = lv_chart_add_series(ui_EnvDataChart, lv_color_hex(0xD55052), LV_CHART_AXIS_PRIMARY_Y);
-static lv_coord_t ui_EnvDataChart_series_1_array[] = { 7,14,16,40,10,7,12,39,30,16,30,35,40,40,36,18,8,5,2,17,10,14,16,10,33,17,31,25,32,4 };
+static lv_coord_t ui_EnvDataChart_series_1_array[] = { 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5 };
 lv_chart_set_ext_y_array(ui_EnvDataChart, ui_EnvDataChart_series_1, ui_EnvDataChart_series_1_array);
 ui_EnvDataChart_series_2 = lv_chart_add_series(ui_EnvDataChart, lv_color_hex(0x296DC5), LV_CHART_AXIS_SECONDARY_Y);
-static lv_coord_t ui_EnvDataChart_series_2_array[] = { 66,68,72,46,91,16,54,64,26,87,11,52,34,47,57,41,35,85,83,23,41,13,39,50,47,29,48,20,61,31 };
+static lv_coord_t ui_EnvDataChart_series_2_array[] = { 13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13 };
 lv_chart_set_ext_y_array(ui_EnvDataChart, ui_EnvDataChart_series_2, ui_EnvDataChart_series_2_array);
 lv_obj_set_style_bg_color(ui_EnvDataChart, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_EnvDataChart, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
@@ -391,9 +391,9 @@ lv_obj_set_style_text_align(ui_MaxMinEnvParametersLabel, LV_TEXT_ALIGN_LEFT, LV_
 lv_obj_set_style_text_font(ui_MaxMinEnvParametersLabel, &ui_font_Montserrat_medium_custom_12, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_NowLabel = lv_label_create(ui_EnvMonitorPanel);
-lv_obj_set_width( ui_NowLabel, 47);
+lv_obj_set_width( ui_NowLabel, 39);
 lv_obj_set_height( ui_NowLabel, 20);
-lv_obj_set_x( ui_NowLabel, -116 );
+lv_obj_set_x( ui_NowLabel, 121 );
 lv_obj_set_y( ui_NowLabel, 95 );
 lv_obj_set_align( ui_NowLabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_NowLabel,"Now");
@@ -405,7 +405,7 @@ lv_obj_set_style_text_font(ui_NowLabel, &ui_font_Montserrat_medium_custom, LV_PA
 ui_MinusOneMinLabel = lv_label_create(ui_EnvMonitorPanel);
 lv_obj_set_width( ui_MinusOneMinLabel, 51);
 lv_obj_set_height( ui_MinusOneMinLabel, 20);
-lv_obj_set_x( ui_MinusOneMinLabel, 116 );
+lv_obj_set_x( ui_MinusOneMinLabel, -116 );
 lv_obj_set_y( ui_MinusOneMinLabel, 95 );
 lv_obj_set_align( ui_MinusOneMinLabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_MinusOneMinLabel,"-1 min");
