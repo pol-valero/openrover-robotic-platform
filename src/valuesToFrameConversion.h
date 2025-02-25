@@ -5,4 +5,6 @@
 
 Frame roverBattValuesToFrame(BatteryValues batteryValues);
 
+Frame environmentalValuesToFrame(EnvironmentalValues environmentalValues);
+
 #endif

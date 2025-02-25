@@ -4,6 +4,7 @@
 #include "frameTypesDefinition.h"
 #include "batteryManager.h"
 #include "valuesToFrameConversion.h"
+#include "sensorsManager.h"
 
 Frame getRoverBatteryFrame() {
 
@@ -25,16 +26,43 @@ Frame getRoverBatteryFrame() {
     
 }
 
+Frame getEnvironmentalMonitoringFrame() {
+    
+    Frame frame;
+    frame.type = NOT_VALID;
+
+    static unsigned long previousMillis = 0;
+
+    //We get the environmental monitoring values every 2 seconds
+    if (millis() - previousMillis >= 2000) {
+        previousMillis = millis();
+
+        EnvironmentalValues environmentalValues = getEnvironmentalValues();
+        frame = environmentalValuesToFrame(environmentalValues);
+
+    }
+
+    return frame;
+    
+}
+
 Frame getStatusDataFrame() {
     
     Frame frame;
     frame.type = NOT_VALID;
 
     frame = getRoverBatteryFrame();
+    if (frame.type != NOT_VALID) {  //If frame is valid, we return it immediately (so that in a single iteration of this function, only one timer is reseted and one valid frame is gotten)
+        return frame;
+    }
+
+    frame = getEnvironmentalMonitoringFrame();
+    if (frame.type != NOT_VALID) {
+        return frame;
+    }
 
     //TODO:
     //frame = getRpiStatusFrame();
-    //frame = getEnvironmentalMonitoringFrame();
     //frame = getOdometerFrame();
 
     return frame;

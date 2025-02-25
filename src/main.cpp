@@ -69,8 +69,6 @@ void loop() {
   Frame statusDataFrame = getStatusDataFrame();
   radioSendFrame(statusDataFrame);
 
-  getEnvironmentalValues(); //TODO: DELETE
-
   //rc_data2 = readRcValues();
   //printRcValues();
   //chooseOperationMode(rc_data2);

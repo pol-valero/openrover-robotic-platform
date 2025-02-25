@@ -15,3 +15,18 @@ Frame roverBattValuesToFrame(BatteryValues batteryValues) {
     return frame;
     
 }
+
+Frame environmentalValuesToFrame(EnvironmentalValues environmentalValues) {
+    
+    Frame frame;
+    
+    frame.type = INF_F_ENVIRONMENTAL_MONITORIZATION;
+    
+    frame.data2B[0] = environmentalValues.temperature;
+    frame.data2B[1] = environmentalValues.humidity;
+    frame.data2B[2] = environmentalValues.pressure;
+    frame.data2B[3] = environmentalValues.altitude;
+    
+    return frame;
+    
+}
