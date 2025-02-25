@@ -50,9 +50,6 @@ void setup() {
 
 void loop() {
 
-  //TODO: Only call operationModeExecution inside functions every 30ms or so? (instead of calling them every loop iteration) 
-  //(especially the ones that do the complex Ackermann calculations)
-
   //serialReceiveFrame
   //handleReceivedFrame
   //radioReceiveFrame

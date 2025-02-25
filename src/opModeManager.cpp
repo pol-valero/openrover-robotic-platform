@@ -64,13 +64,25 @@ void operationModeExecution() {
   switch (op_mode) {
 
     case OP_CONVENTIONAL_DRIVING:
-      setMotorSpeedsConventionalControl();
-      setWheelServosAnglesConventionalControl();
+    {
+      static unsigned long previousMillis = 0;
+      if (millis() - previousMillis >= 50) { //We only calculate and set the speeds and angles every 50ms, to increase performance of other concurrent parts of the code
+        previousMillis = millis();
+        setMotorSpeedsConventionalControl();
+        setWheelServosAnglesConventionalControl();
+      }
       break;
+    }
     case OP_360_DEGREE_TURN_CONTROL:
-      setMotorSpeeds360Control();
+    {
+      static unsigned long previousMillis = 0;
+      if (millis() - previousMillis >= 50) { //We only calculate and set the speeds every 50ms, to increase performance of other concurrent parts of the code
+        previousMillis = millis();
+        setMotorSpeeds360Control();
+      }
       setWheelServosAnglesTo360();
       break;
+    }
     case OP_ROBOTIC_ARM_CONTROL:
       setRoboticArmServosAngles();
       break;
