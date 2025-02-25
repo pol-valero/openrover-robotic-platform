@@ -351,8 +351,8 @@ RcValues getSpektrumRcValuesForSerial () {
 
   static unsigned long previousMillis = 0;
 
-  //Gets the RC values every 100ms
-  if (millis() - previousMillis >= 100) {
+  //Gets the RC values every 130ms
+  if (millis() - previousMillis >= 130) {
     previousMillis = millis();
 
     rcValues = getSpektrumRcValues();
@@ -370,8 +370,8 @@ RcValues getSpektrumRcValuesForRadio () {
 
   static unsigned long previousMillis = 0;
 
-  //Gets the RC values every 30ms
-  if (millis() - previousMillis >= 30) {
+  //Gets the RC values every 50ms
+  if (millis() - previousMillis >= 50) {
     previousMillis = millis();
 
     rcValues = getSpektrumRcValues();
