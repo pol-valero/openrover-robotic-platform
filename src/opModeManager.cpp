@@ -4,6 +4,7 @@
 #include "wheelServoManager.h"
 #include "motorManager.h"
 #include "armServoManager.h"
+#include "headMovementsManager.h"
 
 //TODO: Maybe we will need to distinguish between RC_OP_WHATEVER and WEB_OP_WHATEVER (if we want to do exactly the same operations via the web as in the remote control)
 //TODO: Maybe we won't need to distinguish between RC_OP_WHATEVER and WEB_OP_WHATEVER, as exactly the same operations will be done via the web as in the remote control (the only difference will be if the frames are 
@@ -87,7 +88,8 @@ void operationModeExecution() {
       setRoboticArmServosAngles();
       break;
     case OP_HEAD_CONTROL:
-      //headControl();
+      setStepperHeadPanAngle();
+      //setServoHeadTiltAngle();
       break;
     case SUB_OP_360_DEGREE_TO_CONVENTIONAL:
       setWheelServosAnglesToConventional();

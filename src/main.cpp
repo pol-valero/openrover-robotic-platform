@@ -16,6 +16,7 @@
 #include "statusDataManager.h"
 #include "armServoManager.h"
 #include "sensorsManager.h"
+#include "headMovementsManager.h"
 
 const int servo_relay_pin = 28;
 
@@ -40,6 +41,8 @@ void setup() {
   setupBatteryMonitor();
 
   setupSensors();
+
+  setupHeadServoStepper();
 
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
   digitalWrite(servo_relay_pin, HIGH);  //We power up the servos and we send them their initial positions

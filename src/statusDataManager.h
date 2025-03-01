@@ -5,4 +5,6 @@
 
 Frame getStatusDataFrame();
 
+void enableStatusData(bool enable);
+
 #endif

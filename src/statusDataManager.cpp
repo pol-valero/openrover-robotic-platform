@@ -7,6 +7,8 @@
 #include "sensorsManager.h"
 #include "motorManager.h"
 
+bool statusDataEnabled = true;
+
 Frame getRoverBatteryFrame() {
 
     Frame frame;
@@ -15,7 +17,7 @@ Frame getRoverBatteryFrame() {
     static unsigned long previousMillis = 0;
 
     //We calculate and get the battery values every 1 second
-    if (millis() - previousMillis >= 1000) {
+    if (millis() - previousMillis >= 1200) {
         previousMillis = millis();
 
         BatteryValues roverBatteryValues = getRoverBatteryValues();
@@ -55,7 +57,7 @@ Frame getSpeedometerFrame() {
     static unsigned long previousMillis = 0;
 
     //We get the speedometer values every 1 second
-    if (millis() - previousMillis >= 1000) {
+    if (millis() - previousMillis >= 1350) {
         previousMillis = millis();
 
         SpeedometerValues speedometerValues = getSpeedometerValues();
@@ -70,6 +72,10 @@ Frame getStatusDataFrame() {
     
     Frame frame;
     frame.type = NOT_VALID;
+
+    if (statusDataEnabled == false) {
+        return frame;
+    }
 
     frame = getRoverBatteryFrame();
     if (frame.type != NOT_VALID) {  //If frame is valid, we return it immediately (so that in a single iteration of this function, only one timer is reseted and one valid frame is gotten)
@@ -91,4 +97,8 @@ Frame getStatusDataFrame() {
 
     return frame;
     
+}
+
+void enableStatusData(bool enable) {
+    statusDataEnabled = enable;
 }

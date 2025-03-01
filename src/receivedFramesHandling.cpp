@@ -21,6 +21,9 @@ void selectOperationMode(int opMode) {
         case OP_ROBOTIC_ARM_CONTROL:
             setOpMode(OP_ROBOTIC_ARM_CONTROL);
             break;
+        case OP_HEAD_CONTROL:
+            setOpMode(OP_HEAD_CONTROL);
+            break;
         default:
             break;
     }
