@@ -16,11 +16,17 @@ int testValue = 0;
 void headControlSwChecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Head control switch checked");
 
+    Frame frame = roverOpModeSelectionToFrame(OP_HEAD_CONTROL);
+    serialSendFrame(frame);
+
     headControlSwUpdateRelatedObjectsVisibility(true);
 }
 
 void headControlSwUnchecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Head control switch unchecked");
+
+    Frame frame = roverOpModeSelectionToFrame(OP_CONVENTIONAL_DRIVING);
+    serialSendFrame(frame);
 
     headControlSwUpdateRelatedObjectsVisibility(false);
 }
