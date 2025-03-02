@@ -3,6 +3,8 @@
 
 void setStepperHeadPanAngle();
 
+void setServoHeadTiltAngle();
+
 void setupHeadServoStepper();
 
 #endif

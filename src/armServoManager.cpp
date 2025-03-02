@@ -137,20 +137,6 @@ void setRoboticArmS1toS3Angles() {
     arm_servo2.write(armServo2Angle);
     arm_servo3.write(armServo3Angle);
 
-    //DELETE
-    /*static unsigned long previousMillis2 = 0;
-
-    if (millis() - previousMillis2 >= 100) {
-        previousMillis2 = millis();
-        Serial.print("Servo 1: ");
-        Serial.print(armServo1Angle);
-        Serial.print(" Servo 2: ");
-        Serial.print(armServo2Angle);
-        Serial.print(" Servo 3: ");
-        Serial.println(armServo3Angle);
-    }*/
-    //
-
 }
 
 void setRoboticArmS4toS5Angles() {
@@ -173,18 +159,6 @@ void setRoboticArmS4toS5Angles() {
 
     arm_servo4.write(armServo4Angle);
     arm_servo5.write(armServo5Angle);
-
-    //DELETE
-    /*static unsigned long previousMillis2 = 0;
-
-    if (millis() - previousMillis2 >= 100) {
-        previousMillis2 = millis();
-        Serial.print(" Servo 4: ");
-        Serial.print(armServo4Angle);
-        Serial.print(" Servo 5: ");
-        Serial.println(armServo5Angle);
-    }*/
-    //
 
 }
 

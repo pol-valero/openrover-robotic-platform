@@ -89,7 +89,7 @@ void operationModeExecution() {
       break;
     case OP_HEAD_CONTROL:
       setStepperHeadPanAngle();
-      //setServoHeadTiltAngle();
+      setServoHeadTiltAngle();
       break;
     case SUB_OP_360_DEGREE_TO_CONVENTIONAL:
       setWheelServosAnglesToConventional();
