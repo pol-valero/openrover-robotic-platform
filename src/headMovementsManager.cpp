@@ -47,6 +47,35 @@ bool stepperHeadPanAngleInBounds(int angle) {
 
 void setStepperHeadPanAngle() {
 
+    static bool stepperHomePositionInitialized = false;
+
+    //After 10 seconds from the moment the Head Control SW was clicked, the stepper has had enough time to trigger the limit sensor and then return to its home position
+    static unsigned long previousMillis1 = millis();
+    if (millis() - previousMillis1 >= 10000) {
+        previousMillis1 = millis();
+        stepperHomePositionInitialized = true;
+    }
+
+    if (stepperHomePositionInitialized == false) {
+
+        enableStatusData(false);    //We disable the sending of status data, as it is a bit slow and it can make the stepper movements less fluid.
+
+        static bool travelLimitSensorTouched = false;
+
+        if (digitalRead(stepperTravelLimitSensorPin) == LOW) {
+            travelLimitSensorTouched = true;
+            stepper.stop();
+            stepper.startRotate(-160);
+        }
+
+        if (digitalRead(stepperTravelLimitSensorPin) == HIGH && travelLimitSensorTouched == false) {
+            stepper.startRotate(80);
+        }
+        stepper.nextAction();
+
+        return; //We do not want to execute the rest of the function until the stepper has reached its home position, and this function is no longer called
+    }
+
     //If we are trying to pan the head (joystick X axis is not at the center), we disable the sending of status data, as it is a bit slow and it can make the stepper movements less fluid. 
     if (!joystickX_isCentered(JOY_LEFT)) {
         enableStatusData(false);
