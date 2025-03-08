@@ -13,4 +13,6 @@ void usbSerialPrint(char* message);
 
 void usbSerialPrintFloat(float number);
 
+void testLoop();
+
 #endif

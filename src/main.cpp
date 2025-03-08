@@ -17,15 +17,14 @@
 #include "armServoManager.h"
 #include "sensorsManager.h"
 #include "headMovementsManager.h"
-
-const int servo_relay_pin = 28;
+#include "relayManager.h"
 
 
 void setup() {
 
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
-  pinMode(servo_relay_pin, OUTPUT);
-  digitalWrite(servo_relay_pin, LOW); //We immediately put the relay that powers the servos in an OPEN position to make sure that no power gets to the servos before the program initializes
+  setupRelays();
+  setServosRelayStatus(OPEN);  //We immediately put the relay that powers the servos in an OPEN position to make sure that no power gets to the servos before the program initializes
   //////////////////////////////////////////////
 
   setupWheelServos();
@@ -45,9 +44,11 @@ void setup() {
   setupHeadServoStepper();
 
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
-  digitalWrite(servo_relay_pin, HIGH);  //We power up the servos and we send them their initial positions
+  setServosRelayStatus(CLOSED);  //We power up the servos and we send them their initial positions
   setWheelServosStraight();
   //////////////////////////////////////////////
+
+  setRaspberryPiRelayStatus(CLOSED); //We power up the Raspberry Pi
 
 }
 
@@ -74,6 +75,8 @@ void loop() {
   //chooseOperationMode(rc_data2);
   //operationModeExecution();
   //printBatteryValues();
+
+  testLoop();
 
 }
 
