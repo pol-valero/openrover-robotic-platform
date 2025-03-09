@@ -9,4 +9,6 @@ Frame roverOpModeSelectionToFrame(int opMode);
 
 Frame armServoSelectionToFrame(bool controlClawServosSelected);
 
+Frame raspberryPiPowerStatusToFrame(bool powerOn);
+
 #endif

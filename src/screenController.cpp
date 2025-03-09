@@ -98,11 +98,18 @@ void rpiGiveControlSwUnchecked(lv_event_t *e) {
 void powerRpiSwChecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Power Raspberry Pi switch checked");
 
+    Frame frame = raspberryPiPowerStatusToFrame(true);
+    serialSendFrame(frame);
+
     powerRpiSwUpdateRelatedObjectsVisibility(true);
 }
 
 void powerRpiSwUnchecked(lv_event_t *e) {
     lv_label_set_text(ui_NotificationsLabel, "Power Raspberry Pi switch unchecked");
+
+    Frame frame = raspberryPiPowerStatusToFrame(false);
+    serialSendFrame(frame);
+
     powerRpiSwUpdateRelatedObjectsVisibility(false);
 }
 

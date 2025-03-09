@@ -39,3 +39,17 @@ Frame armServoSelectionToFrame(bool controlClawServosSelected) {
     return frame;
 
 }
+
+Frame raspberryPiPowerStatusToFrame(bool powerOn) {
+    
+    Frame frame;
+    frame.type = CMD_F_RASPBERRYPI_POWER;
+    if (powerOn) {
+        frame.data1B[0] = 1;
+    } else {
+        frame.data1B[0] = 0;
+    }
+
+    return frame;
+
+}

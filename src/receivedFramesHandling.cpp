@@ -101,6 +101,34 @@ void updateSpeedometerValueLabels(Frame frame) {
 
 }
 
+void updateRaspberryPiStatusValueElements(Frame frame) {
+
+    RaspberryPiStatusValues rpiStatusValues = rpiStatusValuesFromFrame(frame);
+
+    if (rpiStatusValues.online) {
+        lv_label_set_text(ui_OnlineStatusLabel, "Online");
+        lv_obj_clear_state(ui_OnlineStatusIndicatorPanel, LV_STATE_DISABLED);
+    } else {
+        lv_label_set_text(ui_OnlineStatusLabel, "Offline");
+        lv_obj_add_state(ui_OnlineStatusIndicatorPanel, LV_STATE_DISABLED);
+    }
+
+    if (rpiStatusValues.cameraOn) {
+        lv_label_set_text(ui_CameraStatusLabel, "Camera On");
+        lv_obj_clear_state(ui_CameraStatusIndicatorPanel, LV_STATE_DISABLED);
+    } else {
+        lv_label_set_text(ui_CameraStatusLabel, "Camera Off");
+        lv_obj_add_state(ui_CameraStatusIndicatorPanel, LV_STATE_DISABLED);
+    }
+
+    lv_label_set_text(ui_CpuTempValueLabel, intValueToString(rpiStatusValues.cpuTemperature, "°C"));
+    lv_bar_set_value(ui_CpuTempBar, rpiStatusValues.cpuTemperature, LV_ANIM_OFF);
+
+    lv_label_set_text(ui_CpuWorloadValueLabel, intValueToString(rpiStatusValues.cpuWorkload, "%"));
+    lv_bar_set_value(ui_CpuWorkloadBar, rpiStatusValues.cpuWorkload, LV_ANIM_OFF);
+
+}
+
 void handleReceivedFrame(Frame frame) {
 
     switch (frame.type) {
@@ -119,6 +147,9 @@ void handleReceivedFrame(Frame frame) {
             break;
         case INF_F_SPEEDOMETER_VALUES:
             updateSpeedometerValueLabels(frame);
+            break;
+        case INF_F_RASPBERRYPI_STATUS:
+            updateRaspberryPiStatusValueElements(frame);
             break;
 
         default:

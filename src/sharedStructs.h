@@ -44,4 +44,11 @@ typedef struct {
   int distance;
 } SpeedometerValues;
 
+typedef struct {
+  bool online;
+  bool cameraOn;
+  int cpuTemperature;
+  int cpuWorkload;
+} RaspberryPiStatusValues;
+
 #endif
