@@ -1,24 +1,16 @@
 #include <Arduino.h>
 
 #include "SerialTransfer.h"
+#include "serialCommunication.h"
+#include "frameTypesDefinition.h"
 
 SerialTransfer myTransfer;
-
-typedef struct __attribute__((packed)) STRUCT {
-    char z;
-    double y;
-  } TestStruct;
-  
-  TestStruct testStruct;
-  TestStruct testStruct2;
 
 void setupSerial() {
     Serial.begin(9600);
     Serial1.begin(115200);
     myTransfer.begin(Serial1);
 
-    testStruct.z = 'F';
-    testStruct.y = 26.5;
 }
 
 void usbSerialPrint(char* message) {
@@ -32,23 +24,81 @@ void usbSerialPrintFloat(float number) {
     Serial.print(number);
 }
 
+void serialSendFrame(Frame frame) {
+    myTransfer.sendDatum(frame);
+}
+
+Frame serialReceiveFrame() {
+
+    Frame frame;
+    frame.type = NOT_VALID;
+
+    if (myTransfer.available()) {
+
+        myTransfer.rxObj(frame);
+
+        return frame;
+        
+    }
+
+    return frame;
+
+}
+
 void testLoop() {
     ///////////////////////////////////////// Stuff buffer with struct
   static unsigned long previousMillis = 0;
 
   if (millis() - previousMillis >= 1000) {
     previousMillis = millis();
-    myTransfer.sendDatum(testStruct);
-    Serial.print("Sent: ");
+    /*myTransfer.sendDatum(testStruct);
+    Serial.print("Sent: ");*/
+
+    //Send FRAME with all fields filled
+    Frame frame;
+    frame.type = 240;
+    frame.data2B[0] = 5001;
+    frame.data2B[1] = -5002;
+    frame.data2B[2] = 5003;
+    frame.data2B[3] = -5004;
+    frame.data1B[0] = 205;
+    frame.data1B[1] = 206;
+    frame.data1B[2] = 207;
+    frame.data1B[3] = 208;
+    frame.data1B[4] = 209;
+
+    serialSendFrame(frame);
+
   }
 
   ///////////////////////////////////////// Receive data
-  if (myTransfer.available()) {
+  /*if (myTransfer.available()) {
     myTransfer.rxObj(testStruct2);
     Serial.print("Received: ");
     Serial.print(testStruct2.z);
     Serial.print(" ");
     Serial.println(testStruct2.y);
-  }
+  }*/
+
+  Frame receivedFrame = serialReceiveFrame();
+
+  if (receivedFrame.type != NOT_VALID) {
+  
+    //We print all the fields
+        Serial.print("Received frame type: ");
+        Serial.println(receivedFrame.type);
+        for (int i = 0; i < 4; i++) {
+            Serial.print("Received frame data2B[");
+            Serial.print(i);
+            Serial.print("]: ");
+            Serial.println(receivedFrame.data2B[i]);
+        }
+        for (int i = 0; i < 5; i++) {
+            Serial.print("Received frame data1B[");
+            Serial.print(i);
+            Serial.print("]: ");
+            Serial.println(receivedFrame.data1B[i]);
+        }
+    }
 
 }

@@ -1,13 +1,13 @@
 #ifndef SERIAL_COMMUNICATION_H
 #define SERIAL_COMMUNICATION_H
 
-//#include "sharedStructs.h"
+#include "sharedStructs.h"
 
 void setupSerial();
 
-//void serialSendFrame(Frame frame);
+void serialSendFrame(Frame frame);
 
-//Frame serialReceiveFrame();
+Frame serialReceiveFrame();
 
 void usbSerialPrint(char* message);
 
