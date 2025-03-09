@@ -25,7 +25,11 @@ void usbSerialPrintFloat(float number) {
 }
 
 void serialSendFrame(Frame frame) {
-    myTransfer.sendDatum(frame);
+
+    if (frame.type != NOT_VALID) {
+        myTransfer.sendDatum(frame);
+    }
+
 }
 
 Frame serialReceiveFrame() {
@@ -45,14 +49,13 @@ Frame serialReceiveFrame() {
 
 }
 
+//TODO: Test function. Delete. 
 void testLoop() {
-    ///////////////////////////////////////// Stuff buffer with struct
-  static unsigned long previousMillis = 0;
 
-  if (millis() - previousMillis >= 1000) {
+    static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 2000) {
     previousMillis = millis();
-    /*myTransfer.sendDatum(testStruct);
-    Serial.print("Sent: ");*/
 
     //Send FRAME with all fields filled
     Frame frame;
@@ -72,14 +75,6 @@ void testLoop() {
   }
 
   ///////////////////////////////////////// Receive data
-  /*if (myTransfer.available()) {
-    myTransfer.rxObj(testStruct2);
-    Serial.print("Received: ");
-    Serial.print(testStruct2.z);
-    Serial.print(" ");
-    Serial.println(testStruct2.y);
-  }*/
-
   Frame receivedFrame = serialReceiveFrame();
 
   if (receivedFrame.type != NOT_VALID) {

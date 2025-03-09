@@ -6,6 +6,7 @@
 #include "valuesToFrameConversion.h"
 #include "sensorsManager.h"
 #include "motorManager.h"
+#include "radioCommunication.h"
 
 bool statusDataEnabled = true;
 
@@ -16,7 +17,7 @@ Frame getRoverBatteryFrame() {
 
     static unsigned long previousMillis = 0;
 
-    //We calculate and get the battery values every 1 second
+    //We calculate and get the battery values every 1.2 second
     if (millis() - previousMillis >= 1200) {
         previousMillis = millis();
 
@@ -56,7 +57,7 @@ Frame getSpeedometerFrame() {
 
     static unsigned long previousMillis = 0;
 
-    //We get the speedometer values every 1 second
+    //We get the speedometer values every 1.35 second
     if (millis() - previousMillis >= 1350) {
         previousMillis = millis();
 
@@ -93,7 +94,7 @@ Frame getStatusDataFrame() {
     }
 
     //TODO:
-    //frame = getRpiStatusFrame();
+    //frame = getRpiStatusFrame(); -> It is better than instead of doing this here, the RPI itself sends its status data
 
     return frame;
     
@@ -101,4 +102,43 @@ Frame getStatusDataFrame() {
 
 void enableStatusData(bool enable) {
     statusDataEnabled = enable;
+}
+
+void checkRaspberryPiStatus(Frame frame) {
+
+    static long msTimeSinceLastPacket = 0;
+
+   if(frame.type == INF_F_RASPBERRYPI_STATUS) {
+
+    msTimeSinceLastPacket = 0;
+  
+  } else {
+
+    static unsigned long previousMillis1 = 0;
+
+    if (millis() - previousMillis1 >= 1000) {
+      previousMillis1 = millis();
+
+      msTimeSinceLastPacket += 1000;
+    }
+
+    //If we spend more than 6 seconds without receiving a packet, the RPI status will be considered as offline
+    if (msTimeSinceLastPacket >= 6000) {
+
+        msTimeSinceLastPacket = 0;
+
+        //RPI offline
+        RaspberryPiStatusValues rpiStatusValues;
+        rpiStatusValues.online = false;
+        rpiStatusValues.cameraOn = false;
+        rpiStatusValues.cpuTemperature = 0;
+        rpiStatusValues.cpuWorkload = 0;
+
+        Frame rpiStatusFrame = raspberryPiStatusValuesToFrame(rpiStatusValues);
+        radioSendFrame(rpiStatusFrame);
+        
+    }
+
+  }
+
 }

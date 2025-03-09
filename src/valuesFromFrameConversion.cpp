@@ -28,3 +28,11 @@ bool armServoSelectionFromFrame(Frame frame) {
         return false;
     }
 }
+
+bool raspberryPiPowerStatusFromFrame(Frame frame) {
+    if (frame.data1B[0] == 1) {
+        return true;    //Power ON
+    } else {
+        return false;   //Power OFF
+    }
+}

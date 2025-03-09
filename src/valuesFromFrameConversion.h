@@ -9,4 +9,6 @@ int roverOpModeSelectionFromFrame(Frame frame);
 
 bool armServoSelectionFromFrame(Frame frame);
 
+bool raspberryPiPowerStatusFromFrame(Frame frame);
+
 #endif

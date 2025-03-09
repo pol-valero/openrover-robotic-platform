@@ -44,3 +44,26 @@ Frame speedometerValuesToFrame(SpeedometerValues speedometerValues) {
     return frame;
     
 }
+
+Frame raspberryPiStatusValuesToFrame(RaspberryPiStatusValues rpiStatusValues) {
+    
+    Frame frame;
+    
+    frame.type = INF_F_RASPBERRYPI_STATUS;
+    
+    if (rpiStatusValues.online == true) {
+        frame.data1B[0] = 1;
+    } else {
+        frame.data1B[0] = 0;
+    }
+    if (rpiStatusValues.cameraOn == true) {
+        frame.data1B[1] = 1;
+    } else {
+        frame.data1B[1] = 0;
+    }
+    frame.data1B[2] = rpiStatusValues.cpuTemperature;
+    frame.data1B[3] = rpiStatusValues.cpuWorkload;
+    
+    return frame;
+    
+}

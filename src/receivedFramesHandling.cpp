@@ -6,6 +6,9 @@
 #include "valuesFromFrameConversion.h"
 #include "opModeManager.h"
 #include "armServoManager.h"
+#include "statusDataManager.h"
+#include "relayManager.h"
+#include "radioCommunication.h"
 
 
 void selectOperationMode(int opMode) {
@@ -51,10 +54,22 @@ void handleReceivedFrame(Frame frame) {
             setArmServoSelection(controlClawServosSelected);
             break;
         }
+        case CMD_F_RASPBERRYPI_POWER:
+        {
+            bool rpiPowerOn = raspberryPiPowerStatusFromFrame(frame);
+            setRaspberryPiRelayStatus(rpiPowerOn);
+            break;
+        }
+        case INF_F_RASPBERRYPI_STATUS:
+        {
+            radioSendFrame(frame);  //We send the frame to the Remote Control, so that the RPI status can be displayed on the screen
+            break;
+        }
         default:
             break;
     }
 
     checkRcLinkStatus(frame);
+    checkRaspberryPiStatus(frame);
 
 }

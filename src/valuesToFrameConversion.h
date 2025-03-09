@@ -9,4 +9,6 @@ Frame environmentalValuesToFrame(EnvironmentalValues environmentalValues);
 
 Frame speedometerValuesToFrame(SpeedometerValues speedometerValues);
 
+Frame raspberryPiStatusValuesToFrame(RaspberryPiStatusValues rpiStatusValues);
+
 #endif

@@ -11,18 +11,18 @@ void setupRelays() {
     pinMode(raspberryPiRelayPin, OUTPUT);
 }
 
-void setServosRelayStatus(int status) {
-    if (status == CLOSED) {
+void setServosRelayStatus(bool powerOn) {
+    if (powerOn == true) {
         digitalWrite(servosRelayPin, HIGH);
-    } else if (status == OPEN) {
+    } else {
         digitalWrite(servosRelayPin, LOW);
     }
 }
 
-void setRaspberryPiRelayStatus(int status) {
-    if (status == CLOSED) {
+void setRaspberryPiRelayStatus(bool powerOn) {
+    if (powerOn == true) {
         digitalWrite(raspberryPiRelayPin, HIGH);
-    } else if (status == OPEN) {
+    } else {
         digitalWrite(raspberryPiRelayPin, LOW);
     }
 }

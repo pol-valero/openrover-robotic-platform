@@ -7,4 +7,6 @@ Frame getStatusDataFrame();
 
 void enableStatusData(bool enable);
 
+void checkRaspberryPiStatus(Frame frame);
+
 #endif
