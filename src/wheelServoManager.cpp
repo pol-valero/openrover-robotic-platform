@@ -1,15 +1,18 @@
 #include <Arduino.h>
 #include <Servo.h>  
 
-#include "servoManager.h"
+#include "wheelServoManager.h"
 #include "ackermannParameters.h"
 #include "opModeManager.h"
+#include "rcValuesManager.h"
 
 
 #define MAX_INTEGER 32766
 
+//Right arm servos, from front to back
 #define W_SERVO_1 1
 #define W_SERVO_2 2
+//Left arm servos, from front to back
 #define W_SERVO_3 3
 #define W_SERVO_4 4
 
@@ -41,7 +44,7 @@ int outer_servo_back_angle_beta;
 int inner_servo_front_angle_beta;
 int inner_servo_back_angle_beta;
 
-void setupServos() {
+void setupWheelServos() {
     w_servo1.attach(w_servo1_pin);
     w_servo2.attach(w_servo2_pin);
     w_servo3.attach(w_servo3_pin);
@@ -52,16 +55,17 @@ int getTurningRadius() {
   return turning_radius;
 }
 
-void calculateWheelServosAngle(Rc_data rc_data) {
+//Value of the joystick used to turn, "turnJoystickValue" (-255...0...255) as argument. Negative values when joystick is left, positive values when joystick is right.
+void calculateWheelServosAngle(int turnJoystickValue) {
 
   //Ackerman steering geometry calculations
 
-  if (joystickX_isCentered(JOY_RIGHT)) {
+  if (joystickX_isCentered(JOY_LEFT)) {
     turning_radius = MAX_INTEGER; //We put the turning radius to the maximum integer to indicate that we are not turning
-  } else if (joystickIsLeft(JOY_RIGHT)) {
-      turning_radius = map(rc_data.joystick2_x, 0, -255, max_turning_radius, min_turning_radius); //4000mm to 700mm turning radius
+  } else if (joystickIsLeft(JOY_LEFT)) {
+      turning_radius = map(turnJoystickValue, 0, -255, max_turning_radius, min_turning_radius); //4000mm to 700mm turning radius
   } else {
-      turning_radius = map(rc_data.joystick2_x, 0, 255, max_turning_radius, min_turning_radius); 
+      turning_radius = map(turnJoystickValue, 0, 255, max_turning_radius, min_turning_radius); 
   }
 
   outer_servo_front_angle_beta = round((atan(((float)d1_distance_front_middle_wheels / (turning_radius + d3_front_back_rover_width))) ) * (180 / PI)); //We multiply by 180/PI to convert radians to degrees
@@ -123,22 +127,28 @@ void setWheelServosStraight() {
 
 }
 
-void setWheelServosAnglesConventionalControl(Rc_data rc_data) {
+void setWheelServosAnglesConventionalControl() {
   //Depending on the channels values (steering LEFT/RIGHT) we will add or subtract each servos'
   //(outer_servos_angle_beta, inner_servos_angle_beta) to its w_servo_center constant, so that it goes to the correct position
   //(outer_servos_angle_beta, inner_servos_angle_beta) will have the angle calculated at "calculateMotorsSpeed"
   //We will add or subtract each "angle beta" to the w_servo_center constant and put the result into the corresponding 
   //servoX_angle. Then we will write each servoX_angle to the corresponding servo using the Servo.write function
 
-  if (joystickX_isCentered(JOY_RIGHT)) {
+  RcValues rcValues = getRcValues();
+  int turnJoystickValue = rcValues.x1;  //Value of the joystick used to turn, "turnJoystickValue" (-255...0...255). Negative values when joystick is left, positive values when joystick is right.
+
+  //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
+  //both in this function and the "calculateWheelServosAngle" function
+
+  if (joystickX_isCentered(JOY_LEFT)) {
 
     setWheelServosStraight();
 
   } else {
     
-    calculateWheelServosAngle(rc_data);
+    calculateWheelServosAngle(turnJoystickValue);
 
-    if (joystickIsLeft(JOY_RIGHT)) {
+    if (joystickIsLeft(JOY_LEFT)) {
       servoWrite(W_SERVO_1, w_servo_center[1] - outer_servo_front_angle_beta);
       servoWrite(W_SERVO_2, w_servo_center[2] + outer_servo_back_angle_beta);
       servoWrite(W_SERVO_3, w_servo_center[3] - inner_servo_front_angle_beta);
@@ -156,8 +166,6 @@ void setWheelServosAnglesConventionalControl(Rc_data rc_data) {
 }
 
 void setWheelServosAnglesTo360() {
-
-  int speed; //From 0 to 255
   
   static int currentAngle = 0;
   const int finalAngle = 45;

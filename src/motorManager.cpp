@@ -2,7 +2,7 @@
 #include <PalatisSoftPWM.h>
 
 #include "motorManager.h"
-#include "servoManager.h"
+#include "wheelServoManager.h"
 #include "ackermannParameters.h"
 
 
@@ -72,6 +72,8 @@ SOFTPWM_DEFINE_OBJECT(12); //Number of Software PWM Channels
 int outer_wheels_speed;
 int inner_front_back_wheels_speed;
 int inner_middle_wheel_speed;
+
+SpeedometerValues speedometerValues = {0, 0, 0};
 
 
 void setupMotors() {
@@ -207,11 +209,9 @@ void stopMotors() {
 
 }
 
-void calculateMotorsSpeed(Rc_data rc_data) {
+//speed (0...255) as argument
+void calculateMotorsSpeed(int speed) {
   //Ackerman steering geometry calculations
-
-  int speed;
-  int maxSpeed, minSpeed;
 
   int correctionFactor1 = 0;  //Value that we will subtract from the inner wheels speed, so that tire slipping does not occur when having high speed and high angle
   //These correction factors are necessary because even tough the wheel speed equations are correct, the inner tires slip a bit (due to unknown physical factors) at high speed and high angle
@@ -219,13 +219,12 @@ void calculateMotorsSpeed(Rc_data rc_data) {
 
   int turning_radius;
 
-  if (joystickX_isCentered(JOY_RIGHT)) {
+  if (joystickX_isCentered(JOY_LEFT)) {
 
-    outer_wheels_speed = inner_front_back_wheels_speed = inner_middle_wheel_speed = abs(rc_data.joystick1_y);
+    outer_wheels_speed = inner_front_back_wheels_speed = inner_middle_wheel_speed = speed;
     
   } else {
     
-    speed = abs(rc_data.joystick1_y);
     speed = map(speed, 0, 255, 0, 100); //we convert the speed to a 0-100 range to make the calculations
 
     if (speed >= 30) {
@@ -260,8 +259,33 @@ void calculateMotorsSpeed(Rc_data rc_data) {
 
 }
 
-//TODO: SetMotorsSpeeds(generalSpeed (0-255) as argument
-void setMotorSpeedsConventionalControl(Rc_data rc_data) {
+void updateSpeedometerMetrics(int speed) {
+
+  //NOTE: This function is just an aproximation of speed and distance. For greater accuracy, a hall sensor would be used to count the RPMs of the wheel
+
+  if (speed < 30) {
+    speedometerValues.rpm = 0;
+  } else {
+    speedometerValues.rpm = map(speed, 30, 255, 10, 25);  //The motor, when loaded with the rover weight, can reach aproximately 25 rpm at full speed.
+  }
+
+  speedometerValues.metersPerHour = (speedometerValues.rpm * 0.4 * 60); //The wheel perimeter is 40cm (0.4m), so we multiply the rpm by 0.4 to get the meters per minute, then we multiply by 60 to get the meters per hour
+
+  //Every second, we increase the distance
+  static unsigned long previousMillis = 0;
+
+  if (millis() - previousMillis >= 1000) {
+    previousMillis = millis();
+
+    static float distance = 0;
+    distance += speedometerValues.rpm * 0.4 / 60;
+    
+    speedometerValues.distance = distance;   //We add the meters travelled in the last second (suposing the RPMs were constant)
+  }
+
+}
+
+void setMotorSpeedsConventionalControl() {
   //Depending on the channels values (steering LEFT/RIGHT and throttle FWD/BCK) we will set each motor to its according 
   //(outer_wheels_speed, inner_front_back_wheels_speed, inner_middle_wheel_speed) and rotation direction using the "setMotorSpeed" function
   //(outer_wheels_speed, inner_front_back_wheels_speed, inner_middle_wheel_speed) will have the speed (0-100) calculated at "calculateMotorsSpeed"
@@ -272,17 +296,25 @@ void setMotorSpeedsConventionalControl(Rc_data rc_data) {
     return;
   }
 
-  if (joystickY_isCentered(JOY_LEFT)) {
+  RcValues rcValues = getRcValues();
+  int speedAndDirection = rcValues.y2;  //speedAndDirection (-255...0...255). Negative values are backwards speed.
+  
+  //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
+  //both in this function and the "calculateMotorsSpeed" function
+
+  updateSpeedometerMetrics(abs(speedAndDirection));
+
+  if (joystickY_isCentered(JOY_RIGHT)) {
 
     stopMotors();
 
   } else {
 
-      calculateMotorsSpeed(rc_data);
+      calculateMotorsSpeed(abs(speedAndDirection));
 
-      if (joystickIsUp(JOY_LEFT)) {
+      if (joystickIsUp(JOY_RIGHT)) {
 
-        if (joystickIsLeft(JOY_RIGHT)) {
+        if (joystickIsLeft(JOY_LEFT)) {
 
           setMotorSpeed(MOTOR_1, outer_wheels_speed, FWD);
           setMotorSpeed(MOTOR_2, outer_wheels_speed, FWD);
@@ -306,7 +338,7 @@ void setMotorSpeedsConventionalControl(Rc_data rc_data) {
 
       } else {
 
-        if (joystickIsLeft(JOY_RIGHT)) {
+        if (joystickIsLeft(JOY_LEFT)) {
 
           setMotorSpeed(MOTOR_1, outer_wheels_speed, BCK);
           setMotorSpeed(MOTOR_2, outer_wheels_speed, BCK);
@@ -334,8 +366,7 @@ void setMotorSpeedsConventionalControl(Rc_data rc_data) {
 
 }
 
-//TODO: (generalSpeed (0-255) as argument; or get it with function call)
-void setMotorSpeeds360Control(Rc_data rc_data) {
+void setMotorSpeeds360Control() {
 
   int speed; //From 0 to 255
 
@@ -344,13 +375,20 @@ void setMotorSpeeds360Control(Rc_data rc_data) {
     return;
   }
 
+  RcValues rcValues = getRcValues();
+  int speedAndDirection = rcValues.x2;  //speedAndDirection (-255...0...255). Negative values are counter-clockwise speed.
+
+  //NOTICE: If we want to change the control joystick (RIGHT/LEFT) or axis (X/Y) we will have to change related functions and arguments (ex.- joystickIsUp(JOY_LEFT))
+
+  updateSpeedometerMetrics(abs(speedAndDirection));
+
   if (joystickX_isCentered(JOY_RIGHT)) {
 
     stopMotors();
 
   } else {
 
-    speed = abs(rc_data.joystick2_x);
+    speed = abs(speedAndDirection);
 
     if (joystickIsLeft(JOY_RIGHT)) {
 
@@ -374,4 +412,8 @@ void setMotorSpeeds360Control(Rc_data rc_data) {
 
   }
 
+}
+
+SpeedometerValues getSpeedometerValues() {
+  return speedometerValues;
 }

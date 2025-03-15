@@ -5,27 +5,31 @@
 
 #include <Arduino.h>
 
-#include "servoManager.h"
+#include "wheelServoManager.h"
 #include "motorManager.h"
 #include "rcValuesManager.h"
 #include "opModeManager.h"
 #include "serialCommunication.h"
 #include "batteryManager.h"
-
-
-Rc_data rc_data2;
-
-const int servo_relay_pin = 28;
+#include "radioCommunication.h"
+#include "receivedFramesHandling.h"
+#include "statusDataManager.h"
+#include "armServoManager.h"
+#include "sensorsManager.h"
+#include "headMovementsManager.h"
+#include "relayManager.h"
 
 
 void setup() {
 
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
-  pinMode(servo_relay_pin, OUTPUT);
-  digitalWrite(servo_relay_pin, LOW); //We immediately put the relay that powers the servos in an OPEN position to make sure that no power gets to the servos before the program initializes
+  setupRelays();
+  setServosRelayStatus(false);  //We immediately put the relay that powers the servos in an OPEN position to make sure that no power gets to the servos before the program initializes
   //////////////////////////////////////////////
 
-  setupServos();
+  setRaspberryPiRelayStatus(false);  //We power off the Raspberry Pi
+
+  setupWheelServos();
   
   setupMotors();
 
@@ -37,47 +41,18 @@ void setup() {
 
   setupBatteryMonitor();
 
+  setupSensors();
+
+  setupHeadServoStepper();
+
   //DO NOT ALTER THE POSITION OF THESE 2 LINES//
-  digitalWrite(servo_relay_pin, HIGH);  //We power up the servos and we send them their initial positions
+  setServosRelayStatus(true);  //We power up the servos and we send them their initial positions
   setWheelServosStraight();
   //////////////////////////////////////////////
 
 }
 
-
-
-void operationModeExecution() {
-
-  switch (getOpMode()) {
-
-    case OP_CONVENTIONAL_DRIVING:
-      setMotorSpeedsConventionalControl(rc_data2);
-      setWheelServosAnglesConventionalControl(rc_data2);
-      break;
-    case OP_360_DEGREE_TURN_CONTROL:
-      setMotorSpeeds360Control(rc_data2);
-      setWheelServosAnglesTo360();
-      break;
-    case OP_ROBOTIC_ARM_CONTROL:
-      //roboticArmControl();
-      break;
-    case OP_HEAD_CONTROL:
-      //headControl();
-      break;
-    case SUB_OP_360_DEGREE_TO_CONVENTIONAL:
-      setWheelServosAnglesToConventional();
-      break;
-
-    default:
-      break;
-
-  }
-
-}
-
 void loop() {
-
-  //TODO: Only call operationModeExecution inside functions every 50ms or so? (instead of calling them every loop iteration)
 
   //serialReceiveFrame
   //handleReceivedFrame
@@ -88,11 +63,23 @@ void loop() {
   //radioSendFrame  //inside this function, use bool to determine wether to send the frame or not (depending if the RC is powered on or not)
   //serialSendFrame //same, but depending on the RPI powered on or not
 
-  rc_data2 = readRcValues();
-  //printRcValues();
-  chooseOperationMode(rc_data2);
+
+  Frame receivedRadioFrame = radioReceiveFrame();
+  Frame receivedSerialFrame = serialReceiveFrame();
+  handleReceivedFrame(receivedRadioFrame);
+  handleReceivedFrame(receivedSerialFrame);
   operationModeExecution();
+  Frame statusDataFrame = getStatusDataFrame();
+  radioSendFrame(statusDataFrame);
+  serialSendFrame(statusDataFrame);
+
+  //rc_data2 = readRcValues();
+  //printRcValues();
+  //chooseOperationMode(rc_data2);
+  //operationModeExecution();
   //printBatteryValues();
+
+  //testLoop();
 
 }
 
