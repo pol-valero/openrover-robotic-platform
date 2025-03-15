@@ -6768,8 +6768,8 @@
                             "flags": 17,
                             "strtype": "OBJECT/Position",
                             "intarray": [
-                              -90,
-                              1
+                              -89,
+                              2
                             ],
                             "InheritedType": 7
                           },
@@ -6778,8 +6778,8 @@
                             "flags": 17,
                             "strtype": "OBJECT/Size",
                             "intarray": [
-                              28,
-                              14
+                              32,
+                              17
                             ],
                             "InheritedType": 7
                           },
@@ -7040,7 +7040,7 @@
                           {
                             "nid": 10,
                             "strtype": "OBJECT/Name",
-                            "strval": "CpuWorloadValueLabel",
+                            "strval": "CpuWorkloadValueLabel",
                             "InheritedType": 10
                           },
                           {
@@ -7071,8 +7071,8 @@
                             "flags": 17,
                             "strtype": "OBJECT/Position",
                             "intarray": [
-                              -88,
-                              42
+                              -87,
+                              43
                             ],
                             "InheritedType": 7
                           },
@@ -7081,8 +7081,8 @@
                             "flags": 17,
                             "strtype": "OBJECT/Size",
                             "intarray": [
-                              28,
-                              14
+                              35,
+                              17
                             ],
                             "InheritedType": 7
                           },
