@@ -39,7 +39,7 @@ bool stepperHeadPanAngleInBounds(int angle) {
 
     //As we are incrementing/decrementing the angle by 1 every 10ms (in order to keep track with the "stepperHeadPanAngle" variable of the position we are in),
     //the angle is not really in decimal degrees (as the library is designed to increment/decrement by an angle without the need of calling every X ms the "startRotate" function)
-    return angle >= -235 && angle <= 365;
+    return angle >= -220 && angle <= 350;
 }
 
 bool initializeStepperHomePosition() {
@@ -114,7 +114,7 @@ void setStepperHeadPanAngle() {
 }
 
 bool servoHeadTiltAngleInBounds(int angle) {
-    return angle >= 10 && angle <= 170;
+    return angle >= 60 && angle <= 120;
 }
 
 void setServoHeadTiltAngle() {
