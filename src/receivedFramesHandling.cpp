@@ -124,7 +124,7 @@ void updateRaspberryPiStatusValueElements(Frame frame) {
     lv_label_set_text(ui_CpuTempValueLabel, intValueToString(rpiStatusValues.cpuTemperature, "°C"));
     lv_bar_set_value(ui_CpuTempBar, rpiStatusValues.cpuTemperature, LV_ANIM_OFF);
 
-    lv_label_set_text(ui_CpuWorloadValueLabel, intValueToString(rpiStatusValues.cpuWorkload, "%"));
+    lv_label_set_text(ui_CpuWorkloadValueLabel, intValueToString(rpiStatusValues.cpuWorkload, "%"));
     lv_bar_set_value(ui_CpuWorkloadBar, rpiStatusValues.cpuWorkload, LV_ANIM_OFF);
 
 }

@@ -74,7 +74,7 @@ extern lv_obj_t *ui_CpuMinWorkloadLabel;
 extern lv_obj_t *ui_CpuWorkloadBar;
 extern lv_obj_t *ui_CpuTempValueLabel;
 extern lv_obj_t *ui_RPIzeroImage;
-extern lv_obj_t *ui_CpuWorloadValueLabel;
+extern lv_obj_t *ui_CpuWorkloadValueLabel;
 extern lv_obj_t *ui_CameraStatusLabel;
 extern lv_obj_t *ui_CameraStatusIndicatorPanel;
 extern lv_obj_t *ui_CpuMaxTempLabel;

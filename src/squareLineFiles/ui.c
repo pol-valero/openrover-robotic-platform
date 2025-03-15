@@ -57,7 +57,7 @@ lv_obj_t *ui_CpuMinWorkloadLabel;
 lv_obj_t *ui_CpuWorkloadBar;
 lv_obj_t *ui_CpuTempValueLabel;
 lv_obj_t *ui_RPIzeroImage;
-lv_obj_t *ui_CpuWorloadValueLabel;
+lv_obj_t *ui_CpuWorkloadValueLabel;
 lv_obj_t *ui_CameraStatusLabel;
 lv_obj_t *ui_CameraStatusIndicatorPanel;
 lv_obj_t *ui_CpuMaxTempLabel;

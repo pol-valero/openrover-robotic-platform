@@ -598,10 +598,10 @@ lv_obj_set_style_bg_color(ui_CpuWorkloadBar, lv_color_hex(0xD98000), LV_PART_IND
 lv_obj_set_style_bg_opa(ui_CpuWorkloadBar, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
 
 ui_CpuTempValueLabel = lv_label_create(ui_RPIstatusPanel);
-lv_obj_set_width( ui_CpuTempValueLabel, 28);
-lv_obj_set_height( ui_CpuTempValueLabel, 14);
-lv_obj_set_x( ui_CpuTempValueLabel, -90 );
-lv_obj_set_y( ui_CpuTempValueLabel, 1 );
+lv_obj_set_width( ui_CpuTempValueLabel, 32);
+lv_obj_set_height( ui_CpuTempValueLabel, 17);
+lv_obj_set_x( ui_CpuTempValueLabel, -89 );
+lv_obj_set_y( ui_CpuTempValueLabel, 2 );
 lv_obj_set_align( ui_CpuTempValueLabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_CpuTempValueLabel,"22ºC");
 lv_obj_set_style_text_color(ui_CpuTempValueLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -620,17 +620,17 @@ lv_obj_add_flag( ui_RPIzeroImage, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_clear_flag( ui_RPIzeroImage, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_img_set_zoom(ui_RPIzeroImage,245);
 
-ui_CpuWorloadValueLabel = lv_label_create(ui_RPIstatusPanel);
-lv_obj_set_width( ui_CpuWorloadValueLabel, 28);
-lv_obj_set_height( ui_CpuWorloadValueLabel, 14);
-lv_obj_set_x( ui_CpuWorloadValueLabel, -88 );
-lv_obj_set_y( ui_CpuWorloadValueLabel, 42 );
-lv_obj_set_align( ui_CpuWorloadValueLabel, LV_ALIGN_CENTER );
-lv_label_set_text(ui_CpuWorloadValueLabel,"55%");
-lv_obj_set_style_text_color(ui_CpuWorloadValueLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_CpuWorloadValueLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_CpuWorloadValueLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_CpuWorloadValueLabel, &ui_font_Montserrat_medium_custom_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+ui_CpuWorkloadValueLabel = lv_label_create(ui_RPIstatusPanel);
+lv_obj_set_width( ui_CpuWorkloadValueLabel, 35);
+lv_obj_set_height( ui_CpuWorkloadValueLabel, 17);
+lv_obj_set_x( ui_CpuWorkloadValueLabel, -87 );
+lv_obj_set_y( ui_CpuWorkloadValueLabel, 43 );
+lv_obj_set_align( ui_CpuWorkloadValueLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_CpuWorkloadValueLabel,"55%");
+lv_obj_set_style_text_color(ui_CpuWorkloadValueLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_CpuWorkloadValueLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_CpuWorkloadValueLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_CpuWorkloadValueLabel, &ui_font_Montserrat_medium_custom_12, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_CameraStatusLabel = lv_label_create(ui_RPIstatusPanel);
 lv_obj_set_width( ui_CameraStatusLabel, 128);
