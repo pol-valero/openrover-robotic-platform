@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="my-4">Robot Sensor Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Temperature</h3>
+                <p id="temperature">-- °C</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Humidity</h3>
+                <p id="humidity">-- %</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Battery</h3>
+                <p id="battery">-- %</p>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 from pySerialTransfer import pySerialTransfer as txfer
 from pySerialTransfer.pySerialTransfer import Status
 
-import frameTypesDefinition as frameType
-from sharedStructs import Frame
+import logic.frameTypesDefinition as frameType
+from logic.sharedStructs import Frame
 
 class SerialCommunication:
 
@@ -34,7 +34,7 @@ class SerialCommunication:
                 recSize += txfer.STRUCT_FORMAT_LENGTHS['B']
 
         elif self.link.status.value <= 0:
-            printSerialErrors() 
+            self.printSerialErrors() 
 
         return frame
 
@@ -48,7 +48,7 @@ class SerialCommunication:
                 sendSize = self.link.tx_obj(frame.data1B[i], start_pos=sendSize, val_type_override='B')
             self.link.send(sendSize)
 
-    def printSerialErrors():
+    def printSerialErrors(self):
         if self.link.status == Status.CRC_ERROR:
             print('ERROR: CRC_ERROR')
         elif self.link.status == Status.PAYLOAD_ERROR:

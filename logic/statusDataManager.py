@@ -3,10 +3,10 @@ import time
 import subprocess
 import psutil
 
-import frameTypesDefinition as frameType
-from sharedStructs import RaspberryPiStatusValues
-from sharedStructs import Frame
-from valuesToFrameConversion import ValuesToFrame
+import logic.frameTypesDefinition as frameType
+from logic.sharedStructs import RaspberryPiStatusValues
+from logic.sharedStructs import Frame
+from logic.valuesToFrameConversion import ValuesToFrame
 
 class StatusDataManager:
 

@@ -1,6 +1,6 @@
-import frameTypesDefinition as frameType
-from sharedStructs import RaspberryPiStatusValues
-from sharedStructs import Frame
+import logic.frameTypesDefinition as frameType
+from logic.sharedStructs import RaspberryPiStatusValues
+from logic.sharedStructs import Frame
 
 class ValuesToFrame:
 

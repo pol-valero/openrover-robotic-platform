@@ -1,11 +1,17 @@
-from serialCommunication import SerialCommunication 
-from receivedFramesHandling import ReceivedFramesHandling
-from statusDataManager import StatusDataManager
+import time
 
+from logic.serialCommunication import SerialCommunication 
+from logic.receivedFramesHandling import ReceivedFramesHandling
+from logic.statusDataManager import StatusDataManager
+import website.flaskApp as flaskApp
 
 if __name__ == '__main__':
 
     try:
+
+        flaskApp.startThread()
+        time.sleep(3)
+        print('Flask app started')
 
         serial = SerialCommunication()  
 

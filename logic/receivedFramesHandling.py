@@ -1,11 +1,12 @@
 from threading import Thread
 
-import frameTypesDefinition as frameType
-from sharedStructs import Frame
-from sharedStructs import RoverBatteryValues
-from sharedStructs import EnvironmentalValues
-from sharedStructs import SpeedometerValues
-from valuesFromFrameConversion import ValuesFromFrame
+import logic.frameTypesDefinition as frameType
+from logic.sharedStructs import Frame
+from logic.sharedStructs import RoverBatteryValues
+from logic.sharedStructs import EnvironmentalValues
+from logic.sharedStructs import SpeedometerValues
+from logic.valuesFromFrameConversion import ValuesFromFrame
+import website.flaskApp as flaskApp
 
 class ReceivedFramesHandling:
 
@@ -48,6 +49,7 @@ class ReceivedFramesHandling:
                 case frameType.INF_F_ENVIRONMENTAL_MONITORIZATION:
                     environmentalValues = ValuesFromFrame.environmentalValues(frame)
                     self.printEnvironmentalValues(environmentalValues)
+                    flaskApp.set_sensor_data(environmentalValues)
 
                 case frameType.INF_F_SPEEDOMETER_VALUES:
                     speedometerValues = ValuesFromFrame.speedometerValues(frame)

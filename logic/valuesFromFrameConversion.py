@@ -1,8 +1,8 @@
-import frameTypesDefinition as frameType
-from sharedStructs import RoverBatteryValues
-from sharedStructs import EnvironmentalValues
-from sharedStructs import SpeedometerValues
-from sharedStructs import Frame
+import logic.frameTypesDefinition as frameType
+from logic.sharedStructs import RoverBatteryValues
+from logic.sharedStructs import EnvironmentalValues
+from logic.sharedStructs import SpeedometerValues
+from logic.sharedStructs import Frame
 
 class ValuesFromFrame:
 
