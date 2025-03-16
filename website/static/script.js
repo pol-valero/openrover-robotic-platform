@@ -3,6 +3,9 @@ var tempData = [];
 var labels = [];
 var chart = null;
 
+var feedActive = false;
+
+
 // Create the temperature chart
 function createChart() {
     var ctx = document.getElementById('temperatureChart').getContext('2d');
@@ -57,6 +60,23 @@ socket.on('sensor_update', function(data) {
 
     // Update the chart with new temperature data
     updateChart(data.temperature);
+});
+
+socket.on('camera_update', function(data) {
+    document.getElementById('cameraFeed').src = URL.createObjectURL(new Blob([data], {type: 'image/jpeg'}));
+});
+
+document.getElementById('toggleFeed').addEventListener('click', function () {
+    feedActive = !feedActive;
+    socket.emit('toggle_camera', { active: feedActive });
+
+    if (feedActive) {
+        this.textContent = "Stop Feed";
+        document.getElementById('cameraFeed').src = "/video_feed";  // Start feed
+    } else {
+        this.textContent = "Start Feed";
+        document.getElementById('cameraFeed').src = "";  // Stop feed
+    }
 });
 
 // Initialize the chart when the page loads

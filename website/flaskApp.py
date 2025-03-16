@@ -1,6 +1,7 @@
 from flask import Flask, render_template, Response
 from flask_socketio import SocketIO
 from picamera2 import Picamera2
+import base64
 import cv2
 import random
 import time
@@ -17,24 +18,32 @@ environmentalValues = EnvironmentalValues()
 
 picam2 = Picamera2()
 picam2.configure(picam2.create_preview_configuration(main={"size": (1280, 720)}))
-picam2.start()
 
-def generate_frames():
-    """Continuously capture frames and send as a video stream."""
+send_camera_feed_Thread = None
+
+def send_camera_feed():
     while True:
         frame = picam2.capture_array()  # Capture frame as numpy array
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
-        _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 90])  # Increase quality
-        frame_bytes = buffer.tobytes()
+        _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])  
 
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
-        time.sleep(0.03)  # 30 FPS
+        socketio.emit('camera_update', buffer.tobytes())  # Send frame to clients
+        time.sleep(0.03)
 
-@app.route('/video_feed')
-def video_feed():
-    """Route to provide the video stream."""
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@socketio.on('toggle_camera')
+def handle_toggle_camera(data):
+
+    global send_camera_feed_Thread
+    
+    if data['active']:
+        picam2.start()
+        send_camera_feed_Thread = threading.Thread(target=send_camera_feed, daemon=True)
+        send_camera_feed_Thread.start()
+    else:
+        picam2.stop()
+        send_camera_feed_Thread.stop_event.set()
+
+
 
 
 def set_sensor_data(environmentalValuesArg):
