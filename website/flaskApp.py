@@ -1,5 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 from flask_socketio import SocketIO
+from picamera2 import Picamera2
+import cv2
 import random
 import time
 import threading
@@ -12,6 +14,28 @@ app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 environmentalValues = EnvironmentalValues()
+
+picam2 = Picamera2()
+picam2.configure(picam2.create_preview_configuration(main={"size": (1280, 720)}))
+picam2.start()
+
+def generate_frames():
+    """Continuously capture frames and send as a video stream."""
+    while True:
+        frame = picam2.capture_array()  # Capture frame as numpy array
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
+        _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 90])  # Increase quality
+        frame_bytes = buffer.tobytes()
+
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+        time.sleep(0.03)  # 30 FPS
+
+@app.route('/video_feed')
+def video_feed():
+    """Route to provide the video stream."""
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 def set_sensor_data(environmentalValuesArg):
     global environmentalValues
