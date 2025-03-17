@@ -1,7 +1,57 @@
+/* Dark Theme */
 body {
-    background-color: #f8f9fa;
+    background-color: #121212;
+    color: #ffffff;
 }
-p {
-    font-size: 24px;
+
+/* Navbar Styling */
+.navbar {
+    background-color: #1e1e1e;
+    padding: 15px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
     font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Center Panels */
+.sensor-card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.icon {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.sensor-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.chart-container {
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) { /* Only applies when panels stack */
+    .stacked-gap {
+        margin-bottom: 15px; /* Adds space only when stacked */
+    }
 }

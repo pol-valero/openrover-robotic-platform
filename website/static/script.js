@@ -1,7 +1,9 @@
 var socket = io();
 var tempData = [];
+var humData = [];
 var labels = [];
 var chart = null;
+var chart2 = null;
 
 var feedActive = false;
 
@@ -37,6 +39,36 @@ function createChart() {
     });
 }
 
+function createChart2() {
+    var ctx = document.getElementById('temperatureChart2').getContext('2d');
+    chart2 = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: tempData,
+                borderColor: 'rgb(57, 60, 255)',
+                backgroundColor: 'hsla(224, 88.60%, 31.00%, 0.27)',
+                borderWidth: 2,
+                fill: true
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: { display: true, text: 'Time' }
+                },
+                y: {
+                    title: { display: true, text: 'Temperature (°C)' },
+                    suggestedMin: 20,
+                    suggestedMax: 30
+                }
+            }
+        }
+    });
+}
+
 // Update the chart with new data
 function updateChart(newTemp) {
     var currentTime = new Date().toLocaleTimeString();
@@ -50,6 +82,7 @@ function updateChart(newTemp) {
     }
 
     chart.update();
+    chart2.update();
 }
 
 // Handle sensor updates from the server
@@ -82,4 +115,5 @@ document.getElementById('toggleFeed').addEventListener('click', function () {
 // Initialize the chart when the page loads
 window.onload = function() {
     createChart();
+    createChart2();
 };

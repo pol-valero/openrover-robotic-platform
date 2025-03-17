@@ -17,59 +17,8 @@
     <!-- Socket.io -->
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
 
-    <style>
-        /* Dark Theme */
-        body {
-            background-color: #121212;
-            color: #ffffff;
-        }
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
-        /* Navbar Styling */
-        .navbar {
-            background-color: #1e1e1e;
-            padding: 15px;
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .nav-link {
-            color: white !important;
-            font-size: 1.2rem;
-            margin-right: 15px;
-        }
-
-        .nav-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Center Panels */
-        .sensor-card {
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .icon {
-            font-size: 20px;
-            margin-right: 8px;
-        }
-
-        .sensor-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .chart-container {
-            background-color: #1e1e1e;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -88,7 +37,7 @@
     <div class="container text-center mt-4">
         <div class="row justify-content-center">
             <!-- Temperature Card -->
-            <div class="col-md-3">
+            <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-thermometer-half icon"></i> Temp</h4>
@@ -98,7 +47,7 @@
             </div>
 
             <!-- Humidity Card -->
-            <div class="col-md-3">
+            <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-tint icon"></i> Humidity</h4>
@@ -108,7 +57,7 @@
             </div>
 
             <!-- Battery Card -->
-            <div class="col-md-3">
+            <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-battery-half icon"></i> Battery</h4>
@@ -118,7 +67,7 @@
             </div>
 
              <!-- Battery Card -->
-             <div class="col-md-3">
+             <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-battery-half icon"></i> Battery</h4>
@@ -128,26 +77,34 @@
             </div>
         </div>
 
-        <!-- Temperature Graph -->
         <div class="row mt-4">
-            <div class="col-md-6 offset-md-3">
+            <!-- Temperature Evolution Panel -->
+            <div class="col-md-6 stacked-gap">
                 <div class="chart-container">
                     <h4><i class="fas fa-chart-line icon"></i> Temperature Evolution</h4>
                     <canvas id="temperatureChart"></canvas>
                 </div>
             </div>
-
-            <div class="row mt-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="chart-container">
-                        <h4><i class="fas fa-video icon"></i> Live Camera Feed</h4>
-                        <img id="cameraFeed" src="" class="img-fluid rounded">
-                        <br>
-                        <button id="toggleFeed" class="btn btn-outline-light mt-3">Start Feed</button>
-                    </div>
+        
+            <!-- Temperature Evolution Panel -->
+            <div class="col-md-6 stacked-gap">
+                <div class="chart-container">
+                    <h4><i class="fas fa-chart-line icon"></i> Temperature Evolution</h4>
+                    <canvas id="temperatureChart2"></canvas>
                 </div>
             </div>
-            
+        </div>
+
+        <!-- Camera feed -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="chart-container">
+                    <h4><i class="fas fa-video icon"></i> Live Camera Feed</h4>
+                    <img id="cameraFeed" src="" class="img-fluid rounded">
+                    <br>
+                    <button id="toggleFeed" class="btn btn-outline-light mt-3">Start Feed</button>
+                </div>
+            </div>            
         </div>
     </div>
 

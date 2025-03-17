@@ -28,7 +28,7 @@ def send_camera_feed():
         _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])  
 
         socketio.emit('camera_update', buffer.tobytes())  # Send frame to clients
-        time.sleep(0.03)
+        time.sleep(0.05)    # Send frame every 0.05 seconds, 20 FPS
 
 @socketio.on('toggle_camera')
 def handle_toggle_camera(data):
