@@ -31,6 +31,7 @@ body {
     border-radius: 10px;
     padding: 10px;
     text-align: center;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
 }
 
 .icon {
@@ -45,7 +46,7 @@ body {
 
 .chart-container {
     background-color: #1e1e1e;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
 }
