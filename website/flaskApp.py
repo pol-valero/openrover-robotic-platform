@@ -10,11 +10,15 @@ import threading
 from logic.sharedStructs import RoverBatteryValues
 from logic.sharedStructs import EnvironmentalValues
 from logic.sharedStructs import SpeedometerValues
+from logic.sharedStructs import RaspberryPiStatusValues
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 environmentalValues = EnvironmentalValues()
+roverBatteryValues = RoverBatteryValues()
+speedometerValues = SpeedometerValues()
+raspberryPiStatusValues = RaspberryPiStatusValues()
 
 picam2 = Picamera2()
 picam2.configure(picam2.create_preview_configuration(main={"size": (1280, 720)}))
@@ -46,26 +50,41 @@ def handle_toggle_camera(data):
 
 
 
-def set_sensor_data(environmentalValuesArg):
+def set_sensor_data(environmentalValuesArg, roverBatteryValuesArg, speedometerValuesArg, raspberryPiStatusValuesArg):
     global environmentalValues
-    environmentalValues = environmentalValuesArg
-    print('Environmental values set1')
-    print('Temperature1: {}'.format(environmentalValues.temperature))
+    global roverBatteryValues
+    global speedometerValues
+    global raspberryPiStatusValues
+
+    if environmentalValuesArg is not None:
+        environmentalValues = environmentalValuesArg
+    if roverBatteryValuesArg is not None:
+        roverBatteryValues = roverBatteryValuesArg
+    if speedometerValuesArg is not None:
+        speedometerValues = speedometerValuesArg
+    if raspberryPiStatusValuesArg is not None:
+        raspberryPiStatusValues = raspberryPiStatusValuesArg
 
 
-def get_sensor_data():
-    print('Environmental values set2')
-    print('Temperature2: {}'.format(environmentalValues.temperature))
+def get_monitoring_data():
     return {
         "temperature": environmentalValues.temperature,
         "humidity": environmentalValues.humidity,
-        "battery": 0
+        "pressure": environmentalValues.pressure,
+        "altitude": environmentalValues.altitude,
+        "rpm": speedometerValues.rpm,
+        "metersPerHour": speedometerValues.metersPerHour,
+        "distance": speedometerValues.distance,
+        "roverBatteryCellVoltage": roverBatteryValues.cellVoltage,
+        "roverBatteryPercentage": roverBatteryValues.percentage,
+        "rpiCpuTemperature": raspberryPiStatusValues.cpuTemperature,
+        "rpiCpuWorkload": raspberryPiStatusValues.cpuWorkload
     }
 
 def send_sensor_data():
     """Continuously send sensor data to all connected clients."""
     while True:
-        socketio.emit('sensor_update', get_sensor_data())
+        socketio.emit('sensor_update', get_monitoring_data())
         time.sleep(2)  # Send data every 2 seconds
 
 @app.route('/')

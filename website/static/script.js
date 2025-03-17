@@ -103,7 +103,14 @@ function updateHumidityChart(newHumidity) {
 socket.on('sensor_update', function(data) {
     document.getElementById('temperature').textContent = data.temperature + " °C";
     document.getElementById('humidity').textContent = data.humidity + " %";
-    document.getElementById('batteryLevel').textContent = data.battery + " %";
+    document.getElementById('pressure').textContent = data.pressure + " hPa";
+    document.getElementById('altitude').textContent = data.altitude + " m";
+    document.getElementById('speed').textContent = data.metersPerHour + " m/h";
+    document.getElementById('revolutions').textContent = data.rpm + " rpm";
+    document.getElementById('distance').textContent = data.distance + " m";
+    document.getElementById('rpiCpuTemperature').textContent = data.rpiCpuTemperature + " ºC";
+    document.getElementById('rpiCpuWorkload').textContent = data.rpiCpuWorkload + " %";
+    document.getElementById('roverBatteryLevel').textContent = data.roverBatteryCellVoltage + " V " +  "(" + data.roverBatteryPercentage + "%)";
 
     // Update the chart with new temperature data
     updateTemperatureChart(data.temperature);

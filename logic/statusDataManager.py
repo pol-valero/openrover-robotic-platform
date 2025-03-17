@@ -7,6 +7,7 @@ import logic.frameTypesDefinition as frameType
 from logic.sharedStructs import RaspberryPiStatusValues
 from logic.sharedStructs import Frame
 from logic.valuesToFrameConversion import ValuesToFrame
+import website.flaskApp as flaskApp
 
 class StatusDataManager:
 
@@ -35,6 +36,8 @@ class StatusDataManager:
             rpiStatusValues = RaspberryPiStatusValues(online=True, cameraOn=False, cpuTemperature=cpuTemp, cpuWorkload=cpuWorkload)
             frame = ValuesToFrame.raspberryPiStatus(rpiStatusValues)
             self.serial.sendFrame(frame)
+
+            flaskApp.set_sensor_data(None, None, None, rpiStatusValues)
 
             time.sleep(2.5)
 
