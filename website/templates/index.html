@@ -24,7 +24,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand text-white" href="#">Robot Sensor Dashboard</a>
+            <a class="navbar-brand text-white" href="#">Mars Rover Dashboard</a>
             <div class="navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="#">Monitor</a></li>
@@ -35,18 +35,19 @@
     </nav>
 
     <div class="container text-center mt-4">
+
+
         <div class="row justify-content-center">
-            <!-- Temperature Card -->
+
             <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
-                        <h4><i class="fas fa-thermometer-half icon"></i> Temp</h4>
+                        <h4><i class="fas fa-thermometer-half icon"></i> Temperature</h4>
                         <p id="temperature" class="sensor-value">-- °C</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Humidity Card -->
             <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
@@ -56,26 +57,25 @@
                 </div>
             </div>
 
-            <!-- Battery Card -->
             <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-battery-half icon"></i> Pressure</h4>
-                        <p id="battery" class="sensor-value">-- %</p>
+                        <p id="pressure" class="sensor-value">-- hPa</p>
                     </div>
                 </div>
             </div>
 
-             <!-- Battery Card -->
              <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-battery-half icon"></i> Altitude</h4>
-                        <p id="battery" class="sensor-value">-- %</p>
+                        <p id="altitude" class="sensor-value">-- m</p>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="row mt-4 mb-4">
             <!-- Temperature Evolution Panel -->
@@ -90,40 +90,37 @@
             <div class="col-md-6 stacked-gap">
                 <div class="chart-container">
                     <h4><i class="fas fa-chart-line icon"></i> Humidity Evolution</h4>
-                    <canvas id="temperatureChart2"></canvas>
+                    <canvas id="humidityChart"></canvas>
                 </div>
             </div>
         </div>
 
 
-
         <div class="row justify-content-center">
-            <!-- Temperature Card -->
+
             <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
-                        <h4><i class="fas fa-thermometer-half icon"></i> Speed</h4>
-                        <p id="temperature" class="sensor-value">-- °C</p>
+                        <h4><i class="fas fa-thermometer-half icon"></i> Speed  </h4>
+                        <p id="speed" class="sensor-value">-- m/h</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Humidity Card -->
             <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
-                        <h4><i class="fas fa-tint icon"></i> Revs</h4>
-                        <p id="humidity" class="sensor-value">-- %</p>
+                        <h4><i class="fas fa-tint icon"></i> Revolutions</h4>
+                        <p id="revolutions" class="sensor-value">-- rpm</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Humidity Card -->
             <div class="col-md-3 stacked-gap">
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-tint icon"></i> Distance</h4>
-                        <p id="humidity" class="sensor-value">-- %</p>
+                        <p id="distance" class="sensor-value">-- m</p>
                     </div>
                 </div>
             </div>
@@ -133,13 +130,35 @@
                 <div class="card sensor-card text-white">
                     <div class="card-body">
                         <h4><i class="fas fa-battery-half icon"></i> Battery</h4>
-                        <p id="battery" class="sensor-value">-- %</p>
+                        <p id="batteryLevel" class="sensor-value">-- V (-- %)</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Camera feed -->
+
+        <div class="row mt-4 justify-content-center">
+
+            <div class="col-md-6 stacked-gap">
+                <div class="card sensor-card text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-thermometer-half icon"></i> RaspberryPi CPU temperature</h4>
+                        <p id="rpiCpuTemperature" class="sensor-value">-- ºC</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 stacked-gap">
+                <div class="card sensor-card text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-tint icon"></i> RaspberryPi CPU workload</h4>
+                        <p id="rpiCpuWorkload" class="sensor-value">-- %</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="row mt-4 mb-4">
             <div class="col-12">
                 <div class="chart-container">
@@ -155,3 +174,4 @@
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+

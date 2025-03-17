@@ -1,20 +1,20 @@
 var socket = io();
 var tempData = [];
 var humData = [];
-var labels = [];
-var chart = null;
-var chart2 = null;
+var labelsTemperature = [];
+var labelsHumidity = [];
+var temperatureChart = null;
+var humidityChart = null;
 
 var feedActive = false;
 
 
-// Create the temperature chart
-function createChart() {
+function createTemperatureChart() {
     var ctx = document.getElementById('temperatureChart').getContext('2d');
-    chart = new Chart(ctx, {
+    temperatureChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: labels,
+            labels: labelsTemperature,
             datasets: [{
                 label: 'Temperature (°C)',
                 data: tempData,
@@ -39,15 +39,15 @@ function createChart() {
     });
 }
 
-function createChart2() {
-    var ctx = document.getElementById('temperatureChart2').getContext('2d');
-    chart2 = new Chart(ctx, {
+function createHumidityChart() {
+    var ctx = document.getElementById('humidityChart').getContext('2d');
+    humidityChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: labels,
+            labels: labelsHumidity,
             datasets: [{
-                label: 'Temperature (°C)',
-                data: tempData,
+                label: 'Humidity (%)',
+                data: humData,
                 borderColor: 'rgb(57, 60, 255)',
                 backgroundColor: 'hsla(224, 88.60%, 31.00%, 0.27)',
                 borderWidth: 2,
@@ -60,9 +60,9 @@ function createChart2() {
                     title: { display: true, text: 'Time' }
                 },
                 y: {
-                    title: { display: true, text: 'Temperature (°C)' },
-                    suggestedMin: 20,
-                    suggestedMax: 30
+                    title: { display: true, text: 'Humidity (%)' },
+                    suggestedMin: 0,
+                    suggestedMax: 100
                 }
             }
         }
@@ -70,29 +70,44 @@ function createChart2() {
 }
 
 // Update the chart with new data
-function updateChart(newTemp) {
+function updateTemperatureChart(newTemp) {
     var currentTime = new Date().toLocaleTimeString();
-    labels.push(currentTime);
+    labelsTemperature.push(currentTime);
     tempData.push(newTemp);
 
     // Keep only the last 30 readings (1 per 2 sec = 1 minute)
-    if (labels.length > 30) {
-        labels.shift();
+    if (labelsTemperature.length > 30) {
+        labelsTemperature.shift();
         tempData.shift();
     }
 
-    chart.update();
-    chart2.update();
+    temperatureChart.update();
+}
+
+// Update the chart with new data
+function updateHumidityChart(newHumidity) {
+    var currentTime = new Date().toLocaleTimeString();
+    labelsHumidity.push(currentTime);
+    humData.push(newHumidity);
+
+    // Keep only the last 30 readings (1 per 2 sec = 1 minute)
+    if (labelsHumidity.length > 30) {
+        labelsHumidity.shift();
+        humData.shift();
+    }
+
+    humidityChart.update();
 }
 
 // Handle sensor updates from the server
 socket.on('sensor_update', function(data) {
     document.getElementById('temperature').textContent = data.temperature + " °C";
     document.getElementById('humidity').textContent = data.humidity + " %";
-    document.getElementById('battery').textContent = data.battery + " %";
+    document.getElementById('batteryLevel').textContent = data.battery + " %";
 
     // Update the chart with new temperature data
-    updateChart(data.temperature);
+    updateTemperatureChart(data.temperature);
+    updateHumidityChart(data.humidity);
 });
 
 socket.on('camera_update', function(data) {
@@ -114,6 +129,7 @@ document.getElementById('toggleFeed').addEventListener('click', function () {
 
 // Initialize the chart when the page loads
 window.onload = function() {
-    createChart();
-    createChart2();
+    createTemperatureChart();
+    createHumidityChart();
 };
+
