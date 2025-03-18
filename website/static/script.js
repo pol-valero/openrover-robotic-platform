@@ -25,6 +25,9 @@ function createTemperatureChart() {
             }]
         },
         options: {
+            plugins: {
+                legend: { display: false }  // Hides the label and color box
+            },
             scales: {
                 x: {
                     title: { display: true, text: 'Time' }
@@ -55,6 +58,9 @@ function createHumidityChart() {
             }]
         },
         options: {
+            plugins: {
+                legend: { display: false }  // Hides the label and color box
+            },
             scales: {
                 x: {
                     title: { display: true, text: 'Time' }

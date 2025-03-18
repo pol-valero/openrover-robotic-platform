@@ -31,8 +31,6 @@ class StatusDataManager:
             cpuTemp = int(self.getCPUtemperature())
             cpuWorkload = int(self.getCPUworkload())
 
-            print('CPU Temperature: {}'.format(cpuTemp))
-            print('CPU Workload: {}'.format(cpuWorkload))
             rpiStatusValues = RaspberryPiStatusValues(online=True, cameraOn=False, cpuTemperature=cpuTemp, cpuWorkload=cpuWorkload)
             frame = ValuesToFrame.raspberryPiStatus(rpiStatusValues)
             self.serial.sendFrame(frame)

@@ -21,7 +21,7 @@ speedometerValues = SpeedometerValues()
 raspberryPiStatusValues = RaspberryPiStatusValues()
 
 picam2 = Picamera2()
-picam2.configure(picam2.create_preview_configuration(main={"size": (1280, 720)}))
+picam2.configure(picam2.create_preview_configuration(main={"size": (854, 480)}))
 
 send_camera_feed_Thread = None
 
@@ -32,7 +32,7 @@ def send_camera_feed():
         _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])  
 
         socketio.emit('camera_update', buffer.tobytes())  # Send frame to clients
-        time.sleep(0.05)    # Send frame every 0.05 seconds, 20 FPS
+        time.sleep(0.1)    # Send frame every 0.1 seconds, 10 FPS
 
 @socketio.on('toggle_camera')
 def handle_toggle_camera(data):
@@ -90,6 +90,10 @@ def send_sensor_data():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/control')
+def control():
+    return render_template('control.html')
 
 @socketio.on('connect')
 def handle_connect():

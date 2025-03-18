@@ -44,17 +44,17 @@ class ReceivedFramesHandling:
 
                 case frameType.INF_F_ROVER_BAT_LEVEL:
                     roverBatteryValues = ValuesFromFrame.roverBatteryValues(frame)
-                    self.printRoverBatteryValues(roverBatteryValues)
+                    #self.printRoverBatteryValues(roverBatteryValues)
                     flaskApp.set_sensor_data(None, roverBatteryValues, None, None)
 
                 case frameType.INF_F_ENVIRONMENTAL_MONITORIZATION:
                     environmentalValues = ValuesFromFrame.environmentalValues(frame)
-                    self.printEnvironmentalValues(environmentalValues)
+                    #self.printEnvironmentalValues(environmentalValues)
                     flaskApp.set_sensor_data(environmentalValues, None, None, None)
 
                 case frameType.INF_F_SPEEDOMETER_VALUES:
                     speedometerValues = ValuesFromFrame.speedometerValues(frame)
-                    self.printSpeedometerValues(speedometerValues)
+                    #self.printSpeedometerValues(speedometerValues)
                     flaskApp.set_sensor_data(None, None, speedometerValues, None)
 
                 case _:

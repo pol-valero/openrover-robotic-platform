@@ -22,7 +22,7 @@ body {
 }
 
 .nav-link:hover {
-    text-decoration: underline;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
 }
 
 /* Center Panels */
