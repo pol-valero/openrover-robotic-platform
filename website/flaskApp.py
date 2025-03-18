@@ -88,8 +88,9 @@ def send_sensor_data():
         time.sleep(2)  # Send data every 2 seconds
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+@app.route('/monitor')
+def monitor():
+    return render_template('monitor.html')
 
 @app.route('/control')
 def control():
@@ -110,7 +111,3 @@ def startThread():
     # Start the Flask web server
     socketIoThread = threading.Thread(target=runSocketIo)
     socketIoThread.start()
-
-
-#if __name__ == '__main__':
-    #socketio.run(app, host='0.0.0.0', port=5000, debug=True)
