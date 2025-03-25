@@ -46,7 +46,7 @@ body {
 }
 
 
-/* Media query to add space to the bottom of the panels when the screen width is 0-768px (in this resolution range, the panels will be stacked)  */
+/* Media query to add space to the bottom of the panels when the screen width is 0-700px (in this resolution range, the panels will be stacked) */
 @media (max-width: 700px) { 
     .stacked-space {
         margin-bottom: 15px;
