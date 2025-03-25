@@ -105,8 +105,7 @@ function updateHumidityChart(newHumidity) {
     humidityChart.update();
 }
 
-// Handle sensor updates from the server
-socket.on('sensor_update', function(data) {
+socket.on('status_data_update', function(data) {
     document.getElementById('temperature').textContent = data.temperature + " °C";
     document.getElementById('humidity').textContent = data.humidity + " %";
     document.getElementById('pressure').textContent = data.pressure + " hPa";
@@ -127,9 +126,9 @@ socket.on('camera_update', function(data) {
     document.getElementById('cameraFeed').src = URL.createObjectURL(new Blob([data], {type: 'image/jpeg'}));
 });
 
-document.getElementById('toggleFeed').addEventListener('click', function () {
+document.getElementById('cameraFeedBtn').addEventListener('click', function () {
     feedActive = !feedActive;
-    socket.emit('toggle_camera', { active: feedActive });
+    socket.emit('camera_feed_btn_clicked', { active: feedActive });
 
     if (feedActive) {
         this.textContent = "Stop Feed";

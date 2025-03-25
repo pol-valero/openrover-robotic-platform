@@ -35,7 +35,7 @@ class StatusDataManager:
             frame = ValuesToFrame.raspberryPiStatus(rpiStatusValues)
             self.serial.sendFrame(frame)
 
-            flaskApp.set_sensor_data(None, None, None, rpiStatusValues)
+            flaskApp.setStatusData(None, None, None, rpiStatusValues)
 
             time.sleep(2.5)
 
