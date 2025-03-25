@@ -52,7 +52,7 @@ def sendCameraFeed():
             _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])  
 
             socketio.emit('camera_feed_update', buffer.tobytes())
-            time.sleep(0.1)    # Send frame every 0.1 seconds, 10 FPS
+            time.sleep(0.03)    # Send frame every 0.03 seconds, 33 FPS
 
 def setStatusData(environmentalValuesArg, roverBatteryValuesArg, speedometerValuesArg, raspberryPiStatusValuesArg):
     global environmentalValues

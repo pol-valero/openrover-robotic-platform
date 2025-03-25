@@ -10,8 +10,8 @@ if __name__ == '__main__':
     try:
 
         flaskApp.startThread()
-        time.sleep(3)
-        print('Flask app started')
+        #time.sleep(3)
+        #print('Flask app started!')
 
         serial = SerialCommunication()  
 

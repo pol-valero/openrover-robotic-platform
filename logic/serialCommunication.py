@@ -12,7 +12,7 @@ class SerialCommunication:
         self.link = txfer.SerialTransfer('/dev/ttyUSB0')   
         self.link.open()
 
-        print("Serial initialized")
+        #print("Serial initialized")
 
     def receiveFrame(self):
         frame = Frame()
