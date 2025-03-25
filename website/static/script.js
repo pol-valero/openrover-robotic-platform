@@ -1,4 +1,5 @@
 var socket = io();
+
 var tempData = [];
 var humData = [];
 var labelsTemperature = [];
@@ -10,23 +11,23 @@ var feedActive = false;
 
 
 function createTemperatureChart() {
-    var ctx = document.getElementById('temperatureChart').getContext('2d');
-    temperatureChart = new Chart(ctx, {
+    var temperatureChartCanvas = document.getElementById('temperatureChart');
+    temperatureChart = new Chart(temperatureChartCanvas, {
         type: 'line',
         data: {
             labels: labelsTemperature,
             datasets: [{
                 label: 'Temperature (°C)',
                 data: tempData,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderWidth: 2,
-                fill: true
+                borderColor: 'rgb(249, 95, 128)',
+                backgroundColor: 'rgba(247, 94, 127, 0.2)',
+                fill: true,
+                borderWidth: 2
             }]
         },
         options: {
             plugins: {
-                legend: { display: false }  // Hides the label and color box
+                legend: { display: false }  //We hide the legend (label and color box)
             },
             scales: {
                 x: {
@@ -34,7 +35,7 @@ function createTemperatureChart() {
                 },
                 y: {
                     title: { display: true, text: 'Temperature (°C)' },
-                    suggestedMin: 20,
+                    suggestedMin: 15,
                     suggestedMax: 30
                 }
             }
@@ -43,23 +44,23 @@ function createTemperatureChart() {
 }
 
 function createHumidityChart() {
-    var ctx = document.getElementById('humidityChart').getContext('2d');
-    humidityChart = new Chart(ctx, {
+    var humidityChartCanvas = document.getElementById('humidityChart');
+    humidityChart = new Chart(humidityChartCanvas, {
         type: 'line',
         data: {
             labels: labelsHumidity,
             datasets: [{
                 label: 'Humidity (%)',
                 data: humData,
-                borderColor: 'rgb(57, 60, 255)',
-                backgroundColor: 'hsla(224, 88.60%, 31.00%, 0.27)',
-                borderWidth: 2,
-                fill: true
+                borderColor: 'rgb(56, 59, 251)',
+                backgroundColor: 'hsla(224, 89.70%, 30.40%, 0.27)',
+                fill: true,
+                borderWidth: 2
             }]
         },
         options: {
             plugins: {
-                legend: { display: false }  // Hides the label and color box
+                legend: { display: false }  //We hide the legend (label and color box)
             },
             scales: {
                 x: {
@@ -75,54 +76,55 @@ function createHumidityChart() {
     });
 }
 
-// Update the chart with new data
 function updateTemperatureChart(newTemp) {
     var currentTime = new Date().toLocaleTimeString();
+
     labelsTemperature.push(currentTime);
     tempData.push(newTemp);
 
-    // Keep only the last 30 readings (1 per 2 sec = 1 minute)
+    // We only keep the last 30 readings (every 2 seconds the Rover should send the temp/hum data, therefore the last minute of data should be displayed)
     if (labelsTemperature.length > 30) {
-        labelsTemperature.shift();
+        labelsTemperature.shift();      // By shifting, we remove the first element from the array, and shift the other elements to the left one position
         tempData.shift();
     }
 
     temperatureChart.update();
 }
 
-// Update the chart with new data
 function updateHumidityChart(newHumidity) {
     var currentTime = new Date().toLocaleTimeString();
+
     labelsHumidity.push(currentTime);
     humData.push(newHumidity);
 
-    // Keep only the last 30 readings (1 per 2 sec = 1 minute)
+    // We only keep the last 30 readings (every 2 seconds the Rover should send the temp/hum data, therefore the last minute of data should be displayed)
     if (labelsHumidity.length > 30) {
-        labelsHumidity.shift();
+        labelsHumidity.shift();     // By shifting, we remove the first element from the array, and shift the other elements to the left one position
         humData.shift();
     }
 
     humidityChart.update();
 }
 
-socket.on('status_data_update', function(data) {
-    document.getElementById('temperature').textContent = data.temperature + " °C";
-    document.getElementById('humidity').textContent = data.humidity + " %";
-    document.getElementById('pressure').textContent = data.pressure + " hPa";
-    document.getElementById('altitude').textContent = data.altitude + " m";
-    document.getElementById('speed').textContent = data.metersPerHour + " m/h";
-    document.getElementById('revolutions').textContent = data.rpm + " rpm";
-    document.getElementById('distance').textContent = data.distance + " m";
-    document.getElementById('rpiCpuTemperature').textContent = data.rpiCpuTemperature + " ºC";
-    document.getElementById('rpiCpuWorkload').textContent = data.rpiCpuWorkload + " %";
-    document.getElementById('roverBatteryLevel').textContent = data.roverBatteryCellVoltage + " V " +  "(" + data.roverBatteryPercentage + "%)";
 
-    // Update the chart with new temperature data
+socket.on('status_data_update', function(data) {
+    document.getElementById('temperatureValue').textContent = data.temperature + " °C";
+    document.getElementById('humidityValue').textContent = data.humidity + " %";
+    document.getElementById('pressureValue').textContent = data.pressure + " hPa";
+    document.getElementById('altitudeValue').textContent = data.altitude + " m";
+    document.getElementById('speedValue').textContent = data.metersPerHour + " m/h";
+    document.getElementById('revolutionsValue').textContent = data.rpm + " rpm";
+    document.getElementById('distanceValue').textContent = data.distance + " m";
+    document.getElementById('rpiCpuTemperatureValue').textContent = data.rpiCpuTemperature + " ºC";
+    document.getElementById('rpiCpuWorkloadValue').textContent = data.rpiCpuWorkload + " %";
+    document.getElementById('roverBatteryLevelValue').textContent = data.roverBatteryCellVoltage + " V " +  "(" + data.roverBatteryPercentage + "%)";
+
+    //We update the charts with the new temp/hum data
     updateTemperatureChart(data.temperature);
     updateHumidityChart(data.humidity);
 });
 
-socket.on('camera_update', function(data) {
+socket.on('camera_feed_update', function(data) {
     document.getElementById('cameraFeed').src = URL.createObjectURL(new Blob([data], {type: 'image/jpeg'}));
 });
 
@@ -132,14 +134,11 @@ document.getElementById('cameraFeedBtn').addEventListener('click', function () {
 
     if (feedActive) {
         this.textContent = "Stop Feed";
-        document.getElementById('cameraFeed').src = "/video_feed";  // Start feed
     } else {
         this.textContent = "Start Feed";
-        document.getElementById('cameraFeed').src = "";  // Stop feed
     }
 });
 
-// Initialize the chart when the page loads
 window.onload = function() {
     createTemperatureChart();
     createHumidityChart();

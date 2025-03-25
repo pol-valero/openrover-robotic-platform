@@ -23,30 +23,36 @@ picam2.configure(picam2.create_preview_configuration(main={"size": (854, 480)}))
 
 cameraFeedActive = False
 
+
+def startThread():
+
+    socketIoThread = threading.Thread(target=runSocketIo, daemon=True)
+    socketIoThread.start()
+
+    sendStatusDataThread = threading.Thread(target=sendStatusData, daemon=True)
+    sendStatusDataThread.start()
+
+    sendCameraFeedThread = threading.Thread(target=sendCameraFeed, daemon=True)
+    sendCameraFeedThread.start()
+
+
+def runSocketIo():
+    socketio.run(app, host='0.0.0.0', port=5000, debug=False)
+
+def sendStatusData():
+    while True:
+        socketio.emit('status_data_update', getStatusData())
+        time.sleep(2)
+
 def sendCameraFeed():
     while True:
         if cameraFeedActive:
-            frame = picam2.capture_array()  # Capture frame as numpy array
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
+            frame = picam2.capture_array()
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  #We convert BGR to RGB, to avoid color distortion
             _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])  
 
-            socketio.emit('camera_update', buffer.tobytes())
+            socketio.emit('camera_feed_update', buffer.tobytes())
             time.sleep(0.1)    # Send frame every 0.1 seconds, 10 FPS
-
-@socketio.on('camera_feed_btn_clicked')
-def handleCameraFeedBtnClicked(feedStatus):
-
-    global sendCameraFeedThread
-
-    global cameraFeedActive
-    cameraFeedActive = feedStatus['active']
-    
-    if cameraFeedActive:
-        picam2.start()
-    else:
-        picam2.stop()
-
-
 
 def setStatusData(environmentalValuesArg, roverBatteryValuesArg, speedometerValuesArg, raspberryPiStatusValuesArg):
     global environmentalValues
@@ -63,7 +69,6 @@ def setStatusData(environmentalValuesArg, roverBatteryValuesArg, speedometerValu
     if raspberryPiStatusValuesArg is not None:
         raspberryPiStatusValues = raspberryPiStatusValuesArg
 
-
 def getStatusData():
     return {
         "temperature": environmentalValues.temperature,
@@ -79,10 +84,6 @@ def getStatusData():
         "rpiCpuWorkload": raspberryPiStatusValues.cpuWorkload
     }
 
-def sendStatusData():
-    while True:
-        socketio.emit('status_data_update', getStatusData())
-        time.sleep(2)
 
 @app.route('/')
 @app.route('/monitor')
@@ -94,19 +95,16 @@ def control():
     return render_template('control.html')
 
 @socketio.on('connect')
-def handle_connect():
+def handleConnection():
     print("New client connected")
 
-def runSocketIo():
-    socketio.run(app, host='0.0.0.0', port=5000, debug=False)
+@socketio.on('camera_feed_btn_clicked')
+def handleCameraFeedBtnClicked(feedStatus):
 
-def startThread():
-
-    socketIoThread = threading.Thread(target=runSocketIo, daemon=True)
-    socketIoThread.start()
-
-    sendStatusDataThread = threading.Thread(target=sendStatusData, daemon=True)
-    sendStatusDataThread.start()
-
-    sendCameraFeedThread = threading.Thread(target=sendCameraFeed, daemon=True)
-    sendCameraFeedThread.start()
+    global cameraFeedActive
+    cameraFeedActive = feedStatus['active']
+    
+    if cameraFeedActive:
+        picam2.start()
+    else:
+        picam2.stop()
