@@ -19,7 +19,7 @@ speedometerValues = SpeedometerValues()
 raspberryPiStatusValues = RaspberryPiStatusValues()
 
 picam2 = Picamera2()
-picam2.configure(picam2.create_preview_configuration(main={"size": (854, 480)}))
+picam2.configure(picam2.create_preview_configuration(main={"size": (1280, 720)}))
 
 cameraFeedActive = False
 
@@ -37,7 +37,7 @@ def startThread():
 
 
 def runSocketIo():
-    socketio.run(app, host='0.0.0.0', port=5000, debug=False)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=False, allow_unsafe_werkzeug=True)
 
 def sendStatusData():
     while True:
@@ -52,7 +52,7 @@ def sendCameraFeed():
             _, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 80])  
 
             socketio.emit('camera_feed_update', buffer.tobytes())
-            time.sleep(0.03)    # Send frame every 0.03 seconds, 33 FPS
+            time.sleep(0.033)    # Send frame every 0.033 seconds, 30 FPS
 
 def setStatusData(environmentalValuesArg, roverBatteryValuesArg, speedometerValuesArg, raspberryPiStatusValuesArg):
     global environmentalValues
