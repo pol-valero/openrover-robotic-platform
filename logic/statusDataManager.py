@@ -31,7 +31,7 @@ class StatusDataManager:
             cpuTemp = int(self.getCPUtemperature())
             cpuWorkload = int(self.getCPUworkload())
 
-            rpiStatusValues = RaspberryPiStatusValues(online=True, cameraOn=False, cpuTemperature=cpuTemp, cpuWorkload=cpuWorkload)
+            rpiStatusValues = RaspberryPiStatusValues(online=True, cameraOn=flaskApp.getCameraFeedStatus(), cpuTemperature=cpuTemp, cpuWorkload=cpuWorkload)
             frame = ValuesToFrame.raspberryPiStatus(rpiStatusValues)
             self.serial.sendFrame(frame)
 

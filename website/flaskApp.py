@@ -84,6 +84,9 @@ def getStatusData():
         "rpiCpuWorkload": raspberryPiStatusValues.cpuWorkload
     }
 
+def getCameraFeedStatus():
+    return cameraFeedActive
+
 
 @app.route('/')
 @app.route('/monitor')

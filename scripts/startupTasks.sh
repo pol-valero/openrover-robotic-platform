@@ -6,7 +6,7 @@
 
 sudo nmcli device wifi hotspot ssid RoverWiFi password marsRover2606
 
-cd /home/polv && source my-rover-venv/bin/activate
+#cd /home/polv && source my-rover-venv/bin/activate
 
-cd /home/polv/RoverRaspberryPi && python -m logic.main &    # We add the & to run the process in the background, so this script can continue executing if additional commands are added.
+#cd /home/polv/RoverRaspberryPi && python -m logic.main &    # We add the & to run the process in the background, so this script can continue executing if additional commands are added.
 
