@@ -6768,7 +6768,7 @@
                             "flags": 17,
                             "strtype": "OBJECT/Position",
                             "intarray": [
-                              -89,
+                              -83,
                               10
                             ],
                             "InheritedType": 7
@@ -6833,7 +6833,7 @@
                           {
                             "nid": 1030,
                             "strtype": "LABEL/Text",
-                            "strval": "  22ºC",
+                            "strval": "22ºC",
                             "InheritedType": 10
                           },
                           {
