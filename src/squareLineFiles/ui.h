@@ -78,7 +78,7 @@ extern lv_obj_t *ui_CpuWorkloadValueLabel;
 extern lv_obj_t *ui_CameraStatusLabel;
 extern lv_obj_t *ui_CameraStatusIndicatorPanel;
 extern lv_obj_t *ui_CpuMaxTempLabel;
-extern lv_obj_t *ui_CpuMaxWorloadLabel;
+extern lv_obj_t *ui_CpuMaxWorkloadLabel;
 extern lv_obj_t *ui_SpeedometerPanel;
 extern lv_obj_t *ui_SpeedGaugeImage;
 extern lv_obj_t *ui_DistanceImage;

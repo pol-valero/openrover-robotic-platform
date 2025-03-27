@@ -129,6 +129,54 @@ void updateRaspberryPiStatusValueElements(Frame frame) {
 
 }
 
+void checkRcLinkStatus(Frame frame) {
+
+    static long msTimeSinceLastPacket = 0;
+  
+    if(frame.type == INF_F_ENVIRONMENTAL_MONITORIZATION) {
+
+        msTimeSinceLastPacket = 0;
+
+        //rcLinkStatusOK
+        if (lv_obj_has_flag(ui_SignalBar, LV_OBJ_FLAG_HIDDEN)) {
+            lv_obj_clear_flag(ui_SignalBar, LV_OBJ_FLAG_HIDDEN);
+        }
+    
+    } else {
+  
+        static unsigned long previousMillis1 = 0;
+  
+        if (millis() - previousMillis1 >= 1000) {
+            previousMillis1 = millis();
+
+            msTimeSinceLastPacket += 1000;
+        }
+  
+        //If we spend more than 5 seconds without receiving a packet from the Rover, the rcLink status will be considered as lost
+        if (msTimeSinceLastPacket >= 5000) {
+  
+            //rcLinkStatusKO
+
+            static unsigned long previousMillis2 = 0;
+
+            if (millis() - previousMillis2 >= 1000) {
+                previousMillis2 = millis();
+                
+                //We flash the signal icon on the top bar, to indicate that the rc connection is lost
+                if (lv_obj_has_flag(ui_SignalBar, LV_OBJ_FLAG_HIDDEN)) {
+                    lv_obj_clear_flag(ui_SignalBar, LV_OBJ_FLAG_HIDDEN);
+                } else {
+                    lv_obj_add_flag(ui_SignalBar, LV_OBJ_FLAG_HIDDEN);
+                }
+
+            }
+  
+        }
+  
+    }
+  
+  }
+
 void handleReceivedFrame(Frame frame) {
 
     switch (frame.type) {
@@ -155,5 +203,7 @@ void handleReceivedFrame(Frame frame) {
         default:
             break;
     }
+
+    checkRcLinkStatus(frame);
 
 }

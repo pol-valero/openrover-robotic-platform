@@ -598,10 +598,10 @@ lv_obj_set_style_bg_color(ui_CpuWorkloadBar, lv_color_hex(0xD98000), LV_PART_IND
 lv_obj_set_style_bg_opa(ui_CpuWorkloadBar, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
 
 ui_CpuTempValueLabel = lv_label_create(ui_RPIstatusPanel);
-lv_obj_set_width( ui_CpuTempValueLabel, 32);
-lv_obj_set_height( ui_CpuTempValueLabel, 17);
-lv_obj_set_x( ui_CpuTempValueLabel, -89 );
-lv_obj_set_y( ui_CpuTempValueLabel, 2 );
+lv_obj_set_width( ui_CpuTempValueLabel, 45);
+lv_obj_set_height( ui_CpuTempValueLabel, 32);
+lv_obj_set_x( ui_CpuTempValueLabel, -83 );
+lv_obj_set_y( ui_CpuTempValueLabel, 10 );
 lv_obj_set_align( ui_CpuTempValueLabel, LV_ALIGN_CENTER );
 lv_label_set_text(ui_CpuTempValueLabel,"22ºC");
 lv_obj_set_style_text_color(ui_CpuTempValueLabel, lv_color_hex(0xDEDADE), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -677,17 +677,17 @@ lv_obj_set_style_text_opa(ui_CpuMaxTempLabel, 255, LV_PART_MAIN| LV_STATE_DEFAUL
 lv_obj_set_style_text_align(ui_CpuMaxTempLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_CpuMaxTempLabel, &ui_font_Montserrat_medium_custom_12, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_CpuMaxWorloadLabel = lv_label_create(ui_RPIstatusPanel);
-lv_obj_set_width( ui_CpuMaxWorloadLabel, 30);
-lv_obj_set_height( ui_CpuMaxWorloadLabel, 17);
-lv_obj_set_x( ui_CpuMaxWorloadLabel, -24 );
-lv_obj_set_y( ui_CpuMaxWorloadLabel, 43 );
-lv_obj_set_align( ui_CpuMaxWorloadLabel, LV_ALIGN_CENTER );
-lv_label_set_text(ui_CpuMaxWorloadLabel,"100%");
-lv_obj_set_style_text_color(ui_CpuMaxWorloadLabel, lv_color_hex(0x949494), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_CpuMaxWorloadLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_CpuMaxWorloadLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_CpuMaxWorloadLabel, &ui_font_Montserrat_medium_custom_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+ui_CpuMaxWorkloadLabel = lv_label_create(ui_RPIstatusPanel);
+lv_obj_set_width( ui_CpuMaxWorkloadLabel, 30);
+lv_obj_set_height( ui_CpuMaxWorkloadLabel, 17);
+lv_obj_set_x( ui_CpuMaxWorkloadLabel, -24 );
+lv_obj_set_y( ui_CpuMaxWorkloadLabel, 43 );
+lv_obj_set_align( ui_CpuMaxWorkloadLabel, LV_ALIGN_CENTER );
+lv_label_set_text(ui_CpuMaxWorkloadLabel,"100%");
+lv_obj_set_style_text_color(ui_CpuMaxWorkloadLabel, lv_color_hex(0x949494), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_CpuMaxWorkloadLabel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_CpuMaxWorkloadLabel, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_CpuMaxWorkloadLabel, &ui_font_Montserrat_medium_custom_12, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_SpeedometerPanel = lv_obj_create(ui_MonitorTab);
 lv_obj_set_width( ui_SpeedometerPanel, 352);

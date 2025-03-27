@@ -61,7 +61,7 @@ lv_obj_t *ui_CpuWorkloadValueLabel;
 lv_obj_t *ui_CameraStatusLabel;
 lv_obj_t *ui_CameraStatusIndicatorPanel;
 lv_obj_t *ui_CpuMaxTempLabel;
-lv_obj_t *ui_CpuMaxWorloadLabel;
+lv_obj_t *ui_CpuMaxWorkloadLabel;
 lv_obj_t *ui_SpeedometerPanel;
 lv_obj_t *ui_SpeedGaugeImage;
 lv_obj_t *ui_DistanceImage;
