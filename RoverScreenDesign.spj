@@ -6769,7 +6769,7 @@
                             "strtype": "OBJECT/Position",
                             "intarray": [
                               -89,
-                              2
+                              10
                             ],
                             "InheritedType": 7
                           },
@@ -6778,8 +6778,8 @@
                             "flags": 17,
                             "strtype": "OBJECT/Size",
                             "intarray": [
-                              32,
-                              17
+                              45,
+                              32
                             ],
                             "InheritedType": 7
                           },
@@ -6833,7 +6833,7 @@
                           {
                             "nid": 1030,
                             "strtype": "LABEL/Text",
-                            "strval": "22ºC",
+                            "strval": "  22ºC",
                             "InheritedType": 10
                           },
                           {
@@ -7710,7 +7710,7 @@
                           {
                             "nid": 10,
                             "strtype": "OBJECT/Name",
-                            "strval": "CpuMaxWorloadLabel",
+                            "strval": "CpuMaxWorkloadLabel",
                             "InheritedType": 10
                           },
                           {
@@ -18004,7 +18004,6 @@
                   },
                   {
                     "nid": 90,
-                    "flags": 1048576,
                     "strtype": "OBJECT/Flags",
                     "InheritedType": 1
                   },
@@ -19547,8 +19546,7 @@
                     "InheritedType": 11
                   }
                 ],
-                "saved_objtypeKey": "CONTAINER",
-                "tree_closed": true
+                "saved_objtypeKey": "CONTAINER"
               },
               {
                 "guid": "GUID77645183-968818S321411",
