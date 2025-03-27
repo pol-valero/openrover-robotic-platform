@@ -10,9 +10,6 @@
 #include "sharedStructs.h"
 
 
-
-void setupBuzzer();
-
 void printRcValues();
 
 void checkRcLinkStatus(Frame frame);

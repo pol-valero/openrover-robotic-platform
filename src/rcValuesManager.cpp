@@ -4,6 +4,7 @@
 #include "serialCommunication.h"
 #include "radioCommunication.h"
 #include "frameTypesDefinition.h"
+#include "buzzerManager.h"
 
 
 static char buffer[200];
@@ -12,11 +13,6 @@ RcValues rcValues;
 
 bool rcLinkStatus = RADIO_KO; //TODO: Maybe instead of "RADIO" use RemoteControlLinkKO, as we will also use the same variable for web control status?
 
-const int buzzer_pin = 29;
-
-void setupBuzzer() {
-  pinMode(buzzer_pin, OUTPUT);
-}
 
 void printRcValues() {
 
@@ -39,12 +35,6 @@ void printRcValues() {
   }
 
 }
-
-//TODO: This function will cease to be used when I modify the transmitter code so that it sends 0 if the joysticks are within its center range and so that it sends the correct ranges (ex.- 1 to 255 if right) and so that the lever send 1 if they are up
-//TODO: Check that ALL values are in range and return RADIO_KO if any value is off. 
-//TODO: Remove. Temporal function until we change the tramsitter code
-/*void correctRcValuesReceived() {
-}*/
 
 void checkRcLinkStatus(Frame frame) {
 
@@ -75,7 +65,7 @@ void checkRcLinkStatus(Frame frame) {
 
       if (millis() - previousMillis2 >= 10000) {
         previousMillis2 = millis();
-        tone(buzzer_pin, 200, 500);
+        lostRcLinkBuzz();
       }
 
     }

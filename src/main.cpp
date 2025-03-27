@@ -18,6 +18,7 @@
 #include "sensorsManager.h"
 #include "headMovementsManager.h"
 #include "relayManager.h"
+#include "buzzerManager.h"
 
 
 void setup() {
@@ -54,16 +55,6 @@ void setup() {
 
 void loop() {
 
-  //serialReceiveFrame
-  //handleReceivedFrame
-  //radioReceiveFrame
-  //handleReceivedFrame
-  //operationModeExecution
-  //getStatusDataFrame  -> ex.- temp, hum, battery, RPI status...
-  //radioSendFrame  //inside this function, use bool to determine wether to send the frame or not (depending if the RC is powered on or not)
-  //serialSendFrame //same, but depending on the RPI powered on or not
-
-
   Frame receivedRadioFrame = radioReceiveFrame();
   Frame receivedSerialFrame = serialReceiveFrame();
   handleReceivedFrame(receivedRadioFrame);
@@ -72,14 +63,6 @@ void loop() {
   Frame statusDataFrame = getStatusDataFrame();
   radioSendFrame(statusDataFrame);
   serialSendFrame(statusDataFrame);
-
-  //rc_data2 = readRcValues();
-  //printRcValues();
-  //chooseOperationMode(rc_data2);
-  //operationModeExecution();
-  //printBatteryValues();
-
-  //testLoop();
 
 }
 
