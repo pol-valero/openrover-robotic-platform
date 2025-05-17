@@ -45,7 +45,7 @@ The OpenRover's components are organized, both at a hardware and software level,
 
 - Central rover module: It has an Arduino Mega development board that is inside the main body of the rover and that manages all moving elements (e.g., motors, servomotors) as well as the rover's sensors and sending/receiving the radio signal
 
-- Remote control and touchscreen module: It has an ESP32S3 development board that is responsible for the touchscreen, reading the RC channel values and sending/receiving the radio signal
+- Remote control and touchscreen module: It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels
 
 - Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover and that is able to use a camera, as well as generating a WiFi and hosting a website
 
@@ -58,11 +58,13 @@ The build time can vary a lot depending on skill level and number of tools avail
 ## Getting started steps
 - Step 1: Order all the mechanical, hardware and wiring parts. An [Excel file](main_parts_list/main_materials_and_parts_list.xlsx) with the most important components is provided, with the orientative price of each component. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
 
-- Step 2: 3D print the parts of the mechanical platform that are present in the 3D design files that can be found on the Cults3d page of the [original project mechanical design](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics) . Inside the [3D designs](3d_designs/) folder there are some other custom 3D designs (e.g., remote control cases)
+- Step 2: 3D print the parts of the mechanical platform that are present in the 3D design files that can be found on the Cults3d page of the [original project mechanical design](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics). Inside the [3D designs](3d_designs/) folder there are some other custom 3D designs (e.g., remote control cases)
 
 - Step 3: Assemble the mechanical platform by joining the different 3D printed parts with the other mechanical parts (e.g., pvc tubes, aluminium profiles). A detailed guide for the mechanical assembly process is available in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/), and images of how the OpenRover modified design was assembled are present in the [images folder](images/)
 
-- Step 4: TODO
+- Step 4: Create the wiring connections for the hardware components (e.g., motors, servomotors) and between the hardware electronics (e.g., Arduino Mega, motor drivers). In each of the OpenRover's modules [central rover](central_rover/), [remote control touchscreen](remote_control_touchscreen/), and [web dashboard](web_dashboard/) folders, schematics of the wiring connections are found
+
+- Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules [central rover](central_rover/), [remote control touchscreen](remote_control_touchscreen/), and [web dashboard](web_dashboard/) folders, an additional README file details the necessary steps for getting all the OpenRover's software up and running for the module
 
 ## Take it to the next level
 Now it is your time to build upon the OpenRover platform. One of the cores ideas behind OpenRover is that people who replicate the project are able to modify and improve the platform, as it is designed to be very modular and extensible, specially on the software related side. 
