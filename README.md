@@ -58,11 +58,11 @@ The build time can vary a lot depending on skill level and number of tools avail
 ## Getting started steps
 - Step 1: Order all the mechanical, hardware and wiring parts. An [Excel file](main_parts_list/main_materials_and_parts_list.xlsx) with the most important components is provided, with the orientative price of each component. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
 
-- Step 2: 3D print the parts that are present in the Fusion360 3D design files. Inside the [3D designs](3d_designs/) folder there is a design file for each of the project's modules. 
+- Step 2: 3D print the parts of the mechanical platform that are present in the 3D design files that can be found on the Cults3d page of the [original project mechanical design](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics) . Inside the [3D designs](3d_designs/) folder there are some other custom 3D designs (e.g., remote control cases)
 
 - Step 3: Assemble the mechanical platform by joining the different 3D printed parts with the other mechanical parts (e.g., pvc tubes, aluminium profiles). A detailed guide for the mechanical assembly process is available in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/), and images of how the OpenRover modified design was assembled are present in the [images folder](images/)
 
-- Step 4: W
+- Step 4: TODO
 
 ## Take it to the next level
 Now it is your time to build upon the OpenRover platform. One of the cores ideas behind OpenRover is that people who replicate the project are able to modify and improve the platform, as it is designed to be very modular and extensible, specially on the software related side. 
@@ -83,15 +83,28 @@ Here are some ideas to spark inspiration for expanding OpenRover's functionaliti
 ## How to contribute
 Contributions from other developers, hobbyists and any robotics enthusiast in general are welcomed. Whether it's fixing bugs, improving documentation, expanding functionalities or simply sharing new ideas, the help is appreciated. 
 
-### Contributions guide
+### Contribution steps
 
 - Step 1: Fork the repository by clicking the "Fork" button at the top-right section of the OpenRover GitHub repository. This will allow you to create your own copy of the repository
 
 - Step 2: Clone the fork to your computer, so that your repository is available locally 
 
-  ```git ```
+  ```git clone https://github.com/pol-valero/openrover-robotic-platform.git```
 
-  ```cd ```
+- Step 3: Open the cloned repository, create a new branch and switch to it
 
+  ```cd openrover-robotic-platform```    
+  ```git checkout -b  newBranchName```
+
+- Step 4: Make the desired changes (e.g., improve documentation, add or modify code). Test the changes to ensure they don't break existing functionalities
+
+- Step 5: Commit and push all the changes in the branch
+
+- Step 6: Go to the original OpenRover repository, click on the top "Pull requests" tab, and click on the green "New pull request" button. Make sure to describe the changes and additions clearly in the pull request message
+
+Try to create modular and redable code, putting comments on complex code sections. 
+
+If you have any questions, ideas or want to report a bug you can use the "Discussions" and "Issues" tabs
 
 ## Licensing
+Licensed under [MIT License](LICENSE.txt)
