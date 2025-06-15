@@ -1,0 +1,26 @@
+SET(SOURCES ui_MainScreen.c
+    ui.c
+    ui_comp_hook.c
+    ui_helpers.c
+    ui_img_tempimg_png.c
+    ui_img_pressureimg_png.c
+    ui_img_humidityimg_png.c
+    ui_img_raspberryimg_png.c
+    ui_img_speedimg_png.c
+    ui_img_distanceimg_png.c
+    ui_img_wheelrovericon_png.c
+    ui_img_headimg_png.c
+    ui_img_roboticarmimg_png.c
+    ui_img_rotationimg_png.c
+    ui_img_signalstrengthimg_png.c
+    ui_img_batteryimg_png.c
+    ui_img_rovericonimg_png.c
+    ui_img_rcimg_png.c
+    ui_img_homeimg_png.c
+    ui_img_monitorimg_png.c
+    ui_img_configimg_png.c
+    fonts/ui_font_Montserrat_custom.c
+    fonts/ui_font_Montserrat_medium_custom.c
+    fonts/ui_font_Montserrat_medium_custom_12.c)
+
+add_library(ui ${SOURCES})
