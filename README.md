@@ -2,6 +2,10 @@
 
 ![Alt text](images/finished_rover_on_desk.jpeg)
 
+![Alt text](images/embedded_UI_and_web_dashboard.jpeg)
+
+![Alt text](images/embedded_UI.png)
+
 ## General project overview
 
 ### Context
@@ -54,6 +58,8 @@ The OpenRover's components are organized, both at a hardware and software level,
 
 ## Expected build time
 The build time can vary a lot depending on skill level and number of tools available. Experienced builders can expect to assemble the mechanical platform in approximately 60 hours and implement all the wiring and hardware in approximately 80 hours. 
+
+Although the exact number of 3D printing hours was not recorded, it is estimated that it took approximately 400 hours to 3D print all the rover’s components. This number can vary a lot depending on the 3D printer model and the desired 3D printing quality.
 
 ## Getting started steps
 - Step 1: Order all the mechanical, hardware and wiring parts. An [Excel file](main_parts_list/main_materials_and_parts_list.xlsx) with the most important components is provided, with the orientative price of each component. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
