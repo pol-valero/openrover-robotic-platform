@@ -4,6 +4,9 @@
 #include "squareLineFiles/ui.h" //UI file header that SquareLineStudio generates
 #include "screenConfig.h"
 
+//NOTICE: The code present in this file was mostly extracted from the configuration example that the ESP32-8048 touchscreen manufacturer provided: http://pan.jczn1688.com/directlink/1/ESP32%20module/4.3inch_ESP32-8048S043.zip.
+//The provided configuration example had the necessary screen driver and bus configurations to display a LVGL example.
+
 #define TFT_BL 2
 #define GFX_BL DF_GFX_BL // default backlight pin
 
