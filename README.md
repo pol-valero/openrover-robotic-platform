@@ -110,7 +110,7 @@ Contributions from other developers, hobbyists and any robotics enthusiast in ge
 
 - Step 6: Go to the original OpenRover repository, click on the top "Pull requests" tab, and click on the green "New pull request" button. Make sure to describe the changes and additions clearly in the pull request message
 
-Try to create modular and redable code, putting comments on complex code sections. 
+Try to create modular and readable code, putting comments on complex code sections. 
 
 If you have any questions, ideas or want to report a bug you can use the "Discussions" and "Issues" tabs
 

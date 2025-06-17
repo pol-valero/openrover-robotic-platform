@@ -1,5 +1,6 @@
-# Code setup guide for the "camera and web dashboard" module
+# Camera and webserver module
 
+## Code setup guide
 Before uploading this module's project code in the RaspberryPi Zero 2W, it is necessary to install and OS in the board. Specifically, the RaspberryPi OS Lite (headless version) has to be installed. This OS and an install guide can be found in the [RaspberryPi website](https://www.raspberrypi.com/software/operating-systems/).
 
 Once the Raspberry Pi OS is running and SSH connections can be made to be the board, it is possible to upload all the module's project code. To upload an edit the code, the best way is to install the SFTP plugin for the Visual Studio Code editor. This plugin allows to easily set up and modify the project’s file structure and file’s contents remotely from a standard PC. 
@@ -19,3 +20,8 @@ If instead of the RaspberryPi connecting to an existing WiFi, you want the Raspb
 Optionally, the commands to generate the WiFi network and to execute the module's program can be written into a script. This script can then be called inside the ```/etc/rc.local``` file, which is executed at startup. This way, once the RaspberryPi Zero 2W is powered, it will generate the WiFi network and execute the module's program automatically. 
 
 It is important to make sure that the wiring connections to the RaspberryPi Zero 2W are exactly the same as the ones detailed in the wiring schematic of this module.
+
+## Hardware and schematics
+The hardware present on the camera and webserver module includes a RaspberryPi Zero 2W board that is responsible for receiving camera input, creating a WiFi network with a self-hosted website available in it and sending/receiving communications via serial (to/from Arduino Mega).
+
+In this [schematic](camera_and_webserver_module_schematic.pdf), all the hardware present on this module can be seen. 
