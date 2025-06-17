@@ -1,0 +1,16 @@
+{
+  "codename": "Montserrat_medium_custom_12",
+  "ttf_path": "/assets/Montserrat-Medium.ttf",
+  "bin_path": "/assets/ui_font_Montserrat_medium_custom_12.bin",
+  "c_path": "/assets/ui_font_Montserrat_medium_custom_12.c",
+  "cfg_path": "/assets/ui_font_Montserrat_medium_custom_12.fcfg",
+  "size": 12,
+  "bpp": 4,
+  "letters": 3,
+  "ranges": [
+    "0x20-0xff"
+  ],
+  "symbols": "º",
+  "customparams": "--no-compress --no-prefilter",
+  "uploaded": false
+}
