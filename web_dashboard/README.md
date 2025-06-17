@@ -9,7 +9,7 @@ Once the whole project is uploaded, you have to go inside the main project folde
 
 ```python -m logic.main```
 
-If it is the first time you execute this command, several errors will displayed, detailing the dependencies used by the code need that to be installed. It is recommended to install this dependencies on a "virtual environment". Once these dependencies are installed, if we execute the previous command, this module's program will start running, stablishing serial communication with the Arduino Mega and generating the web dashboard. 
+If it is the first time you execute this command, several errors will displayed, detailing the dependencies used by the code that need to be installed. It is recommended to install this dependencies on a "virtual environment". Once these dependencies are installed, if we execute the previous command, this module's program will start running, stablishing serial communication with the Arduino Mega and generating the web dashboard. 
 
 The web dashboard will be available on the following URL. 
 ```http://pizero.local:5000/monitor```
@@ -20,6 +20,15 @@ If instead of the RaspberryPi connecting to an existing WiFi, you want the Raspb
 Optionally, the commands to generate the WiFi network and to execute the module's program can be written into a script. This script can then be called inside the ```/etc/rc.local``` file, which is executed at startup. This way, once the RaspberryPi Zero 2W is powered, it will generate the WiFi network and execute the module's program automatically. 
 
 It is important to make sure that the wiring connections to the RaspberryPi Zero 2W are exactly the same as the ones detailed in the wiring schematic of this module.
+
+## Web dashboard UI design
+The implemented monitoring screen can be seen in the image below. 
+
+![Alt text](/images/web_dashboard_computer.png)
+
+The web dashboard design is responsive and adapts to different screen sizes, as seen in the images below. 
+
+![Alt text](/images/web_dashboard_mobile.png)
 
 ## Hardware and schematics
 The hardware present on the camera and webserver module includes a RaspberryPi Zero 2W board that is responsible for receiving camera input, creating a WiFi network with a self-hosted website available in it and sending/receiving communications via serial (to/from Arduino Mega).
