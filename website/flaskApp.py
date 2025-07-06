@@ -19,7 +19,7 @@ speedometerValues = SpeedometerValues()
 raspberryPiStatusValues = RaspberryPiStatusValues()
 
 picam2 = Picamera2()
-picam2.configure(picam2.create_preview_configuration(main={"size": (1280, 720)}))
+picam2.configure(picam2.create_preview_configuration(main={"size": (1920, 1080)}))
 
 cameraFeedActive = False
 
