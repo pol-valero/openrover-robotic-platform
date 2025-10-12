@@ -23,12 +23,31 @@ Although many open-source robotic projects already exist, even some also related
 
 This adds more educational value to the project, allowing to see each development board optimal usecase, and differentiates the OpenRover from other open-source DIY robotic projects. 
 
+![image](images/various_dev_boards.png)
+
+### Tech stack
+
+#### Programming languages and frameworks
+
+![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) 
+![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![image](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![image](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![image](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+![image](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![image](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+
+#### Other technologies
+
+To program Arduino and ESP32 microcontrollers, the PlatformIO IDE with the Arduino Framework was used. To create the embedded UI design of the touchscreen, the SquareLine Studio platform and LVGL library were used.
+
 ### Disclaimers
-The mechanical platform design was originally made by a mechatronics engineer called Dejan, who owns an educational YouTube channel and website called "HowToMechatronics". This design was adapted and improved. 
+The rover's 3D design was originally made by a mechatronics engineer called Dejan, who owns an educational YouTube channel and website called "HowToMechatronics". This design was adapted and improved. **[Link to the original project used for the rover's 3D design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/)**
 
-**[Link to the original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/)**
+The robotic arm's 3D design was extracted from a GitHub project made by Jakob Krantz, who also created a Mars rover replica. This design was adapted and improved. **[Link to the original project used for robotic arm's 3D design](https://github.com/jakkra/Mars-Rover)**
 
-All the OpenRover hardware and software was created from scratch, following a different approach from the one the original creator of the mechanical platform followed. 
+All the OpenRover hardware and software was created from scratch, following a different approach from the one the creators of the original 3D designs followed. 
 
 ## Features
 
@@ -100,6 +119,10 @@ Here are some ideas to spark inspiration for expanding OpenRover's functionaliti
 - Ability to record movements for the robotic arm, allowing it to automatically fold and unfold or perform a certain procedure
 
 - From the hardware schematic designs, design PCB boards that can be manufactured. These boards would be very useful to make the hardware connections more compact and to allow an easier replication of the project
+
+<br/>
+
+![Alt text](images/rover_design_mars.png)
 
 ## Licensing
 Licensed under [MIT License](LICENSE.txt)
