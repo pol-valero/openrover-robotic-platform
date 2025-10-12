@@ -1,0 +1,54 @@
+body {
+    background-color: #131313;
+    color: white;
+}
+
+/* Bootstrap element*/
+.navbar {
+    background-color: #1e1e1e;
+    padding: 15px;
+    box-shadow: 0px 3px 9px rgba(255, 255, 255, 0.12);
+}
+
+/* Bootstrap element*/
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Bootstrap element*/
+.nav-link {
+    color: white !important;    /*We use "important" to override bootstrap styles for this element*/
+    font-size: 19px;
+    margin-right: 15px;
+}
+
+.nav-link:hover {
+    text-shadow: 2px 1px 5px rgba(255, 255, 255, 0.6);
+}
+
+.status-value-panel {
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 9px;
+    text-align: center;
+    box-shadow: 1px 3px 9px rgba(255, 255, 255, 0.12);
+}
+
+.icon {
+    font-size: 20px;
+    margin-right: 7px;
+}
+
+.status-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* Media query to add space to the bottom of the panels when the screen width is 0-700px (in this resolution range, the panels will be stacked) */
+@media (max-width: 700px) { 
+    .stacked-space {
+        margin-bottom: 15px;
+    }
+}

@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+    
+{% block content %}
+
+    <div class="container text-center mt-4">
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-thermometer-half icon"></i> Temperature</h4>
+                        <p id="temperatureValue" class="status-value">-- °C</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-tint icon"></i> Humidity</h4>
+                        <p id="humidityValue" class="status-value">-- %</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-gauge icon"></i> Pressure</h4>
+                        <p id="pressureValue" class="status-value">-- hPa</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-ruler icon"></i> Altitude</h4>
+                        <p id="altitudeValue" class="status-value">-- m</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 mb-4">
+
+            <div class="col-md-6 stacked-space">
+                <div class="status-value-panel">
+                    <h4><i class="fas fa-chart-line icon"></i> Temperature Evolution</h4>
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </div>
+        
+            <div class="col-md-6 stacked-space">
+                <div class="status-value-panel">
+                    <h4><i class="fas fa-chart-line icon"></i> Humidity Evolution</h4>
+                    <canvas id="humidityChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-gauge-simple-high icon"></i> Speed  </h4>
+                        <p id="speedValue" class="status-value">-- m/h</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-rotate icon"></i> Revolutions</h4>
+                        <p id="revolutionsValue" class="status-value">-- rpm</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-ruler-horizontal icon"></i> Distance</h4>
+                        <p id="distanceValue" class="status-value">-- m</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-battery-half icon"></i> Battery</h4>
+                        <p id="roverBatteryLevelValue" class="status-value">-- V (-- %)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 justify-content-center">
+
+            <div class="col-md-6 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-thermometer-half icon"></i> RaspberryPi CPU temperature</h4>
+                        <p id="rpiCpuTemperatureValue" class="status-value">-- ºC</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 stacked-space">
+                <div class="card status-value-panel text-white">
+                    <div class="card-body">
+                        <h4><i class="fas fa-gears icon"></i> RaspberryPi CPU workload</h4>
+                        <p id="rpiCpuWorkloadValue" class="status-value">-- %</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4 mb-4">
+
+            <div class="col-12">
+                <div class="status-value-panel">
+                    <h4><i class="fas fa-video icon"></i> Camera Feed</h4>
+                    <img id="cameraFeed" src="" class="img-fluid rounded">
+                    <br>
+                    <button id="cameraFeedBtn" class="btn btn-outline-light mt-3">Start Feed</button>
+                </div>
+            </div>    
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
