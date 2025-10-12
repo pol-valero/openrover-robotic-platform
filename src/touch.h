@@ -5,6 +5,8 @@
  * XPT2046: https://github.com/PaulStoffregen/XPT2046_Touchscreen.git
  ******************************************************************************/
 
+ //NOTICE: This file was extracted from the configuration example that the ESP32-8048 touchscreen manufacturer provided: http://pan.jczn1688.com/directlink/1/ESP32%20module/4.3inch_ESP32-8048S043.zip.
+
 /* uncomment for FT6X36 */
 // #define TOUCH_FT6X36
 // #define TOUCH_FT6X36_SCL 19
