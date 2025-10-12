@@ -11,8 +11,7 @@
 ### Context
 Rovers are planetary surface exploration robots that space agencies like NASA send to Mars in order to explore and collect information that will be sent back to Earth. 
 
-### Motivations
-The OpenRover project originates from a personal hobby project in which, using an existing 3D design of a Mars rover replica found online, the design has been adapted, improved, 3D printed and assembled at home. The final 3D printed result has the functional structure and appearance of the "Perseverance" rover, which was launched by NASA in July 2020, and landed on Mars in February 2021.
+In this project, a 3D printed replica of the "Perseverance" rover, which was launched by NASA in July 2020, is created. 
 
 ### Objective
 The main objective of the OpenRover project is to develop an open-source robotic platform that can enable anyone who tries building it to learn more about both the software and hardware aspects of DIY robotic projects, specially learning about widely used development boards like Arduino, ESP32 and Raspberry Pi.  
@@ -54,6 +53,21 @@ The OpenRover's components are organized, both at a hardware and software level,
 - Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover and that is able to use a camera, as well as generating a WiFi and hosting a web dashboard
 
 ![Alt text](images/openrover_modules.png)
+
+### Remarks
+This repository contains the code and documentation of all the modules. However, the codebase is actually distributed across different repositories:
+
+- The folder ``camera_and_webserver_module/raspberrypi_code/`` contains the [openrover-web-dashboard](https://github.com/pol-valero/openrover-web-dashboard.git) repository. 
+
+- The folder ``central_rover_module/arduino_mega_code/`` contains the [openrover-central-controller](https://github.com/pol-valero/openrover-central-controller) repository. 
+
+- The folder ``remote_control_and_touchscreen_module/arduino_nano_code/`` contains the [openrover-rc-transmitter](https://github.com/pol-valero/openrover-rc-transmitter) repository. 
+
+- The folder ``remote_control_and_touchscreen_module/esp32s3_code/`` contains the [openrover-rc-touchscreen](https://github.com/pol-valero/openrover-rc-touchscreen.git) repository. 
+
+- The folder ``remote_control_and_touchscreen_module/touchscreen_ui_design_squareline/`` contains the [openrover-touchscreen-ui-design](https://github.com/pol-valero/openrover-touchscreen-ui-design.git) repository. 
+
+"Git subtrees" were used to link these independent repositories to folders inside this central [openrover-robotic-platform](https://github.com/pol-valero/openrover-robotic-platform) repository. 
 
 
 ## Expected build time

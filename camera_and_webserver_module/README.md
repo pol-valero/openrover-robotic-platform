@@ -14,10 +14,10 @@ If it is the first time you execute this command, several errors will displayed,
 The web dashboard will be available on the following URL. 
 ```http://pizero.local:5000/monitor```
 
-If instead of the RaspberryPi connecting to an existing WiFi, you want the RaspberryPi to generate a WiFi network on its own, the folowing command needs to be used.   
+If instead of the RaspberryPi connecting to an existing WiFi, you want the RaspberryPi to generate a WiFi network on its own, the following command needs to be used.   
 ```sudo nmcli device wifi hotspot ssid RoverWiFi password marsRover```
 
-Optionally, the commands to generate the WiFi network and to execute the module's program can be written into a script. This script can then be called inside the ```/etc/rc.local``` file, which is executed at startup. This way, once the RaspberryPi Zero 2W is powered, it will generate the WiFi network and execute the module's program automatically. 
+Optionally, the commands to generate the WiFi network and to execute the module's program can be written into a script. This script can then be called inside the ```/etc/rc.local``` file, which is executed at startup. This way, once the RaspberryPi Zero 2W is powered, it will generate the WiFi network and execute the module's program automatically. You can find and example startup script in the [raspberrypi_code/scripts/](raspberrypi_code/scripts/) folder.
 
 It is important to make sure that the wiring connections to the RaspberryPi Zero 2W are exactly the same as the ones detailed in the wiring schematic of this module.
 
