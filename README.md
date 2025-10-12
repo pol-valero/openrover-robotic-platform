@@ -51,7 +51,7 @@ The OpenRover's components are organized, both at a hardware and software level,
 
 - Remote control and touchscreen module: It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels
 
-- Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover and that is able to use a camera, as well as generating a WiFi and hosting a website
+- Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover and that is able to use a camera, as well as generating a WiFi and hosting a web dashboard
 
 ![Alt text](images/openrover_modules.png)
 
@@ -68,9 +68,9 @@ Although the exact number of 3D printing hours was not recorded, it is estimated
 
 - Step 3: Assemble the mechanical platform by joining the different 3D printed parts with the other mechanical parts (e.g., pvc tubes, aluminium profiles). A detailed guide for the mechanical assembly process is available in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/). Images showing how the OpenRover modified design was assembled are present in the README of the [assembly folder](assembly/)
 
-- Step 4: Create the wiring connections for the hardware components (e.g., motors, servomotors) and between the hardware electronics (e.g., Arduino Mega, motor drivers). In each of the OpenRover's modules [central rover](central_rover/), [remote control touchscreen](remote_control_touchscreen/), and [web dashboard](web_dashboard/) folders, schematics of the wiring connections are found. Images showing the soldering of various boards, the creation of electrical connections, and the placement of hardware components can be found in the README of the [assembly folder](assembly/)
+- Step 4: Create the wiring connections for the hardware components (e.g., motors, servomotors) and between the hardware electronics (e.g., Arduino Mega, motor drivers). In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), schematics of the wiring connections are found. Images showing the soldering of various boards, the creation of electrical connections, and the placement of hardware components can be found in the README of the [assembly folder](assembly/)
 
-- Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules [central rover](central_rover/), [remote control touchscreen](remote_control_touchscreen/), and [web dashboard](web_dashboard/) folders, an additional README file details the necessary steps for getting all the OpenRover's software up and running for the module
+- Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), an additional README file details the necessary steps for getting all the OpenRover's software up and running for the module
 
 ## Take it to the next level
 Now it is your time to build upon the OpenRover platform. One of the cores ideas behind OpenRover is that people who replicate the project are able to modify and improve the platform, as it is designed to be very modular and extensible, specially on the software related side. 
@@ -86,33 +86,6 @@ Here are some ideas to spark inspiration for expanding OpenRover's functionaliti
 - Ability to record movements for the robotic arm, allowing it to automatically fold and unfold or perform a certain procedure
 
 - From the hardware schematic designs, design PCB boards that can be manufactured. These boards would be very useful to make the hardware connections more compact and to allow an easier replication of the project
-
-
-## How to contribute
-Contributions from other developers, hobbyists and any robotics enthusiast in general are welcomed. Whether it's fixing bugs, improving documentation, expanding functionalities or simply sharing new ideas, the help is appreciated. 
-
-### Contribution steps
-
-- Step 1: Fork the repository by clicking the "Fork" button at the top-right section of the OpenRover GitHub repository. This will allow you to create your own copy of the repository
-
-- Step 2: Clone the fork to your computer, so that your repository is available locally 
-
-  ```git clone https://github.com/pol-valero/openrover-robotic-platform.git```
-
-- Step 3: Open the cloned repository, create a new branch and switch to it
-
-  ```cd openrover-robotic-platform```    
-  ```git checkout -b  newBranchName```
-
-- Step 4: Make the desired changes (e.g., improve documentation, add or modify code). Test the changes to ensure they don't break existing functionalities
-
-- Step 5: Commit and push all the changes in the branch
-
-- Step 6: Go to the original OpenRover repository, click on the top "Pull requests" tab, and click on the green "New pull request" button. Make sure to describe the changes and additions clearly in the pull request message
-
-Try to create modular and readable code, putting comments on complex code sections. 
-
-If you have any questions, ideas or want to report a bug you can use the "Discussions" and "Issues" tabs
 
 ## Licensing
 Licensed under [MIT License](LICENSE.txt)
