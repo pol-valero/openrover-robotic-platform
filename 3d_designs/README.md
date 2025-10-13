@@ -10,6 +10,7 @@ Lots of modifications were made to the original Mars rover and robotic arm desig
 ## 3D designs images
 
 ### Modified DIY Perseverance Rover Replica design
+![Alt text](/images/rover_design_rotating.gif)
 ![Alt text](/images/modified_rover_replica_design.png)
 
 ### Original (left) and modified (right) robotic arm design

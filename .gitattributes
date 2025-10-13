@@ -1,3 +1,0 @@
-central_rover_module/arduino_mega_code/lib/* linguist-vendored=true
-remote_control_and_touchscreen_module/arduino_nano_code/lib/* linguist-vendored=true
-remote_control_and_touchscreen_module/esp32s3_code/lib/* linguist-vendored=true

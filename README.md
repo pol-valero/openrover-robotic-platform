@@ -2,6 +2,8 @@
 
 ![Alt text](images/finished_rover_on_desk.jpeg)
 
+![Alt text](images/rover_inside_on_desk.png)
+
 ![Alt text](images/embedded_UI_and_web_dashboard.jpeg)
 
 ![Alt text](images/embedded_UI.png)
@@ -104,6 +106,12 @@ Although the exact number of 3D printing hours was not recorded, it is estimated
 - Step 4: Create the wiring connections for the hardware components (e.g., motors, servomotors) and between the hardware electronics (e.g., Arduino Mega, motor drivers). In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), schematics of the wiring connections are found. Images showing the soldering of various boards, the creation of electrical connections, and the placement of hardware components can be found in the README of the [assembly folder](assembly/)
 
 - Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), an additional README file details the necessary steps for getting all the OpenRover's software up and running for the module
+
+## Demos
+|![](images/rover_surface_demo.gif) | ![](/images/head_control_demo.gif) |
+| -------------------------- | ---------------------- |
+| ![](/images/robotic_arm_demo.gif) | ![](/images/control_screen_demo.gif) |
+| ![](/images/monitor_screen_demo.gif) | ![](/images/web_dashboard_demo.gif) |
 
 ## Take it to the next level
 Now it is your time to build upon the OpenRover platform. One of the cores ideas behind OpenRover is that people who replicate the project are able to modify and improve the platform, as it is designed to be very modular and extensible, specially on the software related side. 
