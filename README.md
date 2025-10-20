@@ -11,9 +11,9 @@
 ## General project overview
 
 ### Context
-Rovers are planetary surface exploration robots that space agencies like NASA send to Mars in order to explore and collect information that will be sent back to Earth. 
+Rovers are planetary surface exploration robots that space agencies like NASA send to Mars in order to explore and collect information that will be sent back to Earth. In this project, a functional 3D printed replica of the "Perseverance" rover, which was launched by NASA in July 2020, is created. 
 
-In this project, a 3D printed replica of the "Perseverance" rover, which was launched by NASA in July 2020, is created. 
+The project was developed as part of my final computer engineering degree project. Therefore, in addition to the documentation provided in the repository’s READMEs, you can find a comprehensive [project report](project_report/openrover_project_report.pdf) containing theoretical explanations, design decisions, and technical implementation details.
 
 ### Objective
 The main objective of the OpenRover project is to develop an open-source robotic platform that can enable anyone who tries building it to learn more about both the software and hardware aspects of DIY robotic projects, specially learning about widely used development boards like Arduino, ESP32 and Raspberry Pi.  
@@ -45,9 +45,13 @@ This adds more educational value to the project, allowing to see each developmen
 To program Arduino and ESP32 microcontrollers, the PlatformIO IDE with the Arduino Framework was used. To create the embedded UI design of the touchscreen, the SquareLine Studio platform and LVGL library were used.
 
 ### Disclaimers
-The rover's 3D design was originally made by a mechatronics engineer called Dejan, who owns an educational YouTube channel and website called "HowToMechatronics". This design was adapted and improved. **[Link to the original project used for the rover's 3D design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/)**
+The rover's 3D design was originally made by a mechatronics engineer called Dejan, who owns an educational YouTube channel and website called "HowToMechatronics". This design was adapted and improved. 
 
-The robotic arm's 3D design was extracted from a GitHub project made by Jakob Krantz, who also created a Mars rover replica. This design was adapted and improved. **[Link to the original project used for robotic arm's 3D design](https://github.com/jakkra/Mars-Rover)**
+**[Link to the original project used for the rover's 3D design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/)**
+
+The robotic arm's 3D design was extracted from a GitHub project made by Jakob Krantz, who also created a Mars rover replica. This design was adapted and improved. 
+
+**[Link to the original project used for the robotic arm's 3D design](https://github.com/jakkra/Mars-Rover)**
 
 All the OpenRover hardware and software was created from scratch, following a different approach from the one the creators of the original 3D designs followed. 
 
@@ -97,7 +101,7 @@ The build time can vary a lot depending on skill level and number of tools avail
 Although the exact number of 3D printing hours was not recorded, it is estimated that it took approximately 400 hours to 3D print all the rover’s components. This number can vary a lot depending on the 3D printer model and the desired 3D printing quality.
 
 ## Getting started steps
-- Step 1: Order all the mechanical, hardware and wiring parts. An [Excel file](main_parts_list/main_materials_and_parts_list.xlsx) with the most important components is provided, with the orientative price of each component. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
+- Step 1: Order all the mechanical, hardware and wiring parts. An [Excel file](project_report/main_materials_and_parts_list.xlsx) with the most important components is provided, with the orientative price of each component. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
 
 - Step 2: 3D print the parts of the mechanical platform that are present in the 3D design files that can be found on the Cults3d page of the [original project mechanical design](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics). Inside the [3D designs](3d_designs/) folder there are some other custom 3D designs (e.g., remote control cases)
 

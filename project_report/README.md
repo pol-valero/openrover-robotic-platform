@@ -1,0 +1,3 @@
+## Project report
+
+The [project report](project_report/openrover_project_report.pdf) contains theoretical explanations, design decisions, and technical implementation details. Some pages of this report have been removed to reduce the length of the document and help highlight the most interesting parts of the project. The original report had over 30 additional pages that mainly contained an analysis of different hardware and software components that could be used for the project. 
