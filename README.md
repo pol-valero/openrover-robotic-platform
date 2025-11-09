@@ -66,7 +66,7 @@ The OpenRover platform offers an interesting set of functionalities:
 - Custom remote control module with touchscreen, with a UI where status values are displayed and different operation modes can be selected
 - Battery sensors for the rover and the custom remote control
 - 4 main operation modes: conventional driving control, 360º turn control, robotic arm control, head control
-- Web dashboard where status values are displayed and a camera feed is available. This web dashboard is hosted in the rover
+- Web dashboard that displays status values and a video feed. This web dashboard is hosted in the rover
 
 ## Project modules
 The OpenRover's components are organized, both at a hardware and software level, in different modules:
@@ -75,7 +75,7 @@ The OpenRover's components are organized, both at a hardware and software level,
 
 - Remote control and touchscreen module: It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels
 
-- Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover and that is able to use a camera, as well as generating a WiFi and hosting a web dashboard
+- Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover. This board connects to a camera, generates a WiFi network and hosts a web dashboard
 
 ![Alt text](images/openrover_modules.png)
 
@@ -116,6 +116,10 @@ Although the exact number of 3D printing hours was not recorded, it is estimated
 | -------------------------- | ---------------------- |
 | ![](/images/robotic_arm_demo.gif) | ![](/images/control_screen_demo.gif) |
 | ![](/images/monitor_screen_demo.gif) | ![](/images/web_dashboard_demo.gif) |
+
+### Longer demo video
+
+Here is a longer demo video where some of the possible movements can be seen: https://www.youtube.com/watch?v=uD4_qy3aUkQ
 
 ## Take it to the next level
 Now it is your time to build upon the OpenRover platform. One of the cores ideas behind OpenRover is that people who replicate the project are able to modify and improve the platform, as it is designed to be very modular and extensible, specially on the software related side. 

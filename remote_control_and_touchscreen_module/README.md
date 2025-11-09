@@ -1,7 +1,7 @@
 # Remote control and touchscreen module
 
 ## Remarks
-The developed remote control and touchscreen module is currently an add-on to any generic RC that has a PPM output port (usually known as "Trainer Port").
+The developed remote control and touchscreen module is currently an add-on to any generic RC that has a PPM output port (usually known as "Trainer Port"). The RC model that I have personally used is the Spektrum DX8. 
 
 This trainer port usually is a 3.5mm audio jack, but it is not a standard port and can also be a mini-USB, depending on the brand. The transmitters usually use PPM (Pulse Position Modulation) signals outputted from this “Trainer port” to transmit each of the RC channel values.
 
@@ -24,7 +24,7 @@ The only thing that needs to be taking into account is making sure that the wiri
 ## Embedded UI design
 To create the embedded UI design of the touchscreen, the SquareLine Studio platform and LVGL library were used. To edit the UI, these steps have to be followed:
 
-- Step 1: Open the [SquareLine Studio project](embedded_UI_design_squareline_studio/) and make the desired visual changes
+- Step 1: Open the [SquareLine Studio project](touchscreen_ui_design_squareline/) and make the desired visual changes
 
 - Step 2: Click on Export -> Export UI Files. The UI files export path must be previously specified in the "Project Settings"
 
