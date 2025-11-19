@@ -101,7 +101,7 @@ The build time can vary a lot depending on skill level and number of tools avail
 Although the exact number of 3D printing hours was not recorded, it is estimated that it took approximately 400 hours to 3D print all the rover’s components. This number can vary a lot depending on the 3D printer model and the desired 3D printing quality.
 
 ## Getting started steps
-- Step 1: Order all the mechanical, hardware and wiring parts. An [Excel file](project_report/main_materials_and_parts_list.xlsx) with the most important components is provided, with the orientative price of each component. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
+- Step 1: Order all the mechanical and hardware parts. A list with the most important parts is provided in the [hardware components](hardware_components/) folder. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
 
 - Step 2: 3D print the parts of the mechanical platform that are present in the 3D design files that can be found on the Cults3d page of the [original project mechanical design](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics). Inside the [3D designs](3d_designs/) folder there are some other custom 3D designs (e.g., remote control cases)
 
@@ -118,8 +118,10 @@ Although the exact number of 3D printing hours was not recorded, it is estimated
 | ![](/images/monitor_screen_demo.gif) | ![](/images/web_dashboard_demo.gif) |
 
 ### Longer demo video
-
 Here is a longer demo video where some of the possible movements can be seen: https://www.youtube.com/watch?v=uD4_qy3aUkQ
+
+### More images
+On the [sciencefairs and makerfaires images](images/sciencefairs_and_makerfaires_images/) folder, there are some more images of the rover in action as well as an image detailing how the rover can be disassembled for easier transport. 
 
 ## Take it to the next level
 Now it is your time to build upon the OpenRover platform. One of the cores ideas behind OpenRover is that people who replicate the project are able to modify and improve the platform, as it is designed to be very modular and extensible, specially on the software related side. 
