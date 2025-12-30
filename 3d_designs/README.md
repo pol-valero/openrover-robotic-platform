@@ -1,6 +1,6 @@
 ## 3D designs remarks
 
-The original design of the Mars rover model can be found in this [Cults3D page](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics). The original design of the robotic arm can be found in this [GitHub page](https://github.com/jakkra/Mars-Rover). Lots of modifications were made to these designs, which were made by Dejan (HowToMechatronics) and Jakob Krantz respectively.
+The original design of the Mars rover model can be found in this [Cults3D page](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics). The original design of the robotic arm can be found in this [GitHub page](https://github.com/jakkra/Mars-Rover). Lots of modifications were made to these designs, which were originally created by Dejan (HowToMechatronics) and Jakob Krantz respectively.
 
 Since the original design of the Mars rover is not free (it has to be purchased via the Cults3D page provided before) only the parts of the rover that were created from scratch are present in the [rover Fusion360 design file](rover_modified_and_new_parts.f3d) of this folder. Since the original design of the robotic arm is open-source, the [rover Fusion360 design file](rover_modified_and_new_parts.f3d) contains the parts of the robotic arm that were either created from scratch, modified or original. 
 
