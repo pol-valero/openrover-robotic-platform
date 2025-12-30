@@ -1,0 +1,47 @@
+*Extracted from HowToMechatronics (https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/). This list has been updated with some additional mechanical parts. 
+
+Bolts and nuts:
+M3 x 8 - 100
+M3 x 10 - 60
+M3 x 12 - 50
+M3 x 16 - 60
+M3 x 20 - 20
+M3 x 35 - 5
+M3 x 40 - 5
+M4 x 25 - 10
+M5 x 30 - 5
+M4 x 30 - 10
+M4 x 20 Flat socket head - 35
+M6 x 55 - 4
+M6 nuts self-locking - 4
+M6 washers - 4
+M8 x 30 - 2
+M8 x 60 - 1
+M8 x 70 - 2
+M8 x 90/95 - 2
+M8 nuts - 4
+M8 nuts self-locking - 3
+M8 washers - 5
+Grub Screw M3 x 6 - 14
+
+Bearings:
+608RS - 8x22x7mm - 8
+626RS - 6x19x6mm - 8
+625RS - 5x16x5mm - 4
+
+Other parts:
+M8 Female Rod End Ball Joint - 2
+Threaded rod M8 x 50mm length - 2
+Threaded rod M6 x 75mm
+T-Slot corner brackets - 16
+T-Slot Nuts: M3 - 100;  M5 - 50
+M5 washers - 50 for the corner brackets
+
+Metal servo horn/arm with round/disk shape - 12
+M3 threaded insert - 100 (approximate)
+M4 threaded insert - 30 (approximate)
+Neodymium magnets - 8x2mm - 10
+
+Aluminum 20mm tube - see rover 3D design for quantity and lengths
+Aluminum or PVC 25mm tube - see rover's robotic arm 3D design for quantity and lengths
+T-slot aluminum profile 20x20mm - see rover 3D design for quantity and lengths

@@ -45,7 +45,7 @@ Here is a list with the most important hardware components needed for the rover:
 
 These hardware components were purchased on Aliexpress, but most of them are also available on Amazon.
 
-For the mechanical platform, a parts list is provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
+For the mechanical platform, a parts list is provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/). An [updated version of the mechanical parts list](/hardware_components/mechanical_parts_list.txt) is also provided in this ``hardware_components/`` folder.
 
 ### Cost
 The estimated cost of all the mechanical and hardware components is around 900€. This cost does not include the tools that are necessary to build the rover (e.g., soldering iron, power supply for tests).

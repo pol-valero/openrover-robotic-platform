@@ -120,6 +120,10 @@ Although the exact number of 3D printing hours was not recorded, it is estimated
 ### Longer demo video
 Here is a longer demo video where some of the possible movements can be seen: https://www.youtube.com/watch?v=uD4_qy3aUkQ
 
+Preview of demo video at 2x speed: 
+
+![Alt text](images/rover_longer_demo_video.gif)
+
 ### More images
 On the [sciencefairs and makerfaires images](images/sciencefairs_and_makerfaires_images/) folder, there are some more images of the rover in action as well as an image detailing how the rover can be disassembled for easier transport. 
 
