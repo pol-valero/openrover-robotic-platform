@@ -3,6 +3,8 @@
 
 #include "sharedStructs.h"
 
+void setupRcInputs();
+
 void correctRcValues(RcValues &rcValues);
 
 void setRadioControlEnabled(bool enabled);

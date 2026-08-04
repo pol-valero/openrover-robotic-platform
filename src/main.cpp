@@ -13,6 +13,7 @@ void setup() {
   setupSerial();
   setupRadio();
   setupBatteryMonitor();
+  setupRcInputs();
   setupBuzzer();
 
 }

@@ -6,99 +6,87 @@
 #include "radioCommunication.h"
 
 
+int joyX1Pin = A1;
+int joyY1Pin = A0;
+int joyY2Pin = A2;
+int joyX2Pin = A3;
+
+int switch1Pin = 2;
+int switch2Pin = 3;
+
+int pushButtonPin = 4;
+
 bool radioControlEnabled = false;
+
+void setupRcInputs() {
+  pinMode(joyX1Pin, INPUT);
+  pinMode(joyY1Pin, INPUT);
+  pinMode(joyY2Pin, INPUT);
+  pinMode(joyX2Pin, INPUT);
+
+  pinMode(switch1Pin, INPUT_PULLUP);
+  pinMode(switch2Pin, INPUT_PULLUP);
+
+  pinMode(pushButtonPin, INPUT_PULLUP);
+}
 
 //We need to correct the values of the RC remote, because the values are not centered at 0, and we want a range of -255..255 in each axis
 void correctRcValues(RcValues &rcValues) {
 
-  if (rcValues.x1 > 470 && rcValues.x1 < 550) {
+  if (rcValues.x1 > 560 && rcValues.x1 < 650) {
    rcValues.x1 = 0;
   } else {
-    if (rcValues.x1 <= 470) {
-      rcValues.x1 = map(rcValues.x1, 470, 0, -1, -255);
+    if (rcValues.x1 <= 560) {
+      rcValues.x1 = map(rcValues.x1, 560, 0, 0, 255);
     } else {
-      rcValues.x1 = map(rcValues.x1, 550, 1023, 0, 255);
+      rcValues.x1 = map(rcValues.x1, 650, 1023, 0, -255);
     }
   }
 
-  if (rcValues.y1 > 470 && rcValues.y1 < 550) {
+  if (rcValues.y1 > 550 && rcValues.y1 < 630) {
    rcValues.y1 = 0;
   } else {
-    if (rcValues.y1 <= 470) {
-      rcValues.y1 = map(rcValues.y1, 470, 0, -1, -255);
+    if (rcValues.y1 <= 550) {
+      rcValues.y1 = map(rcValues.y1, 550, 0, -1, -255);
     } else {
-      rcValues.y1 = map(rcValues.y1, 550, 1023, 0, 255);
+      rcValues.y1 = map(rcValues.y1, 630, 1023, 0, 255);
     }
   }
 
-  if (rcValues.x2 > 470 && rcValues.x2 < 550) {
+  if (rcValues.x2 > 560 && rcValues.x2 < 650) {
    rcValues.x2 = 0;
   } else {
-    if (rcValues.x2 <= 470) {
-      rcValues.x2 = map(rcValues.x2, 470, 0, -1, -255);
+    if (rcValues.x2 <= 560) {
+      rcValues.x2 = map(rcValues.x2, 560, 0, 0, 255);
     } else {
-      rcValues.x2 = map(rcValues.x2, 550, 1023, 0, 255);
+      rcValues.x2 = map(rcValues.x2, 650, 1023, 0, -255);
     }
   }
 
-  if (rcValues.y2 > 470 && rcValues.y2 < 550) {
+  if (rcValues.y2 > 550 && rcValues.y2 < 640) {
    rcValues.y2 = 0;
   } else {
-    if (rcValues.y2 <= 470) {
-      rcValues.y2 = map(rcValues.y2, 470, 0, -1, -255);
+    if (rcValues.y2 <= 550) {
+      rcValues.y2 = map(rcValues.y2, 550, 0, 0, 255);
     } else {
-      rcValues.y2 = map(rcValues.y2, 550, 1023, 0, 255);
+      rcValues.y2 = map(rcValues.y2, 640, 1023, 0, -255);
     }
-  }
-
-  //TODO: Once the final use of each AUX is determined, we will map the values to the correct range (ex.- 0..1)
-  rcValues.aux1 = map(rcValues.aux1, 0, 1023, 0, 255); 
-  rcValues.aux2 = map(rcValues.aux2, 0, 1023, 0, 255);
-  rcValues.aux3 = map(rcValues.aux3, 0, 1023, 0, 255);
-  rcValues.aux4 = map(rcValues.aux4, 0, 1023, 0, 255); 
-
-  if (rcValues.aux1 < 10) {
-    rcValues.aux1 = 0;
-  } else {
-    rcValues.aux1 = 1;
-  }
-
-  if (rcValues.aux2 < 10) {
-    rcValues.aux2 = 0;
-  } else if (rcValues.aux2 > 245) {
-    rcValues.aux2 = 2;
-  } else {
-    rcValues.aux2 = 1;
-  }
-
-  if (rcValues.aux3 < 10) {
-    rcValues.aux3 = 0;
-  } else {
-    rcValues.aux3 = 1;
-  }
-
-  if (rcValues.aux4 < 10) {
-    rcValues.aux4 = 0;
-  } else if(rcValues.aux4 > 245) {
-    rcValues.aux4 = 2;
-  } else {
-    rcValues.aux4 = 1;
   }
   
 }
 
-RcValues getSpektrumRcValues() {
+RcValues getRcValues() {
   
   RcValues rcValues;
 
-  /*rcValues.y1 = tx.getChannel(0);
-  rcValues.x1 = tx.getChannel(3);
-  rcValues.y2 = tx.getChannel(2);
-  rcValues.x2 = tx.getChannel(1);
-  rcValues.aux1 = tx.getChannel(4);
-  rcValues.aux2 = tx.getChannel(5);
-  rcValues.aux3 = tx.getChannel(6);
-  rcValues.aux4 = tx.getChannel(7);*/
+  rcValues.y1 = analogRead(joyY1Pin);
+  rcValues.x1 = analogRead(joyX1Pin);
+  rcValues.y2 = analogRead(joyY2Pin);
+  rcValues.x2 = analogRead(joyX2Pin);
+  rcValues.aux1 = !digitalRead(switch1Pin);
+  rcValues.aux2 = !digitalRead(switch2Pin);
+  rcValues.aux3 = !digitalRead(pushButtonPin);
+  rcValues.aux4 = 0;
 
   rcValues.dataValid = true;
 
@@ -108,7 +96,7 @@ RcValues getSpektrumRcValues() {
 
 }
 
-RcValues getSpektrumRcValuesForSerial () {
+RcValues getRcValuesForSerial() {
   
   RcValues rcValues;
   rcValues.dataValid = false;
@@ -119,7 +107,7 @@ RcValues getSpektrumRcValuesForSerial () {
   if (millis() - previousMillis >= 130) {
     previousMillis = millis();
 
-    rcValues = getSpektrumRcValues();
+    rcValues = getRcValues();
 
   }
 
@@ -127,7 +115,7 @@ RcValues getSpektrumRcValuesForSerial () {
 
 }
 
-RcValues getSpektrumRcValuesForRadio () {
+RcValues getRcValuesForRadio() {
   
   RcValues rcValues;
   rcValues.dataValid = false;
@@ -138,7 +126,7 @@ RcValues getSpektrumRcValuesForRadio () {
   if (millis() - previousMillis >= 50) {
     previousMillis = millis();
 
-    rcValues = getSpektrumRcValues();
+    rcValues = getRcValues();
     rcValues.dataValid = radioControlEnabled;
 
   }
@@ -153,7 +141,7 @@ void setRadioControlEnabled(bool enabled) {
 
 void serialSendRcValuesFrame() {
 
-  RcValues rcValues = getSpektrumRcValuesForSerial(); 
+  RcValues rcValues = getRcValuesForSerial(); 
 
   if (rcValues.dataValid) {
     
@@ -166,7 +154,7 @@ void serialSendRcValuesFrame() {
 
 void radioSendRcValuesFrame() {
   
-  RcValues rcValues = getSpektrumRcValuesForRadio();
+  RcValues rcValues = getRcValuesForRadio();
 
   if (rcValues.dataValid) {
     
