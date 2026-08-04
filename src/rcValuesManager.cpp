@@ -1,9 +1,8 @@
 #include <Arduino.h>
 
+#include "frameTypesDefinition.h"
 #include "rcValuesManager.h"
 #include "valuesToFrameConversion.h"
-#include "serialCommunication.h"
-#include "radioCommunication.h"
 
 
 int joyX1Pin = A1;
@@ -88,18 +87,16 @@ RcValues getRcValues() {
   rcValues.aux3 = !digitalRead(pushButtonPin);
   rcValues.aux4 = 0;
 
-  rcValues.dataValid = true;
-
   correctRcValues(rcValues);
 
   return rcValues;
 
 }
 
-RcValues getRcValuesForSerial() {
+Frame getRcValuesFrameForSerial() {
   
-  RcValues rcValues;
-  rcValues.dataValid = false;
+  Frame frame;
+  frame.type = NOT_VALID;
 
   static unsigned long previousMillis = 0;
 
@@ -107,18 +104,19 @@ RcValues getRcValuesForSerial() {
   if (millis() - previousMillis >= 130) {
     previousMillis = millis();
 
-    rcValues = getRcValues();
+    RcValues rcValues = getRcValues();
+    frame = rcValuesToFrame(rcValues);
 
   }
 
-  return rcValues;
+  return frame;
 
 }
 
-RcValues getRcValuesForRadio() {
+Frame getRcValuesFrameForRadio() {
   
-  RcValues rcValues;
-  rcValues.dataValid = false;
+  Frame frame;
+  frame.type = NOT_VALID;
 
   static unsigned long previousMillis = 0;
 
@@ -126,41 +124,16 @@ RcValues getRcValuesForRadio() {
   if (millis() - previousMillis >= 50) {
     previousMillis = millis();
 
-    rcValues = getRcValues();
-    rcValues.dataValid = radioControlEnabled;
+    RcValues rcValues = getRcValues();
+    frame = rcValuesToFrame(rcValues);
+    frame.type = (radioControlEnabled == true) ? frame.type : NOT_VALID;
 
   }
 
-  return rcValues;
+  return frame;
 
 }
 
 void setRadioControlEnabled(bool enabled) {
   radioControlEnabled = enabled;
-}
-
-void serialSendRcValuesFrame() {
-
-  RcValues rcValues = getRcValuesForSerial(); 
-
-  if (rcValues.dataValid) {
-    
-    Frame frame = rcValuesToFrame(rcValues);
-    serialSendFrame(frame);
-
-  }
-
-}
-
-void radioSendRcValuesFrame() {
-  
-  RcValues rcValues = getRcValuesForRadio();
-
-  if (rcValues.dataValid) {
-    
-    Frame frame = rcValuesToFrame(rcValues);
-    radioSendFrame(frame);
-
-  }
-
 }

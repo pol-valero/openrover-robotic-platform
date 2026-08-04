@@ -7,6 +7,6 @@ BatteryValues getRcBatteryValues();
 
 void setupBatteryMonitor();
 
-void serialSendBattValuesFrame();
+Frame getRcBatteryValuesFrame();
 
 #endif

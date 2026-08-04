@@ -9,8 +9,8 @@ void correctRcValues(RcValues &rcValues);
 
 void setRadioControlEnabled(bool enabled);
 
-void serialSendRcValuesFrame();
+Frame getRcValuesFrameForSerial();
 
-void radioSendRcValuesFrame();
+Frame getRcValuesFrameForRadio();
 
 #endif

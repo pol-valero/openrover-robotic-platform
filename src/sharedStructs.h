@@ -12,13 +12,11 @@ typedef struct {
   int aux2;
   int aux3;
   int aux4;
-  bool dataValid;
 } RcValues;
 
 typedef struct {
   float cellVoltage;
   int percentage;
-  bool dataValid;
 } BatteryValues;
 
 typedef struct __attribute__((packed)) {
