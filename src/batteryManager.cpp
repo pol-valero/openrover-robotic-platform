@@ -6,7 +6,7 @@
 #include "serialCommunication.h"
 
 
-const int batt_input_pin = A0; //Analog pin where the battery voltage is read
+const int batt_input_pin = A4; //Analog pin where the battery voltage is read
 
 void setupBatteryMonitor() {
   pinMode(batt_input_pin, INPUT);
@@ -14,27 +14,27 @@ void setupBatteryMonitor() {
 
 BatteryValues getRcBatteryValues() {
 
-  //We are using a Lithium-Ion battery for the RC remote
+  //We are using 4x 1.2V AAA NiMH batteries for the RC remote (which can be seen as a 4 cell battery pack)
 
   BatteryValues battValues;
 
-  int batt_divider_voltage_analog_value;  //Analog value read from the voltage divider output, which is approximately 4V when the battery is fully charged
-  float batt_divider_voltage; //Volts of the voltage divider output. The voltage divider in the radio controller halves the voltage of the battery.
-  int batt_percentage; //Percentage of the battery, from 0% (3.3V per cell) to 100% (4.2V per cell)
+  int batt_divider_voltage_analog_value;  //Analog value read from the voltage divider output (0-1023)
+  float batt_divider_voltage; //Volts in the voltage divider output (approximately 2.7V when the batteries are fully charged). The voltage divider in the RC halves the total voltage.
+  int batt_percentage; //Percentage of the battery, from 0% (1.0V per battery/cell) to 100% (1.35V per battery/cell)
 
   batt_divider_voltage_analog_value = analogRead(batt_input_pin);
 
   batt_divider_voltage = (5.00 / 1023) * batt_divider_voltage_analog_value;
 
-  //Notice: The max charge of the battery will be 4.2V per cell, 8.4V in total (2S battery).
+  float cell_voltage = batt_divider_voltage / 2; //The voltage divider halves the total voltage produced by the 4 batteries, so we divide by 2 to get the voltage of each battery/cell.
 
-  batt_percentage = map(batt_divider_voltage * 100, 4.2 * 100, 3.3 * 100, 100, 0); //We multiply by 100 because the map() function does not accept floats.
+  batt_percentage = map(cell_voltage * 100, 1.35 * 100, 1 * 100, 100, 0); //We multiply by 100 because the map() function does not accept floats.
 
-  if (batt_divider_voltage <= 3.3) {
+  if (cell_voltage <= 1) {
     batt_percentage = 0;
   }
 
-  battValues.cellVoltage = batt_divider_voltage;
+  battValues.cellVoltage = cell_voltage;
   battValues.percentage = batt_percentage;
 
   return battValues;

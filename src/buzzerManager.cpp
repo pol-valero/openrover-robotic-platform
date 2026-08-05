@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-const int buzzer_pin = A3; //Analog pin where the buzzer is connected
+const int buzzer_pin = 7;
 
 void setupBuzzer() {
     pinMode(buzzer_pin, OUTPUT);
