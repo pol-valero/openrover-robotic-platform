@@ -1,7 +1,7 @@
 # Remote control and touchscreen module
 
 ## Remarks
-The developed remote control and touchscreen module is currently an add-on to any generic RC that has a PPM output port (usually known as "Trainer Port"). The RC model that I have personally used is the Spektrum DX8. 
+The developed remote control and touchscreen module is currently an attachment to any generic RC that has a PPM output port (usually known as "Trainer Port"). The RC model that I have personally used is the Spektrum DX8. 
 
 This trainer port usually is a 3.5mm audio jack, but it is not a standard port and can also be a mini-USB, depending on the brand. The transmitters usually use PPM (Pulse Position Modulation) signals outputted from this “Trainer port” to transmit each of the RC channel values.
 
@@ -35,10 +35,3 @@ To create the embedded UI design of the touchscreen, the SquareLine Studio platf
 Three screens have been implemented in the embedded UI: Control, Monitor and Configuration. These screens can be seen in the images below. 
 
 ![Alt text](/images/embedded_UI_designs.png)
-
-## Hardware and schematics
-The hardware present on the remote control and touchscreen module includes an ESP32S3 development board that is responsible for managing the screen and an Arduino Nano board that helps processing the RC PPM signals and controlling the radio transceiver. 
-
-The touchscreen model is the ESP32S3_8048S043, with a resolution of 800 x 480 px and 4.3" screen size. This model has an ESP32S3 and I/O connectors built in.
-
-In this [schematic](rc_and_touchscreen_module_schematic.pdf), all the hardware present on this module can be seen. 
