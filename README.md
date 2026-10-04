@@ -11,19 +11,19 @@
 ## General project overview
 
 ### Context
-Rovers are planetary surface exploration robots that space agencies like NASA send to Mars in order to explore and collect information that will be sent back to Earth. In this project, a functional 3D printed replica of the "Perseverance" rover, which was launched by NASA in July 2020, is created. 
+Rovers are planetary exploration robots that space agencies like NASA send to Mars or the Moon to explore and collect information, images, and samples. In this project, a functional 3D printed replica of the Mars "Perseverance" rover, which was launched by NASA in July 2020, is created. 
 
-The project was developed as part of my final computer engineering degree project. Therefore, in addition to the documentation provided in the repository’s READMEs, you can find a comprehensive [project report](project_report/openrover_project_report.pdf) containing theoretical explanations, design decisions, and technical implementation details.
+The OpenRover project was developed as part of my final computer engineering degree project. Therefore, in addition to the documentation provided in the repository’s READMEs, you can find a comprehensive [project report](project_report/openrover_project_report.pdf) containing theoretical explanations, design decisions, and technical implementation details (but the repository's READMEs provide enough information to replicate the project). 
 
 ### Objective
-The main objective of the OpenRover project is to develop an open-source robotic platform that can enable anyone who tries building it to learn more about both the software and hardware aspects of DIY robotic projects, specially learning about widely used development boards like Arduino, ESP32 and Raspberry Pi.  
+The main objective of the OpenRover project is to provide an extensible open-source robotic platform that allows anyone building it to put their DIY software/hardware/mechanical skills into practise, and to use popular development boards like Arduino, ESP32, and Raspberry Pi.  
 
-As rovers are extremely sophisticated machines, they provide the perfect excuse to incorporate into the robotic platform several complex functionalities that replicate, at a smaller scale, the functionalities that real Mars rovers have (e.g., robotic arm, environmental sensors, 6-wheel drive).  
+As rovers are extremely sophisticated machines, they provide the perfect excuse to incorporate into the robotic platform several complex functionalities that replicate, at a smaller scale, the functionalities that real Mars rovers have (e.g., robotic arm, environmental sensors, 6-wheel drive, camera feed).  
 
 ### Key contributions
-Although many open-source robotic projects already exist, even some also related to Mars rover robots, they usually only use a single type of development board. In the OpenRover project, partly due to its complexity and wide scope, several development boards are used among its main functional modules (e.g., RaspberryPi for web connectivity, ESP32 for embedded screen, Arduino for motor control) and there are interactions between these modules. 
+Although many similar open-source robotic projects already exist, even some also related to Mars rover robots, they tend to use a single type of development board. In the OpenRover project, several development boards are used among its main functional modules (e.g., RaspberryPi for web connectivity, ESP32 for embedded screen, Arduino for motor control) and there are interactions between these modules. 
 
-This adds more educational value to the project, allowing to see each development board optimal usecase, and differentiates the OpenRover from other open-source DIY robotic projects. 
+This adds more educational value to the project, allowing to see some of the optimal usecases for each development board, and differentiates OpenRover from other open-source DIY robotic projects. 
 
 ![image](images/various_dev_boards.png)
 
@@ -73,7 +73,7 @@ The OpenRover's components are organized, both at a hardware and software level,
 
 - Central rover module: It has an Arduino Mega development board that is inside the main body of the rover and that manages all moving elements (e.g., motors, servomotors) as well as the rover's sensors and sending/receiving the radio signal
 
-- Remote control and touchscreen module: It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels
+- Remote control and touchscreen module: It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels. Two different remote control versions are available: a custom remote control PCB, or an attachment for a generic/commercial remote control. Further info on these versions can be found [here](remote_control_and_touchscreen_module/)
 
 - Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover. This board connects to a camera, generates a WiFi network and hosts a web dashboard
 
@@ -86,7 +86,9 @@ This repository contains the code and documentation of all the modules. However,
 
 - The folder ``central_rover_module/arduino_mega_code/`` contains the [openrover-central-controller](https://github.com/pol-valero/openrover-central-controller) repository. 
 
-- The folder ``remote_control_and_touchscreen_module/arduino_nano_code/`` contains the [openrover-rc-transmitter](https://github.com/pol-valero/openrover-rc-transmitter) repository. 
+- The folder ``remote_control_and_touchscreen_module/pcb_remote_control/arduino_nano_code/`` contains the [openrover-rc-transmitter-pcb](https://github.com/pol-valero/openrover-rc-transmitter-pcb) repository. 
+
+- The folder ``remote_control_and_touchscreen_module/generic_remote_control_attachment/arduino_nano_code/`` contains the [openrover-rc-transmitter](https://github.com/pol-valero/openrover-rc-transmitter) repository. 
 
 - The folder ``remote_control_and_touchscreen_module/esp32s3_code/`` contains the [openrover-rc-touchscreen](https://github.com/pol-valero/openrover-rc-touchscreen.git) repository. 
 
@@ -101,15 +103,15 @@ The build time can vary a lot depending on skill level and number of tools avail
 Although the exact number of 3D printing hours was not recorded, it is estimated that it took approximately 400 hours to 3D print all the rover’s components. This number can vary a lot depending on the 3D printer model and the desired 3D printing quality.
 
 ## Getting started steps
-- Step 1: Order all the mechanical and hardware parts. A list with the most important parts is provided in the [hardware components](hardware_components/) folder. For the mechanical platform, a parts list is also provided in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/) 
+- Step 1: Order all the mechanical and hardware parts. Lists with the most important parts are provided in the [hardware components](hardware_components/) folder.
 
-- Step 2: 3D print the parts of the mechanical platform that are present in the 3D design files that can be found on the Cults3d page of the [original project mechanical design](https://cults3d.com/en/3d-model/game/mars-rover-perseverance-replica-howtomechatronics). Inside the [3D designs](3d_designs/) folder there are some other custom 3D designs (e.g., remote control cases)
+- Step 2: 3D print the rover and remote controller parts present in the 3D design files, which are detailed inside the [3D designs](3d_designs/) folder.
 
-- Step 3: Assemble the mechanical platform by joining the different 3D printed parts with the other mechanical parts (e.g., pvc tubes, aluminium profiles). A detailed guide for the mechanical assembly process is available in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/). Images showing how the OpenRover modified design was assembled are present in the README of the [assembly folder](assembly/)
+- Step 3: Assemble the mechanical platform by joining the different 3D printed parts with the other mechanical parts (e.g., aluminium profiles, PVC tubes). A detailed guide for the mechanical assembly process of the rover is available in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/). Images showing the assembly of the modified OpenRover design and custom remote control are available in the [assembly folder](assembly/)
 
 - Step 4: Create the wiring connections for the hardware components (e.g., motors, servomotors) and between the hardware electronics (e.g., Arduino Mega, motor drivers). In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), schematics of the wiring connections are found. Images showing the soldering of various boards, the creation of electrical connections, and the placement of hardware components can be found in the README of the [assembly folder](assembly/)
 
-- Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), an additional README file details the necessary steps for getting all the OpenRover's software up and running for the module
+- Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), additional README files detail the necessary steps for getting all the OpenRover's software up and running for the module
 
 ## Demos
 |![](images/rover_surface_demo.gif) | ![](/images/head_control_demo.gif) |
@@ -140,7 +142,7 @@ Here are some ideas to spark inspiration for expanding OpenRover's functionaliti
 
 - Ability to record movements for the robotic arm, allowing it to automatically fold and unfold or perform a certain procedure
 
-- From the hardware schematic designs, design PCB boards that can be manufactured. These boards would be very useful to make the hardware connections more compact and to allow an easier replication of the project
+- From the hardware schematic designs of the rover, design PCB boards that can be manufactured. These boards would be very useful to make the hardware connections more compact and to allow an easier replication of the project
 
 <br/>
 

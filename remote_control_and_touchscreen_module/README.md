@@ -1,6 +1,6 @@
 # Remote control and touchscreen module
 
-## Remarks
+## Remote control options
 The OpenRover project has two remote control options available:
 
 1) Custom remote control created from scratch, using a manufactured double-layered PCB, some 3D printed parts, and acrylic plastic. Code, schematics, and further info can be found in this [folder](pcb_remote_control/). 
