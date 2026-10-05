@@ -58,8 +58,9 @@ Most important hardware components needed for first remote control option (custo
 - 100 ohm resistors (x1), 1k ohm resistors (x2)
 - Double AAA battery holder (x2)
 - Rechargeable AAA 1.2V 750mAh NiMH battery (x4)
+- Manufactured double-layer PCB (x1)
 
-Most important hardware components needed second remote control option (attachment for a generic/commercial RC)
+Most important hardware components needed for second remote control option (attachment for a generic/commercial RC)
 - Buzzer (x1)
 - ESP32S3_8048S043 IPS touchscreen (x1)
 - Spiral plastic sleeve for wires (as needed)

@@ -4,6 +4,8 @@
 
 ![Alt text](images/rover_inside_on_desk.png)
 
+![Alt text](images/assembled_rc_pcb.jpeg)
+
 ![Alt text](images/embedded_UI_and_web_dashboard.jpeg)
 
 ![Alt text](images/embedded_UI.png)
@@ -71,11 +73,11 @@ The OpenRover platform offers an interesting set of functionalities:
 ## Project modules
 The OpenRover's components are organized, both at a hardware and software level, in different modules:
 
-- Central rover module: It has an Arduino Mega development board that is inside the main body of the rover and that manages all moving elements (e.g., motors, servomotors) as well as the rover's sensors and sending/receiving the radio signal
+- [Central rover module](central_rover_module/): It has an Arduino Mega development board that is inside the main body of the rover and that manages all moving elements (e.g., motors, servomotors) as well as the rover's sensors and sending/receiving the radio signal.
 
-- Remote control and touchscreen module: It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels. Two different remote control versions are available: a custom remote control PCB, or an attachment for a generic/commercial remote control. Further info on these versions can be found [here](remote_control_and_touchscreen_module/)
+- [Remote control and touchscreen module](remote_control_and_touchscreen_module/): It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels. Two different remote control versions are available: a custom remote control PCB, or an attachment for a generic/commercial remote control.
 
-- Camera and webserver module: It has a RaspberryPi Zero 2W development board that is inside the head of the rover. This board connects to a camera, generates a WiFi network and hosts a web dashboard
+- [Camera and webserver module](camera_and_webserver_module/): It has a RaspberryPi Zero 2W development board that is inside the head of the rover. This board connects to a camera, generates a WiFi network and hosts a web dashboard.
 
 ![Alt text](images/openrover_modules.png)
 
@@ -107,11 +109,11 @@ Although the exact number of 3D printing hours was not recorded, it is estimated
 
 - Step 2: 3D print the rover and remote controller parts present in the 3D design files, which are detailed inside the [3D designs](3d_designs/) folder.
 
-- Step 3: Assemble the mechanical platform by joining the different 3D printed parts with the other mechanical parts (e.g., aluminium profiles, PVC tubes). A detailed guide for the mechanical assembly process of the rover is available in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/). Images showing the assembly of the modified OpenRover design and custom remote control are available in the [assembly folder](assembly/)
+- Step 3: Assemble the mechanical platform by joining the different 3D printed parts with the other mechanical parts (e.g., aluminium profiles, PVC tubes). A detailed guide for the mechanical assembly process of the rover is available in the [original project used for the mechanical design](https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/). Images showing the assembly of the modified OpenRover design and custom remote control are available in the [assembly folder](assembly/).
 
-- Step 4: Create the wiring connections for the hardware components (e.g., motors, servomotors) and between the hardware electronics (e.g., Arduino Mega, motor drivers). In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), schematics of the wiring connections are found. Images showing the soldering of various boards, the creation of electrical connections, and the placement of hardware components can be found in the README of the [assembly folder](assembly/)
+- Step 4: Create the wiring connections for the hardware components (e.g., motors, servomotors) and between the hardware electronics (e.g., Arduino Mega, motor drivers). In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), schematics of the wiring connections are found. Images showing the soldering of various boards, the creation of electrical connections, and the placement of hardware components can be found in the README of the [assembly folder](assembly/).
 
-- Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), additional README files detail the necessary steps for getting all the OpenRover's software up and running for the module
+- Step 5: Set up and upload the code to the development boards. In each of the OpenRover's modules folders ([central rover](central_rover_module/), [remote control and touchscreen](remote_control_and_touchscreen_module/), and [camera and webserver](camera_and_webserver_module/)), additional README files detail the necessary steps for getting all the OpenRover's software up and running for the module.
 
 ## Demos
 |![](images/rover_surface_demo.gif) | ![](/images/head_control_demo.gif) |

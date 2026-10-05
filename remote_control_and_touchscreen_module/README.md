@@ -9,7 +9,7 @@ The OpenRover project has two remote control options available:
 
 For anyone trying to replicate the project, I would definitely recommend choosing the first option. The second option would only be suited for those who already have a Spektrum DX8 (or similar) remote control, really like how it feels/handles, and would like to tinker with it. For the second option, also note that from my experience, the PPM readings can be a little unreliable sometimes.
 
-//TODO: Image of Spektrum RC, Image of PCB RC with status screen
+![Alt text](/images/rc_options_comparison.png)
 
 ## Code setup guide
 No matter which remote control option is selected, this module is formed by two submodules, the "Arduino Nano" and the "ESP32S3 touchscreen" submodules. The [code](esp32s3_code/) and [embedded UI design](touchscreen_ui_design_squareline/) of the "ESP32S3 touchscreen" submodule is exactly the same for the two remote control options, that's why they are located in this folder. The code and schematics of the "Arduino Nano" submodule and the schematics of the "ESP32S3 touchscreen" submodule differ depending on the chosen remote control option, that's why they are located inside the folder of each remote control option.

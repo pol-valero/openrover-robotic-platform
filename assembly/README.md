@@ -39,13 +39,23 @@ Additionally, some images that detail the hardware and mechanical assembly proce
 | ![](/images/rover_assembly_images/assembly55.jpeg) | ![](/images/rover_assembly_images/assembly56.jpeg) |
 
 
+## Custom remote control PCB assembly process
 
-## Remote control module assembly process
-
-| ![](/images/rc_assembly_images/assembly1.jpeg) | ![](/images/rc_assembly_images/assembly2.jpeg) |
+| ![](/images/custom_rc_pcb_assembly_images/assembly1.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly2.jpeg) |
 | -------------------------- | ---------------------- |
-| ![](/images/rc_assembly_images/assembly3.jpeg) | ![](/images/rc_assembly_images/assembly4.jpeg) |
-| ![](/images/rc_assembly_images/assembly5.jpeg) | ![](/images/rc_assembly_images/assembly6.jpeg) |
-| ![](/images/rc_assembly_images/assembly7.jpeg) | ![](/images/rc_assembly_images/assembly8.jpeg) |
-| ![](/images/rc_assembly_images/assembly9.jpeg) | ![](/images/rc_assembly_images/assembly10.jpeg) |
-| ![](/images/rc_assembly_images/assembly11.jpeg) | ![](/images/rc_assembly_images/assembly12.jpeg) |
+| ![](/images/custom_rc_pcb_assembly_images/assembly3.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly4.jpeg) |
+| ![](/images/custom_rc_pcb_assembly_images/assembly5.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly6.jpeg) |
+| ![](/images/custom_rc_pcb_assembly_images/assembly7.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly8.jpeg) |
+| ![](/images/custom_rc_pcb_assembly_images/assembly9.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly10.jpeg) |
+| ![](/images/custom_rc_pcb_assembly_images/assembly11.jpeg) | ![](/images/assembled_rc_pcb.jpeg) |
+
+
+## Attachment for generic/commercial remote control assembly process
+
+| ![](/images/attachment_generic_rc_assembly_images/assembly1.jpeg) | ![](/images/attachment_generic_rc_assembly_images/assembly2.jpeg) |
+| -------------------------- | ---------------------- |
+| ![](/images/attachment_generic_rc_assembly_images/assembly3.jpeg) | ![](/images/attachment_generic_rc_assembly_images/assembly4.jpeg) |
+| ![](/images/attachment_generic_rc_assembly_images/assembly5.jpeg) | ![](/images/attachment_generic_rc_assembly_images/assembly6.jpeg) |
+| ![](/images/attachment_generic_rc_assembly_images/assembly7.jpeg) | ![](/images/attachment_generic_rc_assembly_images/assembly8.jpeg) |
+| ![](/images/attachment_generic_rc_assembly_images/assembly9.jpeg) | ![](/images/attachment_generic_rc_assembly_images/assembly10.jpeg) |
+| ![](/images/attachment_generic_rc_assembly_images/assembly11.jpeg) | ![](/images/attachment_generic_rc_assembly_images/assembly12.jpeg) |

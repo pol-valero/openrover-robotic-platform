@@ -14,3 +14,10 @@ This is the [schematic](esp32s3_touchscreen_submodule_schematic-pcb_remote.pdf) 
 
 Here is an image of the top EasyEDA PCB design:
 ![Alt text](/images/rc_pcb_design_front.png)
+
+Here are some images of the assembled PCB:
+| ![](/images/custom_rc_pcb_assembly_images/assembly9.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly11.jpeg) |
+| -------------------------- | ---------------------- |
+
+## Short demo
+![Alt text](/images/rc_pcb_control_screen_demo.gif)
