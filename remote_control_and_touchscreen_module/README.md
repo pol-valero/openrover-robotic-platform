@@ -3,7 +3,7 @@
 ## Remote control options
 The OpenRover project has two remote control options available:
 
-1) Custom remote control created from scratch, using a manufactured double-layered PCB, some 3D printed parts, and acrylic plastic. Code, schematics, and further info can be found in this [folder](pcb_remote_control/). 
+1) Custom remote control created from scratch, using a manufactured double-layer PCB, some 3D printed parts, and acrylic plastic. Code, schematics, and further info can be found in this [folder](pcb_remote_control/). 
 
 2) Custom attachment for a generic/commercial remote control that has a PPM output port, like the Spektrum DX8, using a home-made PCB and some 3D printed parts. Code, schematics, and further info can be found in this [folder](generic_remote_control_attachment/).
 

@@ -1,4 +1,6 @@
 # Central rover module
+| ![](/images/rover_assembly_images/assembly53.jpeg) | ![](/images/rover_assembly_images/assembly54.jpeg) |
+| -------------------------- | ---------------------- |
 
 ## Code setup guide
 To develop the code for this module, the PlatformIO IDE was used. This IDE is integrated into the versatile Visual Studio Code editor, and can be installed simply by searching "PlatformIO IDE" in the "Extensions" tab of Visual Studio Code. 

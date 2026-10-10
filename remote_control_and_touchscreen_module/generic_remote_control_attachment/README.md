@@ -1,3 +1,7 @@
+# Attachment for a generic/commercial remote control
+| ![](/images/attachment_generic_rc_assembly_images/assembly9.jpeg) | ![](/images/attachment_generic_rc_assembly_images/assembly10.jpeg) |
+| -------------------------- | ---------------------- |
+
 ## Remarks
 For this remote control option, the developed remote control and touchscreen module is an attachment for any generic/commercial RC that has a PPM output port (usually known as "Trainer Port"). The RC model that I have personally used is the Spektrum DX8 (if another model wants to be used, the 3D printed parts would have to be adapted). 
 

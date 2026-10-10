@@ -1,5 +1,9 @@
+# Custom remote control PCB
+| ![](/images/custom_rc_pcb_assembly_images/assembly9.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly11.jpeg) |
+| -------------------------- | ---------------------- |
+
 ## Remarks
-For this remote control option, the developed remote control and touchscreen module is built using a custom double-layered PCB. The [PCB design](remote_control_pcb_design_easyeda.json) has been created using the EasyEDA app, and the PCB has been manufactured by JLCPCB. 
+For this remote control option, the developed remote control and touchscreen module is built using a custom double-layer PCB. The [PCB design](remote_control_pcb_design_easyeda.json) has been created using the EasyEDA app, and the PCB has been manufactured by JLCPCB. 
 
 In order to manufacture the PCB, a [Gerber fabrication file](remote_control_pcb_gerber.zip) has to be generated from the design and then has to be uploaded to the manufacturer's website (e.g., JLCPCB, PCBWAY...). If you want to make any modifications to the EasyEDA PCB design, you will have to regenerate the Gerber by going into the top menu and selecting "Fabrication -> PCB Fabrication File (Gerber) -> Generate Gerber".
 
@@ -12,12 +16,9 @@ The touchscreen model is the ESP32S3_8048S043, with a resolution of 800 x 480 px
 
 This is the [schematic](esp32s3_touchscreen_submodule_schematic-pcb_remote.pdf) of the "ESP32S3 touchscreen" submodule for this remote control option. The [EasyEDA PCB design](remote_control_pcb_design_easyeda.json) can be seen as the schematic of the "Arduino Nano" submodule. 
 
-Here is an image of the top EasyEDA PCB design:
+Here are a couple images of the top and bottom layers of the EasyEDA PCB design:
 ![Alt text](/images/rc_pcb_design_front.png)
-
-Here are some images of the assembled PCB:
-| ![](/images/custom_rc_pcb_assembly_images/assembly9.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly11.jpeg) |
-| -------------------------- | ---------------------- |
+![Alt text](/images/rc_pcb_design_back.png)
 
 ## Short demo
 ![Alt text](/images/rc_pcb_control_screen_demo.gif)

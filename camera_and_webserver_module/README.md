@@ -1,4 +1,6 @@
 # Camera and webserver module
+| ![](/images/rover_assembly_images/assembly48.jpeg) | ![](/images/rover_assembly_images/assembly50.jpeg) |
+| -------------------------- | ---------------------- |
 
 ## Code setup guide
 Before uploading this module's project code in the RaspberryPi Zero 2W, it is necessary to install and OS in the board. Specifically, the RaspberryPi OS Lite (headless version) has to be installed. This OS and an install guide can be found in the [RaspberryPi website](https://www.raspberrypi.com/software/operating-systems/).

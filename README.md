@@ -10,7 +10,7 @@
 
 ![Alt text](images/embedded_UI.png)
 
-## General project overview
+## Project overview
 
 ### Context
 Rovers are planetary exploration robots that space agencies like NASA send to Mars or the Moon to explore and collect information, images, and samples. In this project, a functional 3D printed replica of the Mars "Perseverance" rover, which was launched by NASA in July 2020, is created. 
@@ -73,11 +73,11 @@ The OpenRover platform offers an interesting set of functionalities:
 ## Project modules
 The OpenRover's components are organized, both at a hardware and software level, in different modules:
 
-- [Central rover module](central_rover_module/): It has an Arduino Mega development board that is inside the main body of the rover and that manages all moving elements (e.g., motors, servomotors) as well as the rover's sensors and sending/receiving the radio signal.
+- [Central rover module](central_rover_module/): It has an Arduino Mega development board located inside the main body of the rover which manages all moving elements (e.g., motors, servomotors) as well as the rover's sensors and sending/receiving the radio signal.
 
-- [Remote control and touchscreen module](remote_control_and_touchscreen_module/): It has an ESP32S3 development board that is responsible for the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels. Two different remote control versions are available: a custom remote control PCB, or an attachment for a generic/commercial remote control.
+- [Remote control and touchscreen module](remote_control_and_touchscreen_module/): It has an ESP32S3 development board that is responsible for managing the touchscreen, and an Arduino Nano that is responsible for reading the RC channel values, sending/receiving the radio signal and measuring battery levels. Two different remote control versions are available: a custom remote control PCB, or an attachment for a generic/commercial remote control.
 
-- [Camera and webserver module](camera_and_webserver_module/): It has a RaspberryPi Zero 2W development board that is inside the head of the rover. This board connects to a camera, generates a WiFi network and hosts a web dashboard.
+- [Camera and webserver module](camera_and_webserver_module/): It has a RaspberryPi Zero 2W development board located inside the head of the rover. This board connects to a camera, generates a WiFi network and hosts a web dashboard.
 
 ![Alt text](images/openrover_modules.png)
 
