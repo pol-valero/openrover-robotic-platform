@@ -58,5 +58,6 @@ M3 x 16mm - 1
 
 Other parts:
 M3 threaded insert - 20 (approximate)
+M3 washers - 12 - They can be put between the bottom acrylic plate and the PCB to act as spacers
 
 Laser/CNC cut top and bottom acrylic plate - 3mm thick - see 2D .dxf designs inside the "remote_control_and_touchscreen_module/pcb_remote_control/" folder

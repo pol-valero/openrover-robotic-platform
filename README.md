@@ -82,7 +82,7 @@ The OpenRover's components are organized, both at a hardware and software level,
 ![Alt text](images/openrover_modules.png)
 
 ### Remarks
-This repository contains the code and documentation of all the modules. However, the codebase is actually distributed across different repositories:
+Although this repository contains the code and documentation of all the modules, the codebase is actually distributed across different repositories:
 
 - The folder ``camera_and_webserver_module/raspberrypi_code/`` contains the [openrover-web-dashboard](https://github.com/pol-valero/openrover-web-dashboard.git) repository. 
 
@@ -96,7 +96,9 @@ This repository contains the code and documentation of all the modules. However,
 
 - The folder ``remote_control_and_touchscreen_module/touchscreen_ui_design_squareline/`` contains the [openrover-touchscreen-ui-design](https://github.com/pol-valero/openrover-touchscreen-ui-design.git) repository. 
 
-"Git subtrees" were used to link these independent repositories to folders inside this central [openrover-robotic-platform](https://github.com/pol-valero/openrover-robotic-platform) repository. 
+"Git subtrees" were used to link these independent repositories to folders inside this main ``openrover-robotic-platform`` repository. 
+
+Additionally, even though this ``openrover-robotic-platform`` repository contains all the information, software, and design files related to the custom remote control, there exists a dedicated [radio-controller-pcb](https://github.com/pol-valero/radio-controller-pcb) repository that focuses exclusively on the remote control PCB and puts all relevant resources in one centralized place.
 
 
 ## Expected build time

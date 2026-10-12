@@ -41,8 +41,9 @@ Additionally, some images that detail the hardware and mechanical assembly proce
 
 ## Custom remote control PCB assembly process
 
-| ![](/images/custom_rc_pcb_assembly_images/assembly1.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly2.jpeg) |
+| ![](/images/custom_rc_pcb_assembly_images/assembly12.png) | ![](/images/custom_rc_pcb_assembly_images/assembly13.png) |
 | -------------------------- | ---------------------- |
+| ![](/images/custom_rc_pcb_assembly_images/assembly1.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly2.jpeg) |
 | ![](/images/custom_rc_pcb_assembly_images/assembly3.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly4.jpeg) |
 | ![](/images/custom_rc_pcb_assembly_images/assembly5.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly6.jpeg) |
 | ![](/images/custom_rc_pcb_assembly_images/assembly7.jpeg) | ![](/images/custom_rc_pcb_assembly_images/assembly8.jpeg) |
